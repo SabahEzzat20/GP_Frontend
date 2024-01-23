@@ -1,0 +1,42 @@
+.dashboardContainer{
+    display: block;
+    height: 693px;
+    // background-color: green;
+    .dashboardHeader{
+        display: flex;
+        justify-content: flex-start;
+        column-gap: 10px;
+        div{
+            // background-color: green;
+            display: flex;
+            align-items: center;
+            p{
+                font-size: 26px;
+                color: white;
+            }
+        }
+    }
+    .adminSidebarOptions{
+        // background-color: red;
+        text-decoration: none;
+        padding-top: 150px;
+        display: grid;
+        grid-template-rows: repeat(3,50px);
+        div{
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            transition: .5s ease;
+            font-size: 21px;
+            column-gap: 10px;
+            &:hover{
+                background-color: rgb(78, 78, 78);
+            }
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+        
+    }
+}
