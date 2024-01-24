@@ -20,18 +20,18 @@ export const DashboardSidebar = () => {
                     </div>
                 </div>
                 <div className='adminSidebarOptions' >
-                    <div>
+                    <Link to={'/viewDoctors'} >
                         <img src={doctor} alt="doctor" width={23} height={23}/>
-                        <Link to={'/viewDoctors'} style={{display: isOpen ? 'block' : 'none'}}>Doctors</Link>
-                    </div>
-                    <div>
-                        <img src={patient} alt="patient" width={23} height={23}/>
-                        <Link to={'/viewPatients'} style={{display: isOpen ? 'block' : 'none'}}>Patients</Link>
-                    </div>
-                    <div>
-                        <img src={appointment} alt="appointment" width={23} height={23}/>
-                        <Link to={'/viewAppointments'} style={{display: isOpen ? 'block' : 'none'}}>Appointments</Link>
-                    </div>
+                        <p style={{ display: isOpen ? 'block' : 'none' }}>Doctors</p>
+                    </Link>
+                    <Link to={'/viewPatients'} >
+                        <img src={patient} alt="doctor" width={23} height={23}/>
+                        <p style={{ display: isOpen ? 'block' : 'none' }}>Patients</p>
+                    </Link>
+                    <Link to={'/viewAppointments'} >
+                        <img src={appointment} alt="doctor" width={23} height={23}/>
+                        <p style={{ display: isOpen ? 'block' : 'none' }}>Appointments</p>
+                    </Link>
                 </div>
             </div>
         </>
