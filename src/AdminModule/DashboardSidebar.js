@@ -16,7 +16,7 @@ export const DashboardSidebar = () => {
                 <div className='dashboardHeader' onClick={toggle}>
                     <img src={websiteLogo} alt="logo" width={40} height={40} />
                     <div style={{display: isOpen ? 'block' : 'none'}}>
-                        <p>Orthopedista</p>
+                        <p>Orth</p>
                     </div>
                 </div>
                 <div className='adminSidebarOptions' >
