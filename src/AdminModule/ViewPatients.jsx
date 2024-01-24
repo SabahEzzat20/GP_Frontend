@@ -1,6 +1,7 @@
 import React from "react";
 import '../Sass/ViewPatients.scss'
 import { FaTrash } from "react-icons/fa";
+import {AddDoctorModal} from "./AddDoctorModal";
 const ViewPatients = () => {
     const patient = [
     { id: 1, name: " Jomana"},
@@ -16,22 +17,23 @@ const ViewPatients = () => {
       <table className="patient-table">
         <thead>
           <tr>
-             <th> ID </th> 
-             <th> Name </th>
-             <th> Delete </th>
+              <th> ID </th> 
+              <th> Name </th>
+              <th> Delete </th>
           </tr>
         </thead>
         <tbody>
-         
+        
           {patient.map((patient) => (
             <tr key={patient.id}>
               <td> {patient.id} </td> 
               <td> {patient.name} </td>
-               <td>  <FaTrash /></td>
+              <td>  <FaTrash /></td>
             </tr>
           ))}
         </tbody>
       </table>
+      <AddDoctorModal />
     </div>
   );
 };
