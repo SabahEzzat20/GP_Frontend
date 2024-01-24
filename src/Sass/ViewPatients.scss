@@ -1,0 +1,28 @@
+.view-patient {
+    color: #ddd;
+    align-self: center;
+    width: 100%;
+    h2 {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+    .patient-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 25px;
+        th {
+            background-color: #6D2932;
+            padding: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr {
+            background-color: #638889;
+        }
+    }
+}
