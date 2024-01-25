@@ -1,6 +1,7 @@
 import React from "react";
 import '../Sass/ViewDoctors.scss'
 import { FaTrash } from "react-icons/fa";
+import {AddDoctorModal} from "./AddDoctorModal";
 const ViewDoctors = () => {
   const doctors = [
     { id: 1, name: "Dr. John Doe", experience: "10 years" },
@@ -33,6 +34,7 @@ const ViewDoctors = () => {
           ))}
         </tbody>
       </table>
+      <AddDoctorModal />
     </div>
   );
 };
