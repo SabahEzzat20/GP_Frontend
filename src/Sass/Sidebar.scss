@@ -2,7 +2,7 @@
 .sidebar{
     background-color: #1D3124;
     color: white;
-    height: 100vh;
+    min-height: 100vh;
     margin-right: 1em;
     // display: flex;
 }
@@ -50,6 +50,8 @@
 //     gap: 10px;
 // }
 .logoutandprofilecontainer{
+    // position: absolute;
+    // bottom: 0;
     padding-top: 15em;
 }
 .logout-icon,.profile-icon{
