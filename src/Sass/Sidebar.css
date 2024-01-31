@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #1D3124;
+  background-color: #BED754;
   color: white;
   min-height: 100vh;
   margin-right: 1em;
@@ -42,7 +42,7 @@
 .link:hover, .last:hover {
   border-left: 4px solid white;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  background: #2a4735;
+  background: #a0b931;
 }
 
 .logoutandprofilecontainer {
