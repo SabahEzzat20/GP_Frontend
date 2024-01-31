@@ -1,0 +1,58 @@
+.sidebar {
+  background-color: #1D3124;
+  color: white;
+  height: 100vh;
+  margin-right: 1em;
+}
+
+.routes {
+  color: white;
+}
+
+.top_section {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px;
+  padding-bottom: 10em;
+}
+
+.logo {
+  font-size: 25px;
+  line-height: 0;
+  padding-left: 5px;
+}
+
+.bars {
+  font-size: 25px;
+  padding-left: 5px;
+}
+
+.link, .last {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding: 9px;
+  border-left: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  align-items: baseline;
+}
+.link:hover, .last:hover {
+  border-left: 4px solid white;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background: #2a4735;
+}
+
+.logoutandprofilecontainer {
+  padding-top: 15em;
+}
+
+.logout-icon, .profile-icon {
+  font-size: 25px;
+}
+
+.logout {
+  color: rgb(255, 0, 0);
+}/*# sourceMappingURL=Sidebar.css.map */
