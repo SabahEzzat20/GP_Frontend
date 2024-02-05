@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import '../Sass/DragDrop.scss';
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 const DragDrop = () => {
     const [image, setImage] = useState(null);
@@ -19,37 +21,31 @@ const DragDrop = () => {
     const { getRootProps, getInputProps , isDragActive } = useDropzone({ onDrop });
 
     return (
-        <div>
-        <div {...getRootProps()} style={dropzoneStyle}>
-                <input {...getInputProps()} />
-                {
-                    isDragActive ?
-                    <p>Drop the files here ...</p> :
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                }
-        </div>
-        {image && (
-            <div style={imagePreviewStyle}>
-            <img src={image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <>
+            <div className="dropzone-container">
+                <div {...getRootProps()} className='dropzone'>
+                        <input {...getInputProps()} />
+                        {
+                            isDragActive ?
+                            <p>Drop X-Ray here...</p> :
+                            <p>Drag and drop your X-Ray here or click here to upload.</p>
+                        }
+                </div>
+                <div className="img-btn">
+                    {image && (
+                        <div className='image-preview'>
+                            <img src={image} alt="Preview" style={{ width: '60px', height: '60px', objectFit: 'cover' }} />
+                        </div>
+                    )}
+                    <button className='scan-btn'>
+                        <div className="upload-icon">
+                            <IoCloudUploadOutline />
+                        </div>
+                        <p>upload</p>
+                    </button>
+                </div>
             </div>
-        )}
-        </div>
+        </>
     );
 };
-
-const dropzoneStyle = {
-    border: '2px dashed #cccccc',
-    borderRadius: '4px',
-    padding: '20px',
-    textAlign: 'center',
-    cursor: 'pointer',
-};
-
-const imagePreviewStyle = {
-    marginTop: '20px',
-    border: '1px solid #cccccc',
-    borderRadius: '4px',
-    overflow: 'hidden',
-};
-
 export default DragDrop;
