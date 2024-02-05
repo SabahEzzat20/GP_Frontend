@@ -6,12 +6,13 @@ import DragDrop from './PatientsModule/DragDrop';
 import Navbar from './DoctorModule/Navbar';
 
 export const App = () => {
-  return (
-    <div className="App">
-      {/* <DragDrop /> */}
-      {/* <Sidebar />
-      <Outlet /> */}
-      <Navbar />
-    </div>
-  );
+    return ( <
+        div className = "App" > { /* <DragDrop /> */ } {
+            /* <Sidebar />
+                  <Outlet /> */
+        } <
+        Navbar / >
+        <
+        /div>
+    );
 }
