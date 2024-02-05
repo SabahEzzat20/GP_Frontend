@@ -8,10 +8,10 @@ import Navbar from './DoctorModule/Navbar';
 export const App = () => {
   return (
     <div className="App">
-      {/* <DragDrop /> */}
+      <DragDrop />
       {/* <Sidebar />
       <Outlet /> */}
-      <Navbar />
+      {/* <Navbar /> */}
     </div>
   );
 }
