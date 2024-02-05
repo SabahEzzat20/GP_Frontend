@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../Sass/AddDoctorModal.css";
+import { RiUserAddFill } from "react-icons/ri";
 
 export const AddDoctorModal = () => {
   const [show, setShow] = useState(false);
@@ -11,8 +12,8 @@ export const AddDoctorModal = () => {
 
   return (
     <>
-      <Button variant="outline-success" onClick={handleShow}>
-        add doctor
+      <Button  onClick={handleShow} className="modal-button">
+        <RiUserAddFill />  add doctor
       </Button>
       <Modal
         show={show}

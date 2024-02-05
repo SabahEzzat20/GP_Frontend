@@ -34,14 +34,14 @@ const Sidebar = () => {
     return (
         <>
             <div className="main-container">
-                <motion.div animate={{ width: isOpen? '200px' : '55px'}} className='sidebar'>
+                <motion.div animate={{ width: isOpen? '220px' : '55px'}} className='sidebar'>
                     <section className='routes'>
                         <div className="top_section">
                             <div className="bars">
                                 <FaBars onClick={toggle}/>
                             </div>
                             <AnimatePresence>
-                                {isOpen &&  <motion.h1 className="logo">orthopedista</motion.h1>}
+                                {isOpen &&  <motion.h1 className="logo">orth</motion.h1>}
                             </AnimatePresence>
                             
                         </div>

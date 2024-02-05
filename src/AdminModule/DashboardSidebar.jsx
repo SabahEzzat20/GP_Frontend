@@ -12,7 +12,7 @@ export const DashboardSidebar = () => {
     }
     return (
         <>
-            <div className='dashboardContainer' style={{width: isOpen ? '200px' : '45px'} }>
+            <div className='dashboardContainer' style={{width: isOpen ? '250px' : '45px'} }>
                 <div className='dashboardHeader' onClick={toggle}>
                     <img src={websiteLogo} alt="logo" width={40} height={40} />
                     <div style={{display: isOpen ? 'block' : 'none'}}>

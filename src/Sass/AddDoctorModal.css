@@ -1,9 +1,11 @@
 .modalHeader {
     border: none;
+    outline: none;
 }
 
 .modalFooter {
     border: none;
+    outline: none;
 }
 
 .mb-3 {
