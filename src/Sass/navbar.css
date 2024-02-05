@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Variables */
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #5a6269;
+    --tertiary-color: #f8f9fa;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--secondary-color);
+    font-family: 'Roboto', sans-serif;
+    transition: var(--secondary-color) 0.3s ease-in-out;
+}
+
+.navbar.navbar-scroll {
+    background-color: var(--secondary-color);
+}
+
+.navbar .navbar-brand {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 40px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .navbar-brand:hover {
+    color: var(--secondary-color);
+}
+
+.navbar .nav-link {
+    color: var(--primary-color);
+    transition: color 0.3s ease-in-out;
+    margin-left: 60px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.navbar .dropdown-menu {
+    background-color: var(--tertiary-color);
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    color: var(--primary-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    color: var(--secondary-color);
+}
+
+.navbar .form-control {
+    background-color: var(--tertiary-color);
+    border-color: var(--primary-color);
+    color: var(--secondary-color);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar .form-control:focus {
+    background-color: var(--tertiary-color);
+    border-color: var(--secondary-color);
+}
+
+.navbar .btn-outline-success {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.navbar .btn-outline-success:hover {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+}
