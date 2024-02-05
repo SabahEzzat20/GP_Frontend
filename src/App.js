@@ -3,13 +3,15 @@ import { Outlet } from 'react-router-dom';
 import './App.css';
 import Sidebar from './AdminModule/Sidebar';
 import DragDrop from './PatientsModule/DragDrop';
+import Navbar from './DoctorModule/Navbar';
 
 export const App = () => {
   return (
     <div className="App">
       {/* <DragDrop /> */}
-      <Sidebar />
-      <Outlet />
+      {/* <Sidebar />
+      <Outlet /> */}
+      <Navbar />
     </div>
   );
 }

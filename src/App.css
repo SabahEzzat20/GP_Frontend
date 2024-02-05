@@ -1,1 +1,11 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Rubik",sans-serif;font-style:normal}.App{display:flex}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+}
+
+.App {
+  display: flex;
+}/*# sourceMappingURL=App.css.map */
