@@ -1,14 +1,34 @@
 import React, { useState } from "react";
-import '../Sass/ViewPatients.scss'
-import { FaTrash } from "react-icons/fa";
+import '../Sass/ViewPatients.css'
+//import { FaTrash } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { SlOptions } from "react-icons/sl";
+import { FaPen } from "react-icons/fa";
 const ViewPatients = () => {
+  const [optionsVisibility, setOptionsVisibility] = useState({});
+
+  const toggleMenu = (id) => {
+    setOptionsVisibility((prevVisibility) => {
+      const newVisibility = {
+        ...prevVisibility,
+        [id]: !prevVisibility[id],
+      };
+  
+      // Reset visibility for other rows
+      Object.keys(prevVisibility).forEach((key) => {
+        if (key !== id && prevVisibility[key]) {
+          newVisibility[key] = false;
+        }
+      });
+      return newVisibility;
+    });
+  };
   const patients = [
-    { id: 1, name: "Jomana" },
-    { id: 2, name: "Rania" },
-    { id: 3, name: "Dalia" },
-    { id: 4, name: "Salwa" },
-    { id: 5, name: "Sondos" }
+    { id: 1, name: "Jomana",profile: "URL" },
+    { id: 2, name: "Rania",profile: "URL" },
+    { id: 3, name: "Dalia",profile: "URL" },
+    { id: 4, name: "Salwa",profile: "URL" },
+    { id: 5, name: "Sondos",profile: "URL" }
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +43,14 @@ const ViewPatients = () => {
 
   return (
     <div className="view-patient">
-      <h2>Patient Table</h2>
+      {/*<h2>Patient Table</h2>*/}
+      <div className="title-container">
+        <div className="patient-title">Patients</div>
+        <div className="doctor-icon">
+          <FaPen />
+        </div>
+        <div className="no-of-doctors">{patients.length} patients</div>
+      </div>
       <div className="search-bar">
       <FaSearch />
         <input
@@ -38,7 +65,8 @@ const ViewPatients = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Delete</th>
+            <th>profile</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -46,8 +74,15 @@ const ViewPatients = () => {
             <tr key={patient.id}>
               <td>{patient.id}</td>
               <td>{patient.name}</td>
+              <td>{patient.profile}</td>
               <td>
-                <FaTrash />
+                <button className="table-options-button" onClick={() => toggleMenu(patient.id)}>
+                  <SlOptions />
+                  <div className="options" style={{ display: optionsVisibility[patient.id] ? 'block' : 'none' }} key={patient.id}>
+                    <button>view</button>
+                    <button>delete</button>
+                  </div>
+                </button>
               </td>
             </tr>
           ))}
