@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
 import '../Sass/Sidebar.scss'
 // import '../App.css'
-// import websiteLogo from '../images/boneLogo.png'
 import doctor from '../images/medical-assistance.png'
 import patient from '../images/patient.png'
 import appointment from '../images/medical.png'
