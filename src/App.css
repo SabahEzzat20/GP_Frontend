@@ -8,4 +8,8 @@
 
 .App {
   display: flex;
+}
+.App .right-side {
+  display: block;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */
