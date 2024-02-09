@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Test = () => {
+const UpdateProfile = () => {
     return (
         <div>
-            test
+            
         </div>
     );
 };
 
-export default Test;
+export default UpdateProfile;

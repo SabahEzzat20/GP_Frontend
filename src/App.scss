@@ -11,4 +11,8 @@
 }
 .App{
     display: flex;
+    .right-side{
+        display: block;
+        width: 100%;
+    }
 }
