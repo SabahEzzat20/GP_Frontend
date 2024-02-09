@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../Sass/ViewDoctors.scss'
-import { FaTrash } from "react-icons/fa";
+//import { FaTrash } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "./AddDoctorModal";
 import { SlOptions } from "react-icons/sl";
@@ -195,7 +195,7 @@ const ViewDoctors = () => {
             <th>E-mail</th>
             <th>Qualification</th>
             <th></th>
-            {/* <th>Delete</th> */}
+           
           </tr>
         </thead>
         <tbody>
@@ -206,7 +206,6 @@ const ViewDoctors = () => {
               <td>{doctor.email}</td>
               <td>{doctor.qualification}</td>
               <td>
-                {/* <FaTrash /> */}
                 <button className="table-options-button" onClick={() => toggleMenu(doctor.id)}>
                   <SlOptions />
                   <div className="options" style={{ display: optionsVisibility[doctor.id] ? 'block' : 'none' }} key={doctor.id}>
