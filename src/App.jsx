@@ -1,15 +1,23 @@
-//import { Outlet } from 'react-router-dom';
+import { BrowserRouter as Router,Route, Routes} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 //import { DashboardSidebar } from './AdminModule/DashboardSidebar.jsx';
 //import LoginForm from './Shared/LoginForm';
-import Register from './Shared/Register.jsx';
+import Register from './Shared/Register';
+import LoginForm from "./Shared/LoginForm";
 //import Navbar from "./DoctorModule/Navbar";
 
-export const App = () => {
+ const App = () => {
   return (
     <div className="App">
-        <Register />
+        <Router>
+            <Routes>
+              <Route path="/" element={<LoginForm />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+        </Router>
     </div>
   );
 };
+
+export default App;

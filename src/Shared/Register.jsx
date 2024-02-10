@@ -1,6 +1,8 @@
 import React from "react";
-import { FaUser,FaLock } from "react-icons/fa";
-import '../Sass/Register.css';
+import { FaUser,FaLock} from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import '../Sass/Register.scss';
+import { Link } from "react-router-dom";
 const Register= ()=>{
     return(
         <div className="wrapper">
@@ -12,7 +14,7 @@ const Register= ()=>{
                 </div>
                 <div className="input-box">
                    <input type="email" placeholder="E-mail" required/> 
-                   <FaUser className="icon" />
+                   <MdEmail  className="icon" />
                 </div>
                 <div className="input-box">
                    <input type="password" placeholder="Password" required/>
@@ -26,7 +28,7 @@ const Register= ()=>{
                 </div>
                 <button type="submit">Register</button>
                 <div className="login-link">
-                    <p>Already have an account? <a href="#/">Sign in</a></p>
+                    <p>Already have an account? <Link to="/">Sign in</Link></p>
                 </div>
             </form>
         </div>
