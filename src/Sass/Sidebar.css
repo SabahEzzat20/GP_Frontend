@@ -4,10 +4,6 @@
   min-height: 100vh;
 }
 
-.routes {
-  color: white;
-}
-
 .top_section {
   display: flex;
   align-items: baseline;
@@ -94,9 +90,8 @@
   align-items: baseline;
 }
 .link:hover, .last:hover {
-  border-left: 4px solid white;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  background: rgb(32, 110, 255);
+  color: rgb(32, 110, 255);
 }
 
 .logoutandprofilecontainer {
@@ -109,4 +104,10 @@
 
 .logout {
   color: rgb(255, 0, 0);
+}
+
+.active {
+  border-left: 4px solid white;
+  background: rgb(141, 141, 141);
+  color: rgb(255, 255, 255);
 }/*# sourceMappingURL=Sidebar.css.map */
