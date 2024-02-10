@@ -9,6 +9,7 @@ export const App = () => {
     <div className="App">
       <Sidebar />
       {role === 2 ?
+        
         <div className='right-side'>
           <>
             <UpperNav />
