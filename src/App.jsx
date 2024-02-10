@@ -3,6 +3,7 @@ import './App.css';
 import Sidebar from './AdminModule/Sidebar';
 import UpperNav from './DoctorModule/UpperNav';
 import { role } from './AdminModule/Sidebar';
+
 export const App = () => {
   return (
     <div className="App">

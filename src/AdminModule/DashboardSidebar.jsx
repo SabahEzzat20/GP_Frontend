@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import '../Sass/DashboardSidebar.css';
-import websiteLogo from '../images/boneLogo.png'
+//import websiteLogo from '../images/boneLogo.png'
 import doctor from '../images/medical-assistance.png'
 import patient from '../images/patient.png'
 import appointment from '../images/medical.png'
@@ -14,7 +14,8 @@ export const DashboardSidebar = () => {
         <>
             <div className='dashboardContainer' style={{width: isOpen ? '250px' : '45px'} }>
                 <div className='dashboardHeader' onClick={toggle}>
-                    <img src={websiteLogo} alt="logo" width={40} height={40} />
+                   {/*<img src={websiteLogo} alt="logo" width={40} height={40} />   */}
+                    
                     <div style={{display: isOpen ? 'block' : 'none'}}>
                         <p>Orth</p>
                     </div>
