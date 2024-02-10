@@ -56,7 +56,6 @@ const Sidebar = () => {
                             <AnimatePresence>
                                 {isOpen &&  <motion.h1 className="logo">orth</motion.h1>}
                             </AnimatePresence>
-                            
                         </div>
                         {role === 1 ?
                             adminRoutes.map((route) => (
