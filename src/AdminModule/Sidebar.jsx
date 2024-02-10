@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import '../Sass/Sidebar.scss'
-// import '../App.css'
 import doctor from '../images/medical-assistance.png'
 import patient from '../images/patient.png'
 import appointment from '../images/medical.png'
@@ -55,20 +54,40 @@ const Sidebar = () => {
                             <AnimatePresence>
                                 {isOpen &&  <motion.h1 className="logo">orth</motion.h1>}
                             </AnimatePresence>
-                            
                         </div>
                         {role === 1 ?
                             adminRoutes.map((route) => (
-                                <NavLink to={route.path} key={route.name} className="link">
-                                    <div className="icon">{route.icon}</div>
-                                    <AnimatePresence>
-                                        {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
-                                    </AnimatePresence>
-                                </NavLink>
+                                <>
+                                    <NavLink to={route.path} key={route.name} className="link" activeClassName='active'>
+                                        <div className="icon">{route.icon}</div>
+                                        <AnimatePresence>
+                                            {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
+                                        </AnimatePresence>
+                                    </NavLink>
+                                    <div className="logoutandprofilecontainer">
+                                        <NavLink className='profile last'>
+                                            <div className='profile-icon'>
+                                                <CgProfile/>
+                                            </div>
+                                            <AnimatePresence>
+                                                    {isOpen && <motion.div className='profile-name'>profile</motion.div>}
+                                            </AnimatePresence>
+                                            
+                                        </NavLink>
+                                        <NavLink  className='logout last'>
+                                            <div className='logout-icon'>
+                                                <RiLogoutCircleLine/>
+                                            </div>
+                                            <AnimatePresence>
+                                                    {isOpen && <motion.div className='logout-name'>logout</motion.div>}
+                                            </AnimatePresence>
+                                        </NavLink>
+                                        </div>
+                                    </>
                             ))
                             :
                             doctorRoutes.map((doctorRoute) => (
-                                <NavLink to={doctorRoute.path} key={doctorRoute.name} className="link">
+                                <NavLink to={doctorRoute.path} key={doctorRoute.name} className="link" activeClassName = 'active'>
                                     <div className="icon">{doctorRoute.icon}</div>
                                     <AnimatePresence>
                                         {isOpen && <motion.div className="link_text">{doctorRoute.name}</motion.div>}
@@ -76,25 +95,7 @@ const Sidebar = () => {
                                 </NavLink>
                             ))
                         }
-                        <div className="logoutandprofilecontainer">
-                            <NavLink className='profile last'>
-                                <div className='profile-icon'>
-                                    <CgProfile/>
-                                </div>
-                                <AnimatePresence>
-                                        {isOpen && <motion.div className='profile-name'>profile</motion.div>}
-                                </AnimatePresence>
-                                
-                            </NavLink>
-                            <NavLink  className='logout last'>
-                                <div className='logout-icon'>
-                                    <RiLogoutCircleLine/>
-                                </div>
-                                <AnimatePresence>
-                                        {isOpen && <motion.div className='logout-name'>logout</motion.div>}
-                                </AnimatePresence>
-                            </NavLink>
-                        </div>
+                        
                     </section>
                 </motion.div>
                 <main>

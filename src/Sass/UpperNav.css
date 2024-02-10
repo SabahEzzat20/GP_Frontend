@@ -10,6 +10,37 @@
   font-size: 25px;
   margin-right: 28px;
 }
+.doctor-nav .notification .notifications-body {
+  position: absolute;
+  margin-left: -200px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 5px rgba(82, 82, 82, 0.4);
+  border-radius: 10px;
+  width: 350px;
+  margin-top: 10px;
+}
+.doctor-nav .notification .notifications-body .not-title {
+  border-bottom: 1px solid rgba(185, 185, 185, 0.3);
+  width: 100%;
+  padding: 15px;
+  color: rgb(82, 82, 82);
+}
+.doctor-nav .notification .notifications-body .not-containter {
+  overflow-y: scroll;
+  max-height: 400px;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.doctor-nav .notification .notifications-body .not-containter::-webkit-scrollbar {
+  width: 5px;
+}
+.doctor-nav .notification .notifications-body .not-containter::-webkit-scrollbar-track {
+  background: transparent;
+}
+.doctor-nav .notification .notifications-body .not-containter::-webkit-scrollbar-thumb {
+  background: transparent;
+}
 .doctor-nav .notification a {
   color: rgb(63, 63, 63);
 }

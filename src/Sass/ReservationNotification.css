@@ -1,0 +1,13 @@
+.reservation-notification {
+  display: flex;
+  font-size: 18px;
+  border-bottom: 1px solid rgb(241, 241, 241);
+  padding: 10px;
+  align-items: center;
+}
+.reservation-notification .patient-details {
+  padding-left: 10px;
+  text-align: start;
+  color: rgb(77, 77, 77);
+  line-height: 0.4;
+}/*# sourceMappingURL=ReservationNotification.css.map */

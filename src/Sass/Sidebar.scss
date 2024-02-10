@@ -6,7 +6,7 @@
     // display: flex;
 }
 .routes{
-    color: white;
+    // color: white;
 }
 .top_section{
     display: flex;
@@ -89,21 +89,11 @@
     transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
     align-items: baseline;
     &:hover{
-        border-left:  4px solid white;
+        // border-left:  4px solid white;
         transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
-        background: rgb(32, 110, 255);
-        // background: #db0f9e;
+        color: rgb(32, 110, 255);
     }
 }
-// .last{
-//     display: flex;
-//     color: white;
-//     font-size: 18px;
-//     text-decoration: none;
-//     justify-content: flex-start;
-//     padding: 5px;
-//     gap: 10px;
-// }
 .logoutandprofilecontainer{
     // position: absolute;
     // bottom: 0;
@@ -118,7 +108,8 @@
 .logout{
     color: rgb(255, 0, 0);
 }
-// .active{
-//     border-left:  4px solid white;
-//     background: #2a4735;
-// }
+.active{
+    border-left:  4px solid white;
+    background: rgb(141, 141, 141);
+    color: rgb(255, 255, 255);
+}

@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Sass/UpperNav.scss';
 import { IoNotifications } from "react-icons/io5";
 import Avatar from '@mui/material/Avatar';
 import sabah from '../images/saboha.jpeg';
-import { Link } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import ReservationNotification from './ReservationNotification';
+
 const UpperNav = () => {
+    const [isOpenNotificationBar, setIsOpenNB] = useState(false);
+    const toggleNotification = () => {setIsOpenNB(!isOpenNotificationBar);}
     return (
         <>
             <div className="doctor-nav">
                 <div className="notification">
-                    <Link to={'/viewNotifications'}>
-                        <IoNotifications />
-                    </Link>
+                    <IconButton onClick={toggleNotification}>
+                        <Badge color="error" size='large' badgeContent={4} max={9}>
+                            <IoNotifications />
+                            </Badge>
+                    </IconButton>
+                    <div className="notifications-body" style={{display: isOpenNotificationBar ? 'block' : 'none'}}>
+                        <div className="not-title">notifications</div>
+                        <div className="not-containter">
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                            <ReservationNotification />
+                        </div>
+                    </div>
                 </div>
                 <div className="doctor-profile">
                     <button className='profile-menu-btn'>
