@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import {App} from "./App";
 import ViewPatients from "./AdminModule/ViewPatients";
 import ViewDoctors from "./AdminModule/ViewDoctors";
+import { ViewNotifications } from "./DoctorModule/ViewNotifications";
+import ViewDoctorSchedule from "./DoctorModule/ViewDoctorSchedule";
 import ViewAppointments from "./AdminModule/ViewAppointments";
 import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
-import ViewPatientsReservations from "./DoctorModule/ViewPatientsReservations";
-import { ViewNotifications } from "./DoctorModule/ViewNotifications";
+import App from "./App";
 
 export const routes = createBrowserRouter([
     {
@@ -30,8 +30,8 @@ export const routes = createBrowserRouter([
                 element: <ViewDoctorAppointments />
             },
             {
-                path: '/viewPatientsReservations',
-                element: <ViewPatientsReservations />
+                path: '/viewDoctorSchedule',
+                element: <ViewDoctorSchedule />
             },
             {
                 path: '/viewNotifications',

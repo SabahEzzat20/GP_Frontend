@@ -30,12 +30,12 @@ const adminRoutes= [
 const doctorRoutes= [
     {
         path: '/viewDoctorAppointments',
-        name: "appointments",
+        name: "Appointments",
         icon: <img src={doctor} alt="doctor" width={25} height={25}/>
     },
     {
-        path: '/viewPatientsReservations',
-        name: "reservations",
+        path: '/viewDoctorSchedule',
+        name: "schedule",
         icon: <img src={patient} alt="patient" width={25} height={25}/>
     }
 ];

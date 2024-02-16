@@ -1,9 +1,11 @@
 import React from 'react';
 
-export const DoctorSchedule = () => {
+const ViewDoctorSchedule = () => {
     return (
         <>
             schedule
         </>
     );
 };
+
+export default ViewDoctorSchedule;
