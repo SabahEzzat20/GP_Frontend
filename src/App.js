@@ -15,17 +15,8 @@ import { role } from './AdminModule/Sidebar';
 const App = () => {
   return (
     <div className="App">
-{/* <<<<<<< HEAD
-        <Router>
-            <Routes>
-              <Route path="/" element={<LoginForm />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-        </Router>
-======= */}
       <Sidebar />
       {role === 2 ?
-        
         <div className='right-side'>
           <>
             <UpperNav />
