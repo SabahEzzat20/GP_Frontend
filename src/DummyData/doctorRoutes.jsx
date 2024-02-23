@@ -1,14 +1,13 @@
 import React from 'react';
-import doctor from '../images/medical-assistance.png'
-import patient from '../images/patient.png'
 import { AiOutlineSchedule } from "react-icons/ai";
+import { MdOutlineSchedule } from "react-icons/md";
 
 
 export const doctorRoutes= [
     {
         path: '/viewDoctorAppointments',
         name: "Appointments",
-        icon: <AiOutlineSchedule />
+        icon: <MdOutlineSchedule />
     },
     {
         path: '/viewDoctorSchedule',

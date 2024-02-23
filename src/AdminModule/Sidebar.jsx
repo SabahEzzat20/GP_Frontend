@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import '../Sass/Sidebar.scss'
@@ -7,14 +7,13 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { doctorRoutes } from '../DummyData/doctorRoutes';
 import { adminRoutes } from '../DummyData/adminRoutes';
-
 export const role = 2;
-
 const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     
+    // const role = useRef(2);
     return (
         <>
             <div className="main-container">
@@ -62,7 +61,7 @@ const Sidebar = () => {
                             </>
                             :
                             doctorRoutes.map((doctorRoute) => (
-                                <NavLink to={doctorRoute.path} key={doctorRoute.name} className="link">
+                                <NavLink to={doctorRoute.path} key={doctorRoute.name} className="link" activeClassName='active'>
                                     <div className="icon">{doctorRoute.icon}</div>
                                     <AnimatePresence>
                                         {isOpen && <motion.div className="link_text">{doctorRoute.name}</motion.div>}

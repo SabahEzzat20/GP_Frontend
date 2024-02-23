@@ -7,6 +7,8 @@ import ViewDoctorSchedule from "./DoctorModule/ViewDoctorSchedule";
 import ViewAppointments from "./AdminModule/ViewAppointments";
 import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
 import App from "./App";
+import LoginForm from "./shared/LoginForm";
+import Register from "./shared/Register";
 
 export const routes = createBrowserRouter([
     {
@@ -39,6 +41,14 @@ export const routes = createBrowserRouter([
             },
         ]
     },
+    {
+        path: '/login',
+        element: <LoginForm />
+    },
+    {
+        path: '/register',
+        element: <Register />
+    }
 ]);
 
 

@@ -76,6 +76,9 @@ $second_basic-color: #C54B43;
     font-size: 25px;
     padding-left: 5px;
 }
+.icon{
+    font-size: 22px;
+}
 .link,.last{
     text-decoration: none;
     color: $second_basic-color;
@@ -88,12 +91,17 @@ $second_basic-color: #C54B43;
     border-left:  4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
     align-items: baseline;
+    border: 1px solid transparent;
+    margin: 5px;
     &:hover{
         // border-left:  4px solid white;
         transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
-        color: white;
-        background-color: $second_basic-color;
     }
+}
+.active{
+    transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
+    color: white;
+    background-color: $second_basic-color;
 }
 .logoutandprofilecontainer{
     padding-top: 15em;
