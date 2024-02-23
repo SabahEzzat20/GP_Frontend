@@ -4,11 +4,14 @@ import { Outlet } from 'react-router-dom';
 import './App.css';
 import Sidebar from './AdminModule/Sidebar';
 import UpperNav from './DoctorModule/UpperNav';
+
 export const App = () => {
   return (
     <div className="App">
       <Sidebar />
       {Sidebar.role === 2 ?
+
+
         <div className='right-side'>
           <>
             <UpperNav />
@@ -21,3 +24,7 @@ export const App = () => {
     </div>
   );
 }
+
+export default App;
+
+

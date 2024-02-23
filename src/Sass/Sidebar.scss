@@ -1,17 +1,14 @@
+$second_basic-color: #C54B43;
 .sidebar{
-    background-color: #333333;
-    color: white;
+    background-color: #F7F7F3;
     min-height: 100vh;
     // margin-right: 1em;
     // display: flex;
 }
-.routes{
-    // color: white;
-}
 .top_section{
     display: flex;
     align-items:baseline;
-    // justify-content: space-between;
+    color: $second_basic-color;
     padding: 10px;
     padding-bottom: 10em;
 }
@@ -79,24 +76,34 @@
     font-size: 25px;
     padding-left: 5px;
 }
+.icon{
+    font-size: 22px;
+}
 .link,.last{
     text-decoration: none;
-    color: white;
+    color: $second_basic-color;
     display: flex;
+    width: 90%;
+    border-radius: 5px;
+    margin: auto;
     column-gap: 10px;
     padding: 9px;
     border-left:  4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
     align-items: baseline;
+    border: 1px solid transparent;
+    margin: 5px;
     &:hover{
         // border-left:  4px solid white;
         transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
-        color: rgb(32, 110, 255);
     }
 }
+.active{
+    transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
+    color: white;
+    background-color: $second_basic-color;
+}
 .logoutandprofilecontainer{
-    // position: absolute;
-    // bottom: 0;
     padding-top: 15em;
 }
 .logout-icon,.profile-icon{
@@ -107,9 +114,4 @@
 }
 .logout{
     color: rgb(255, 0, 0);
-}
-.active{
-    border-left:  4px solid white;
-    background: rgb(141, 141, 141);
-    color: rgb(255, 255, 255);
 }
