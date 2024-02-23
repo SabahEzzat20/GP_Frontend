@@ -1,5 +1,6 @@
 import "../Sass/navbar.css";
-
+import React from "react";
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
@@ -12,10 +13,13 @@ function Navbar() {
     <div className="collapse navbar-collapse" id="navbarScroll">
       <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/#">Home</a>
+          <Link className="nav-link active" aria-current="page" href="/#">Home</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/#">Link</a>
+          <Link className="nav-link" to="/Benefits">Benefits</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/HomePage2">Info</Link>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
