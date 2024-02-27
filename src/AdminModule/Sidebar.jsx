@@ -7,13 +7,14 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { doctorRoutes } from '../DummyData/doctorRoutes';
 import { adminRoutes } from '../DummyData/adminRoutes';
-export const role = 2;
+
+
 const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     
-    // const role = useRef(2);
+    const role = 2;
     return (
         <>
             <div className="main-container">

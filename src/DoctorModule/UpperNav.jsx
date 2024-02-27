@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import '../Sass/UpperNav.scss';
 import { IoNotifications } from "react-icons/io5";
-import Avatar from '@mui/material/Avatar';
-import sabah from '../images/saboha.jpeg';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ReservationNotification from './ReservationNotification';
-
+import Profile from './Profile/Profile';
+import Avatar from '@mui/material/Avatar';
+import sabah from '../images/saboha.jpeg';
 const UpperNav = () => {
     const [isOpenNotificationBar, setIsOpenNB] = useState(false);
+    const [isOpenProfileBar, setIsOpenProfileBar] = useState(false);
     const toggleNotification = () => {setIsOpenNB(!isOpenNotificationBar);}
+    const toggleProfile = () => {setIsOpenProfileBar(!isOpenNotificationBar);}
     return (
         <>
             <div className="doctor-nav">
@@ -36,10 +38,12 @@ const UpperNav = () => {
                     </div>
                 </div>
                 <div className="doctor-profile">
-                    <button className='profile-menu-btn'>
+                    {/* <button className='profile-menu-btn' onClick={toggleProfile}>
                         <Avatar alt="Sabah hassan" src={sabah} />
-                        <p>sabah hassan</p>
-                    </button>
+                    </button> */}
+                    <div className="profile-container">
+                        <Profile />
+                    </div>
                 </div>
             </div>
         </>
