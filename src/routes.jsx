@@ -5,13 +5,13 @@ import ViewPatients from "./AdminModule/ViewPatients";
 import ViewDoctors from "./AdminModule/ViewDoctors";
 import ViewAppointments from "./AdminModule/ViewAppointments";
 import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
-import ViewPatientsReservations from "./DoctorModule/ViewPatientsReservations";
 import { ViewNotifications } from "./DoctorModule/ViewNotifications";
 import LoginForm from "./Shared/LoginForm";
 import Register from "./Shared/Register";
 import Services from "./PatientsModule/Services";
 import HomePage from "./PatientsModule/HomePage";
 import HomePage2 from "./PatientsModule/HomePage2";
+import ContactUs from "./PatientsModule/ContactUs";
 
 export const routes = createBrowserRouter([
   {
@@ -33,10 +33,6 @@ export const routes = createBrowserRouter([
       {
         path: "/viewDoctorAppointments",
         element: <ViewDoctorAppointments />,
-      },
-      {
-        path: "/viewPatientsReservations",
-        element: <ViewPatientsReservations />,
       },
       {
         path: "/viewNotifications",
@@ -64,4 +60,8 @@ export const routes = createBrowserRouter([
     path: "/homepage2",
     element: <HomePage2 />,
   },
+  {
+    path: "/contact",
+    element: <ContactUs />,
+  }
 ]);
