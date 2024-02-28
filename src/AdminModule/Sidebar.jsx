@@ -14,7 +14,7 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     
-    const role = 2;
+    const role = 1;
     return (
         <>
             <div className="main-container">

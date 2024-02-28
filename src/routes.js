@@ -1,18 +1,17 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { App } from "./App";
+import  App  from "./App";
 import ViewPatients from "./AdminModule/ViewPatients";
 import ViewDoctors from "./AdminModule/ViewDoctors";
 import ViewAppointments from "./AdminModule/ViewAppointments";
 import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
 import { ViewNotifications } from "./DoctorModule/ViewNotifications";
-import LoginForm from "./Shared/LoginForm";
-import Register from "./Shared/Register";
 import Services from "./PatientsModule/Services";
 import HomePage from "./PatientsModule/HomePage";
 import HomePage2 from "./PatientsModule/HomePage2";
 import ContactUs from "./PatientsModule/ContactUs";
-
+import LoginForm from "./shared/LoginForm";
+import Register from './shared/Register'
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +45,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <Register/>,
   },
   {
     path: "/services",
