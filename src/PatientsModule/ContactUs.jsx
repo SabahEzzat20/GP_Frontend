@@ -1,8 +1,6 @@
 import "../Sass/ContactUs.scss";
 import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
-
-// npm i @emailjs/browser   
+import emailjs from "@emailjs/browser";  
 
 const ContactUs = () => {
   const form = useRef();
@@ -32,7 +30,7 @@ const ContactUs = () => {
   return (
     <div className="container">
       <form className="contact-form" ref={form} onSubmit={sendEmail}>
-       <h1 className="title">Contact Us</h1>
+        <h1 className="title">Contact Us</h1>
         <label className="contact-label">Name</label>
         <input className="contact-input" type="text" name="user_name" />
         <label className="contact-label">Email</label>
