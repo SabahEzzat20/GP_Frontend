@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import ViewPatients from "./AdminModule/ViewPatients";
 import ViewDoctors from "./AdminModule/ViewDoctors";
-import ViewAppointments from "./AdminModule/ViewAppointments";
 import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
 import { ViewNotifications } from "./DoctorModule/ViewNotifications";
 import LoginForm from "./Shared/LoginForm";
@@ -12,6 +11,7 @@ import Services from "./PatientsModule/Services";
 import HomePage from "./PatientsModule/HomePage";
 import HomePage2 from "./PatientsModule/HomePage2";
 import ContactUs from "./PatientsModule/ContactUs";
+import FullCalender from "./AdminModule/FullCalender";
 
 export const routes = createBrowserRouter([
   {
@@ -27,8 +27,8 @@ export const routes = createBrowserRouter([
         element: <ViewDoctors />,
       },
       {
-        path: "/viewAppointments",
-        element: <ViewAppointments />,
+        path: "/fullCalender",
+        element: <FullCalender />,
       },
       {
         path: "/viewDoctorAppointments",

@@ -1,29 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-//import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './App.css';
-//import Sidebar from './AdminModule/Sidebar';
-//import UpperNav from './DoctorModule/UpperNav';
-import ContactUs from "./PatientsModule/ContactUs";
+import Sidebar from './AdminModule/Sidebar';
+import UpperNav from './DoctorModule/UpperNav';
+//import FullCalender from "./AdminModule/FullCalender";
 
 export const App = () => {
   return (
     <div className="App">
-      {/* <Sidebar />
-      {Sidebar.role === 2 ?
-
-
+      <Sidebar />
         <div className='right-side'>
           <>
             <UpperNav />
             <Outlet />
           </>
         </div>
-        :
-        <Outlet />
-      } */}
+      
+      
 
-      <ContactUs />
+
     </div>
   );
 }
