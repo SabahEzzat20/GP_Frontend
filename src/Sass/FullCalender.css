@@ -1,0 +1,26 @@
+.full-calender {
+    width: 100%;
+    padding: 4rem;
+}
+
+.fc-toolbar-chunk {
+    color: #c54b43;
+}
+
+.fc-scroller-harness {
+    color: #c54b43;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fc-button-group {
+    color: #c54b43;
+}
+
+.fc-view-harness {
+    background-color: #aaa9a9bd;
+}
+
+.fc-timegrid-axis-frame {
+    color: #768812;
+}
