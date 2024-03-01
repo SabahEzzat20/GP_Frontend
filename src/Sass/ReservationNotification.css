@@ -1,13 +1,53 @@
-.reservation-notification {
+.reservation-notification .notification {
+  font-size: 25px;
+  margin-right: 28px;
+}
+.reservation-notification .notification .notifications-body {
+  margin-top: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 5px rgba(82, 82, 82, 0.4);
+  border-radius: 10px;
+  width: 350px;
+}
+.reservation-notification .notification .notifications-body .not-title {
+  border-bottom: 1px solid rgba(185, 185, 185, 0.3);
+  width: 100%;
+  padding: 15px;
+  color: rgb(82, 82, 82);
+}
+.reservation-notification .notification .notifications-body .not-containter {
+  overflow-y: scroll;
+  max-height: 400px;
+}
+.reservation-notification .notification .notifications-body .not-containter::-webkit-scrollbar {
+  width: 5px;
+}
+.reservation-notification .notification .notifications-body .not-containter::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reservation-notification .notification .notifications-body .not-containter::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.reservation-notification .notification .notifications-body .not-containter .sole-notification {
   display: flex;
   font-size: 18px;
   border-bottom: 1px solid rgb(241, 241, 241);
   padding: 10px;
   align-items: center;
+  width: 100%;
 }
-.reservation-notification .patient-details {
+.reservation-notification .notification .notifications-body .not-containter .sole-notification .patient-details {
   padding-left: 10px;
   text-align: start;
   color: rgb(77, 77, 77);
   line-height: 0.4;
+}
+.reservation-notification .notification .notifications-body .not-containter .sole-notification:hover {
+  background-color: rgb(245, 245, 245);
+}
+.reservation-notification .notification a {
+  color: rgb(63, 63, 63);
+}
+.reservation-notification .notification a:hover {
+  color: rgb(82, 82, 82);
 }/*# sourceMappingURL=ReservationNotification.css.map */

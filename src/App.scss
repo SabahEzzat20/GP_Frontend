@@ -2,17 +2,16 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    // font-family: "Poppins", sans-serif;
+    // box-sizing: border-box;
     font-family: "Rubik", sans-serif;
-    // font-family: "Protest Riot", sans-serif;
     font-style: normal;
-    // font-style: italic;
 }
 .App{
     display: flex;
     .right-side{
         display: block;
         width: 100%;
+        height: 100vh;
+        overflow-y: scroll;
     }
 }

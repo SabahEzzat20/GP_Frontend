@@ -5,21 +5,23 @@
     right: 0;
     background-color: rgb(245, 245, 245);
     width: 200px;
-    height: 100hv;
+    height: 100vh;
     padding: 10px;
     width: 300px;
-    height: 100vh;
     z-index: 1;
+    .gender-container{
+        display: flex;
+    }
     .profile-upper{
         display: flex;
         justify-content: space-between;
         align-items: center;
         .close-btn{
             color: rgb(104, 104, 104);
-            font-size: 25px;
+            font-size: 23px;
         }
         .profile-logout-container{
-            font-size: 25px;
+            font-size: 23px;
             color: #C54B43;
         }
     }
@@ -34,17 +36,17 @@
             line-height: 0.2;
         }
     }
-    .profile-photo-container{
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        img{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    }
+    // .profile-photo-container{
+    //     border-radius: 50%;
+    //     width: 60px;
+    //     height: 60px;
+    //     img{
+    //         width: 60px;
+    //         height: 60px;
+    //         border-radius: 50%;
+    //         object-fit: cover;
+    //     }
+    // }
     .update-photo{
         display: flex;
         justify-content: center;
@@ -66,11 +68,11 @@
             border: none;
             background-color: #C54B43;
             color: white;
-            width: 70%;
+            width: 60%;
             padding: 10px;
             transition: all ease 0.3s;
             position: relative;
-            margin-top: 10%;
+            margin-top: 8%;
             margin-left: 20%;
             &:hover{
                 background-color: #c5564e;

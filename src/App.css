@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Rubik", sans-serif;
   font-style: normal;
 }
@@ -12,4 +11,6 @@
 .App .right-side {
   display: block;
   width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
 }/*# sourceMappingURL=App.css.map */

@@ -1,10 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import '../Sass/Sidebar.scss'
 import { FaBars} from 'react-icons/fa';
-import { RiLogoutCircleLine } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
 import { doctorRoutes } from '../DummyData/doctorRoutes';
 import { adminRoutes } from '../DummyData/adminRoutes';
 
@@ -40,25 +38,6 @@ const Sidebar = () => {
                                         </NavLink>
                                     
                                 ))}
-                                <div className="logoutandprofilecontainer">
-                                    <NavLink className='profile last'>
-                                        <div className='profile-icon'>
-                                            <CgProfile/>
-                                        </div>
-                                        <AnimatePresence>
-                                                {isOpen && <motion.div className='profile-name'>profile</motion.div>}
-                                        </AnimatePresence>
-                                        
-                                    </NavLink>
-                                    <NavLink  className='logout last'>
-                                        <div className='logout-icon'>
-                                            <RiLogoutCircleLine/>
-                                        </div>
-                                        <AnimatePresence>
-                                                {isOpen && <motion.div className='logout-name'>logout</motion.div>}
-                                        </AnimatePresence>
-                                    </NavLink>
-                                </div>
                             </>
                             :
                             doctorRoutes.map((doctorRoute) => (

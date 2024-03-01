@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
+import React , {useState} from 'react';
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../Sass/AddDoctorModal.scss";
@@ -19,13 +18,13 @@ export const AddDoctorModal = () => {
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        // backdrop="static"
         keyboard={false}
         centered
         className="modal"
       >
         <Modal.Header className="modalHeader" closeButton>
-          {/* <Modal.Title>Modal title</Modal.Title> */}
+          
         </Modal.Header>
         <Modal.Body className="modalBody">
           <Form>
@@ -41,17 +40,11 @@ export const AddDoctorModal = () => {
               <Form.Label> Qualification </Form.Label>
               <Form.Control className="textField" type="text" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label> password </Form.Label>
-              <Form.Control className="textField" type="password" />
-            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer className="modalFooter">
-          <Button variant="outline-success"> add </Button>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            cancel
-          </Button>
+          <button className='add-doc-btn'> add doctor</button>
+          <button onClick={handleClose} className='cancel-btn'> cancel </button>
         </Modal.Footer>
       </Modal>
     </>

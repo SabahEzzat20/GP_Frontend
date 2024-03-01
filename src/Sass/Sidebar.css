@@ -1,6 +1,7 @@
 .sidebar {
   background-color: #F7F7F3;
-  min-height: 100vh;
+  height: 100vh;
+  z-index: 10;
 }
 
 .top_section {

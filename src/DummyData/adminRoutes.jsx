@@ -16,7 +16,7 @@ export const adminRoutes= [
         icon: <FaUserFriends/>
     },
     {
-        path: '/viewAppointments',
+        path: '/calendar',
         name: "appointments",
         icon: <GrSchedule/>
     },

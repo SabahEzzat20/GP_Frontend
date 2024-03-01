@@ -1,9 +1,9 @@
 import React from "react";
 import "../Sass/FullCalender.css";
- import Fullcalendar from "@fullcalendar/react";
- import dayGridPlugin from "@fullcalendar/daygrid";
- import timeGridPlugin from "@fullcalendar/timegrid";
- import interactionPlugin from "@fullcalendar/interaction";
+import Fullcalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 //  npm i @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/timegrid 
 
 function FullCalender(){

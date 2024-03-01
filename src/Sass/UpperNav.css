@@ -3,8 +3,9 @@
   height: 10%;
   display: flex;
   justify-content: flex-end;
-  border-bottom: 1px solid rgb(224, 224, 224);
+  background-color: white;
   padding: 17px;
+  box-shadow: 0 2px 4px rgba(128, 128, 128, 0.1);
 }
 .doctor-nav .notification {
   font-size: 25px;
@@ -12,12 +13,12 @@
 }
 .doctor-nav .notification .notifications-body {
   position: absolute;
-  margin-left: -200px;
+  right: 30px;
+  top: 9%;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 5px rgba(82, 82, 82, 0.4);
   border-radius: 10px;
   width: 350px;
-  margin-top: 10px;
 }
 .doctor-nav .notification .notifications-body .not-title {
   border-bottom: 1px solid rgba(185, 185, 185, 0.3);
