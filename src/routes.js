@@ -11,7 +11,8 @@ import HomePage from "./PatientsModule/HomePage";
 import HomePage2 from "./PatientsModule/HomePage2";
 import ContactUs from "./PatientsModule/ContactUs";
 import LoginForm from "./shared/LoginForm";
-import Register from './shared/Register'
+import Register from './shared/Register';
+import Test from './AdminModule/Test'
 export const routes = createBrowserRouter([
   {
     path: "/",

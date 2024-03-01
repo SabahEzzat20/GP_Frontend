@@ -1,19 +1,31 @@
+.modal-button {
+  background-color: #C54B43;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 125px;
+}
+
 .modalHeader {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 .modalFooter {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 .mb-3 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mb-3 .textField {
-    width: 70%
-}
+  width: 70%;
+}/*# sourceMappingURL=AddDoctorModal.css.map */

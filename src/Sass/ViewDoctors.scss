@@ -1,6 +1,5 @@
+@import './colors';
 .view-doctors {
-    // color: #000000;
-    // align-self: center;
     padding: 30px;
     width: 100%;
     .title-container{
@@ -9,11 +8,11 @@
         align-items: baseline;
         .doctor-title{
             font-size: 35px;
-            color: #2d72da;
+            color: $second_basic-color;
             margin-right: 15px;
         }
         .doctor-icon{
-            color: #2d72da;
+            color: $second_basic-color;
             font-size: 25px;
         }
         .no-of-doctors{
@@ -41,10 +40,10 @@
         align-items: center;
         padding: 20px;
         margin-left: 1em;
-        border: 1px solid #2d72da;
+        border: 1px solid $second_basic-color;
         :nth-child(1) {
             font-size: 20px;
-            color: #2d72da;
+            color: $second_basic-color;
         }
         :nth-child(2) {
             flex: 1;
@@ -53,68 +52,68 @@
             outline: none;
             font-size: 20px;
             padding-left: 10px;
-            // background-color: black;
-            color: #2d72da;
+            color: $second_basic-color;
         }
     }
-    .doctor-table {
-        width: 80%;
-        // height: 100px;
-        border-collapse: collapse;
-        position: inherit;
-        // overflow-y: scroll;
-        font-size: 15px;
-        tbody{
-            // overflow-wrap:break-word;
-        }
-        th {
-            background-color: #7a7979;
-            padding: 10px;
-            // font-weight: bold;
-            text-align: center;
-            color: white;
-        }
-        td {
-            padding: 10px;
-            max-width: 200px;
-            border-bottom: 1px solid #aaaaaa;
-            overflow:hidden;
-            white-space: nowrap;
-            text-overflow:ellipsis;
-            color: #777;
-            text-align: center;
-            .table-options-button{
-                border: none;
-                background-color: transparent;
+    .table-container{
+        border: 1px solid #e2948e;
+        border-radius: 10px;
+        padding: 30px;
+        width: 95%;
+        .doctor-table {
+            border-collapse: collapse;
+            width: 100%;
+            position: inherit;
+            font-size: 15px;
+            th {
+                padding: 15px;
+                text-align: center;
+                color: $text-dark-color;
+                border-bottom: 1px solid #868686;
+            }
+            td {
+                padding: 10px;
+                max-width: 200px;
+                border-bottom: 1px solid #aaaaaa;
+                overflow:hidden;
+                white-space: nowrap;
+                text-overflow:ellipsis;
                 color: #777;
-                display: flex; 
-                .options{
-                    position: absolute;
-                    margin-left: 50px;
-                    background-color: #ffffff;
-                    display: flex;
-                    width: 100px;
-                    color: rgb(95, 95, 95);
-                    box-shadow: 1px 3px 10px  #a5a5a5;
-                    border-radius: 5px;
-                    button{
-                        width: 100%;
-                        border: none;
-                        border-bottom: 2px solid #dbdbdb;
-                        padding: 5px;
-                        display: block;
-                        background-color: transparent;
-                        color: #777;
-                        &:hover{
-                            background-color: #f5f5f5;
-                            transition: 0.4s ease ;
+                text-align: center;
+                .table-options-button{
+                    border: none;
+                    background-color: transparent;
+                    font-size: 20px;
+                    color: #777;
+                    display: flex; 
+                    .options{
+                        position: absolute;
+                        margin-left: 50px;
+                        background-color: #ffffff;
+                        display: flex;
+                        width: 100px;
+                        color: rgb(95, 95, 95);
+                        box-shadow: 1px 3px 10px  #a5a5a5;
+                        border-radius: 5px;
+                        button{
+                            width: 100%;
+                            border: none;
+                            border-bottom: 2px solid #dbdbdb;
+                            padding: 5px;
+                            display: block;
+                            background-color: transparent;
+                            color: #777;
+                            &:hover{
+                                background-color: #f5f5f5;
+                                transition: 0.4s ease ;
+                            }
                         }
                     }
                 }
             }
-        }
-        tr {
-            background-color: #ffffff;
+            tr {
+                background-color: #ffffff;
+            }
         }
     }
 }

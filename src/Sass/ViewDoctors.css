@@ -9,11 +9,11 @@
 }
 .view-doctors .title-container .doctor-title {
   font-size: 35px;
-  color: #2d72da;
+  color: #C54B43;
   margin-right: 15px;
 }
 .view-doctors .title-container .doctor-icon {
-  color: #2d72da;
+  color: #C54B43;
   font-size: 25px;
 }
 .view-doctors .title-container .no-of-doctors {
@@ -38,11 +38,11 @@
   align-items: center;
   padding: 20px;
   margin-left: 1em;
-  border: 1px solid #2d72da;
+  border: 1px solid #C54B43;
 }
 .view-doctors .search-bar :nth-child(1) {
   font-size: 20px;
-  color: #2d72da;
+  color: #C54B43;
 }
 .view-doctors .search-bar :nth-child(2) {
   flex: 1;
@@ -51,21 +51,27 @@
   outline: none;
   font-size: 20px;
   padding-left: 10px;
-  color: #2d72da;
+  color: #C54B43;
 }
-.view-doctors .doctor-table {
-  width: 80%;
+.view-doctors .table-container {
+  border: 1px solid #e2948e;
+  border-radius: 10px;
+  padding: 30px;
+  width: 95%;
+}
+.view-doctors .table-container .doctor-table {
   border-collapse: collapse;
+  width: 100%;
   position: inherit;
   font-size: 15px;
 }
-.view-doctors .doctor-table th {
-  background-color: #7a7979;
-  padding: 10px;
+.view-doctors .table-container .doctor-table th {
+  padding: 15px;
   text-align: center;
-  color: white;
+  color: rgb(77, 77, 77);
+  border-bottom: 1px solid #868686;
 }
-.view-doctors .doctor-table td {
+.view-doctors .table-container .doctor-table td {
   padding: 10px;
   max-width: 200px;
   border-bottom: 1px solid #aaaaaa;
@@ -75,13 +81,14 @@
   color: #777;
   text-align: center;
 }
-.view-doctors .doctor-table td .table-options-button {
+.view-doctors .table-container .doctor-table td .table-options-button {
   border: none;
   background-color: transparent;
+  font-size: 20px;
   color: #777;
   display: flex;
 }
-.view-doctors .doctor-table td .table-options-button .options {
+.view-doctors .table-container .doctor-table td .table-options-button .options {
   position: absolute;
   margin-left: 50px;
   background-color: #ffffff;
@@ -91,7 +98,7 @@
   box-shadow: 1px 3px 10px #a5a5a5;
   border-radius: 5px;
 }
-.view-doctors .doctor-table td .table-options-button .options button {
+.view-doctors .table-container .doctor-table td .table-options-button .options button {
   width: 100%;
   border: none;
   border-bottom: 2px solid #dbdbdb;
@@ -100,10 +107,10 @@
   background-color: transparent;
   color: #777;
 }
-.view-doctors .doctor-table td .table-options-button .options button:hover {
+.view-doctors .table-container .doctor-table td .table-options-button .options button:hover {
   background-color: #f5f5f5;
   transition: 0.4s ease;
 }
-.view-doctors .doctor-table tr {
+.view-doctors .table-container .doctor-table tr {
   background-color: #ffffff;
 }/*# sourceMappingURL=ViewDoctors.css.map */

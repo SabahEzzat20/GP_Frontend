@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import "../Sass/AddDoctorModal.css";
+import "../Sass/AddDoctorModal.scss";
 import { RiUserAddFill } from "react-icons/ri";
 
 export const AddDoctorModal = () => {
@@ -12,9 +12,10 @@ export const AddDoctorModal = () => {
 
   return (
     <>
-      <Button  onClick={handleShow} className="modal-button">
-        <RiUserAddFill />  add doctor
-      </Button>
+      <button  onClick={handleShow} className="modal-button">
+        <RiUserAddFill />
+        add doctor
+      </button>
       <Modal
         show={show}
         onHide={handleClose}

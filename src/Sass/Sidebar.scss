@@ -1,9 +1,7 @@
-$second_basic-color: #C54B43;
+@import './colors'; 
 .sidebar{
-    background-color: #F7F7F3;
+    background-color: $basic-background;
     min-height: 100vh;
-    // margin-right: 1em;
-    // display: flex;
 }
 .top_section{
     display: flex;
@@ -94,7 +92,6 @@ $second_basic-color: #C54B43;
     border: 1px solid transparent;
     margin: 5px;
     &:hover{
-        // border-left:  4px solid white;
         transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
     }
 }

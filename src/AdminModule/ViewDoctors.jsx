@@ -7,8 +7,8 @@ import { SlOptions } from "react-icons/sl";
 import { FaPen } from "react-icons/fa";
 
 const ViewDoctors = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
-
   const toggleMenu = (id) => {
     setOptionsVisibility((prevVisibility) => {
       const newVisibility = {
@@ -22,7 +22,6 @@ const ViewDoctors = () => {
           newVisibility[key] = false;
         }
       });
-  
       return newVisibility;
     });
   };
@@ -116,6 +115,7 @@ const ViewDoctors = () => {
     // {
     //   id: 15,
       
+
     //   name: "Dr. Sara Mohamed", 
     //   email: 'username@gmail.com',
     //   qualification: "bachelor's degree, a 4-year medical degree and complete a 5-year graduate medical residency"
@@ -154,8 +154,6 @@ const ViewDoctors = () => {
   ];
   
 
-  const [searchTerm, setSearchTerm] = useState("");
-
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -167,7 +165,6 @@ const ViewDoctors = () => {
 
   return (
     <div className="view-doctors">
-      {/* <h2>Doctor Table</h2> */}
       <div className="title-container">
         <div className="doctor-title">Doctors</div>
         <div className="doctor-icon">
@@ -187,37 +184,38 @@ const ViewDoctors = () => {
           />
         </div>
       </div>
-      <table className="doctor-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>doctor name</th>
-            <th>E-mail</th>
-            <th>Qualification</th>
-            <th></th>
-           
-          </tr>
-        </thead>
-        <tbody>
-          {filteredDoctors.map((doctor) => (
-            <tr key={doctor.id}>
-              <td>{doctor.id}</td>
-              <td>{doctor.name}</td>
-              <td>{doctor.email}</td>
-              <td>{doctor.qualification}</td>
-              <td>
-                <button className="table-options-button" onClick={() => toggleMenu(doctor.id)}>
-                  <SlOptions />
-                  <div className="options" style={{ display: optionsVisibility[doctor.id] ? 'block' : 'none' }} key={doctor.id}>
-                    <button>view</button>
-                    <button>delete</button>
-                  </div>
-                </button>
-              </td>
+      <div className="table-container">
+        <table className="doctor-table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>doctor name</th>
+              <th>e-mail</th>
+              <th>qualification</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredDoctors.map((doctor) => (
+              <tr key={doctor.id}>
+                <td>{doctor.id}</td>
+                <td>{doctor.name}</td>
+                <td>{doctor.email}</td>
+                <td>{doctor.qualification}</td>
+                <td>
+                  <button className="table-options-button" onClick={() => toggleMenu(doctor.id)}>
+                    <SlOptions />
+                    <div className="options" style={{ display: optionsVisibility[doctor.id] ? 'block' : 'none' }} key={doctor.id}>
+                      <button>view</button>
+                      <button>delete</button>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       
     </div>
   );

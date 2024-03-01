@@ -1,22 +1,23 @@
 import React from 'react';
-import doctor from '../images/medical-assistance.png'
-import patient from '../images/patient.png'
-import appointment from '../images/medical.png'
+import { FaUserDoctor } from "react-icons/fa6";
+import { FaUserFriends } from "react-icons/fa";
+import { AiOutlineSchedule } from "react-icons/ai";
+import { GrSchedule } from "react-icons/gr";
 
 export const adminRoutes= [
     {
         path: '/viewDoctors',
         name: "doctors",
-        icon: <img src={doctor} alt="doctor" width={25} height={25}/>
+        icon: <FaUserDoctor />
     },
     {
         path: '/viewPatients',
         name: "patients",
-        icon: <img src={patient} alt="patient" width={25} height={25}/>
+        icon: <FaUserFriends/>
     },
     {
         path: '/viewAppointments',
         name: "appointments",
-        icon: <img src={appointment} alt="appointment" width={25} height={25}/>
+        icon: <GrSchedule/>
     },
 ];
