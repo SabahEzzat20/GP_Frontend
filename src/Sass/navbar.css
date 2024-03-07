@@ -1,29 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-/* Variables */
-
-:root {
-    --primary-color: #007bff;
-    --secondary-color: #5a6269;
-    --tertiary-color: #f8f9fa;
-}
-
-
-/* Navbar */
-
 .navbar {
-    background-color: var(--secondary-color);
+    background-color: #C54B43;
     font-family: 'Roboto', sans-serif;
-    transition: var(--secondary-color) 0.3s ease-in-out;
+    transition: #C54B43 0.3s ease-in-out;
     width: 100%;
 }
 
 .navbar.navbar-scroll {
-    background-color: var(--secondary-color);
+    background-color: #C54B43;
 }
 
 .navbar .navbar-brand {
-    color: var(--primary-color);
+    color: #C54B43;
     font-weight: 700;
     font-size: 40px;
     transition: color 0.3s ease-in-out;
@@ -34,7 +22,7 @@
 }
 
 .navbar .nav-link {
-    color: var(--primary-color);
+    color: #C54B43;
     transition: color 0.3s ease-in-out;
     margin-left: 60px;
     font-size: 20px;
@@ -58,25 +46,19 @@
     color: var(--secondary-color);
 }
 
-.navbar .form-control {
-    background-color: var(--tertiary-color);
-    border-color: var(--primary-color);
-    color: var(--secondary-color);
-    transition: background-color 0.3s ease-in-out;
+.navbar .two-buttons {
+    display: flex;
+    gap: 1rem;
 }
 
-.navbar .form-control:focus {
-    background-color: var(--tertiary-color);
-    border-color: var(--secondary-color);
+.navbar .two-buttons .right-part .nav-btn {
+    padding: 1rem 0.4rem 1rem 1rem;
+    color: #C54B43;
+    font-weight: 600;
+    font-size: larger;
 }
 
-.navbar .btn-outline-success {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-.navbar .btn-outline-success:hover {
-    background-color: var(--primary-color);
-    color: var(--tertiary-color);
+.navbar .two-buttons .right-part .icon {
+    font-size: 20px;
+    color: #C54B43;
 }

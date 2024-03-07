@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import '../Sass/ViewDoctors.scss'
-//import { FaTrash } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "./AddDoctorModal";
 import { SlOptions } from "react-icons/sl";
 import { FaPen } from "react-icons/fa";
 import AssignAppointmentToDoctor from "./AssignAppointmentToDoctor/AssignAppointmentToDoctor";
 import { doctors } from "../DummyData/Doctors";
+
 const ViewDoctors = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
@@ -17,7 +17,7 @@ const ViewDoctors = () => {
         [id]: !prevVisibility[id],
       };
   
-      // Reset visibility for other rows
+      
       Object.keys(prevVisibility).forEach((key) => {
         if (key !== id && prevVisibility[key]) {
           newVisibility[key] = false;

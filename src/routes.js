@@ -7,10 +7,13 @@ import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
 // import { ViewNotifications } from "./DoctorModule/ViewNotifications";
 import Services from "./PatientsModule/Services";
 import HomePage from "./PatientsModule/HomePage";
+import BigForm from "./PatientsModule/BigForm"
 import HomePage2 from "./PatientsModule/HomePage2";
 import ContactUs from "./PatientsModule/ContactUs";
 import FullCalender from "./AdminModule/FullCalender";
-// import Test from './AdminModule/Test';
+import LoginForm from "./Shared/LoginForm"
+import Register from "./Shared/Register"
+import Navbar from "./PatientsModule/Navbar";
 export const routes = createBrowserRouter([{
         path: "/",
         element: < App / > ,
@@ -36,14 +39,14 @@ export const routes = createBrowserRouter([{
             }
         ],
     },
-    // {
-    //   path: "/login",
-    //   element: <LoginForm />,
-    // },
-    // {
-    //   path: "/register",
-    //   element: <Register/>,
-    // },
+    {
+        path: "/login",
+        element: < LoginForm / > ,
+    },
+    {
+        path: "/register",
+        element: < Register / > ,
+    },
     {
         path: "/services",
         element: < Services / > ,
@@ -60,5 +63,15 @@ export const routes = createBrowserRouter([{
         path: "/contact",
         element: < ContactUs / > ,
     },
+    {
+        path: "/navbar",
+        element: < Navbar / > ,
+    },
+    {
+        path: "/bigForm",
+        element: < BigForm / > ,
+    }
+
+
 
 ]);

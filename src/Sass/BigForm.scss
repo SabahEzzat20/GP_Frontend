@@ -1,0 +1,50 @@
+.big-form-component {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #C54B43;
+    border-radius: 5px;
+    margin: 40px;
+    .big-form-title {
+        display: flex;
+        padding: 2rem 0 0 0;
+        justify-content: center;
+    }
+    .line {
+        display: flex;
+        color: #C54B43;
+        font-weight: 900;
+        justify-content: center;
+    }
+    .big-form {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 0 3rem 3rem;
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            input {
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+    }
+    .last-section {
+        display: flex;
+        justify-content: center;
+        .btn-confirm {
+            font-size: 30px;
+            font-weight: 600;
+            margin: 0 0 2rem 0;
+            background-color: #C54B43;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+    }
+}
