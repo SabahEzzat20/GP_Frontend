@@ -5,12 +5,12 @@ import { MdOutlineSchedule } from "react-icons/md";
 
 export const doctorRoutes= [
     {
-        path: '/viewDoctorAppointments',
+        path: '/doctor/viewDoctorAppointments',
         name: "Appointments",
         icon: <MdOutlineSchedule />
     },
     {
-        path: '/viewDoctorSchedule',
+        path: '/doctor/viewDoctorSchedule',
         name: "schedule",
         icon: <AiOutlineSchedule />
     }

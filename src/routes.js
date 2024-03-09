@@ -1,43 +1,72 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import  App  from "./App";
-import ViewPatients from "./AdminModule/ViewPatients";
-import ViewDoctors from "./AdminModule/ViewDoctors";
-import ViewDoctorAppointments from "./DoctorModule/ViewDoctorAppointments";
-// import { ViewNotifications } from "./DoctorModule/ViewNotifications";
-import Services from "./PatientsModule/Services";
-import HomePage from "./PatientsModule/HomePage";
-import HomePage2 from "./PatientsModule/HomePage2";
-import ContactUs from "./PatientsModule/ContactUs";
-import FullCalender from "./AdminModule/FullCalender";
-import LoginForm from "./shared/LoginForm";
-import Register from './shared/Register';
-// import Test from './AdminModule/Test';
+import Admin from "./Pages/Admin";
+import ViewPatients from './components/AdminComponents/ViewPatients/ViewPatients'
+import ViewDoctors from './components/AdminComponents/ViewDoctors/ViewDoctors'
+import FullCalender from './components/AdminComponents/FullCalendar/FullCalender'
+import ViewDoctorAppointments from './components/DoctorComponents/ViewDoctorAppointments/ViewDoctorAppointments'
+import ViewDoctorSchedule from './components/DoctorComponents/ViewDoctorSchedule/ViewDoctorSchedule'
+import Doctor from "./Pages/Doctor";
+import Register from './shared/Register/Register'
+import LoginForm from './shared/LoginForm/LoginForm'
+import HomePage from './components/PatientComponents/HomePage/HomePage'
+import ContactUs from './components/PatientComponents/ContactUs/ContactUs'
+import Services from './components/PatientComponents/Services/Services'
+import HomePage2 from './components/PatientComponents/HomePage2/HomePage2'
+import Patient from './Pages/Patient'
 export const routes = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "/admin",
+    element: <Admin />,
     children: [
       {
-        path: "/viewPatients",
+        path: "/admin/viewPatients",
         element: <ViewPatients />,
       },
       {
-        path: "/viewDoctors",
+        path: "/admin/viewDoctors",
         element: <ViewDoctors />,
       },
       {
-        path: "/fullCalender",
-        element: <FullCalender />,
-      },
-      {
-        path: "/viewDoctorAppointments",
-        element: <ViewDoctorAppointments />,
-      },
-      {
-        path: "/calendar",
+        path: "/admin/calendar",
         element: <FullCalender />,
       }
+    ],
+  },
+  {
+    path: "/doctor",
+    element: <Doctor />,
+    children: [
+      {
+        path: "/doctor/viewDoctorAppointments",
+        element: <ViewDoctorAppointments />
+      },
+      {
+        path: "/doctor/viewDoctorSchedule",
+        element: <ViewDoctorSchedule />
+      }
+    ],
+  },
+  {
+    path: "/patient",
+    element: <Patient />,
+    children: [
+      {
+        path: "/patient/homepage",
+        element: <HomePage />
+      },
+      {
+        path: "/patient/contact",
+        element: <ContactUs />,
+      },
+      {
+        path: "/patient/services",
+        element: <Services />,
+      },
+      {
+        path: "/patient/homepage2",
+        element: <HomePage2 />,
+      },
     ],
   },
   {
@@ -47,22 +76,6 @@ export const routes = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>,
-  },
-  {
-    path: "/services",
-    element: <Services />,
-  },
-  {
-    path: "/homepage",
-    element: <HomePage />,
-  },
-  {
-    path: "/homepage2",
-    element: <HomePage2 />,
-  },
-  {
-    path: "/contact",
-    element: <ContactUs />,
   },
   
 ]);

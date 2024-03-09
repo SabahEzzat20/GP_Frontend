@@ -1,0 +1,107 @@
+@import '../../Sass/colors'; 
+.sidebar{
+    background-color: $basic-background;
+    height: 100vh;
+    z-index: 10;
+}
+.top_section{
+    display: flex;
+    align-items:baseline;
+    color: $second_basic-color;
+    padding: 10px;
+    padding-bottom: 10em;
+}
+.logo{
+    font-size: 23px;
+    line-height: 0;
+    padding-left: 10px;
+    text-transform: capitalize;
+}
+.logo::after{
+    content: ' |';
+    animation: type 3s infinite;
+}
+@keyframes type {
+    0%{
+        content: 'o|';
+    }
+    7%{
+        content: 'op|';
+    }
+    14%{
+        content: 'ope|';
+    }
+    21%{
+        content: 'oped|';
+    }
+    28%{
+        content: 'opedi|';
+    }
+    35%{
+        content: 'opedis|';
+    }
+    42%{
+        content: 'opedist|';
+    }
+    49%{
+        content: 'opedista|';
+    }
+    56%{
+        content: 'opedist|';
+    }
+    63%{
+        content: 'opedis|';
+    }
+    70%{
+        content: 'opedi|';
+    }
+    77%{
+        content: 'oped|';
+    }
+    84%{
+        content: 'ope|';
+    }
+    91%{
+        content: 'op|';
+    }
+    98%{
+        content: 'o|';
+    }
+    100%{
+        content: '|';
+    }
+}
+.bars{
+    font-size: 25px;
+    padding-left: 5px;
+}
+.icon{
+    font-size: 20px;
+}
+.link{
+    text-decoration: none;
+    color: $second_basic-color;
+    display: flex;
+    // width: 90%;
+    border-radius: 5px;
+    margin: auto;
+    column-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    text-align: center;
+    border-left:  4px solid transparent;
+    transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
+    align-items: baseline;
+    border: 1px solid transparent;
+    margin: 5px;
+    &:hover{
+        transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
+    }
+}
+.active{
+    transition: 0.2s cubic-bezier(0.6, -0.28,0.735,0.045);
+    color: white;
+    background-color: $second_basic-color;
+}
