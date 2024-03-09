@@ -1,5 +1,6 @@
 import "./navbar.css";
 import React from "react";
+import { LuLogIn } from "react-icons/lu";
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
@@ -33,10 +34,17 @@ function Navbar() {
           </ul>
         </li>
       </ul>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div className="two-buttons">
+
+      <div className="right-part">
+          <Link className="nav-btn" to="/register">Sign-UP</Link>
+      </div>
+      <div className="right-part">
+          <Link className="nav-btn" to="/login">Log-In</Link>
+          <i className="icon"><LuLogIn /></i>
+          
+      </div>
+      </div>
     </div>
   </div>
 </nav>

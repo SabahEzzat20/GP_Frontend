@@ -40,7 +40,7 @@ const Register = () => {
         </div>
         <div className="remember-forgot">
           <label>
-            <input type="checkbox" />I read and agree to Terms & Conditions
+            <input type="checkbox" />    I read and agree to Terms & Conditions
           </label>
         </div>
         <button className="register__btn">Register</button>

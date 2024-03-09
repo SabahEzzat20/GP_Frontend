@@ -1,13 +1,22 @@
 import React, { useState } from "react";
+<<<<<<< HEAD:src/components/AdminComponents/ViewDoctors/ViewDoctors.jsx
 import './ViewDoctors.scss'
+=======
+import '../Sass/ViewDoctors.scss'
+>>>>>>> d4f19a854bc47bbe7ebeda6e029c6ce1dd1c7cde:src/AdminModule/ViewDoctors.jsx
 import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "../AddDoctorModal/AddDoctorModal";
 import { SlOptions } from "react-icons/sl";
 import { FaPen } from "react-icons/fa";
+<<<<<<< HEAD:src/components/AdminComponents/ViewDoctors/ViewDoctors.jsx
 import AssignAppointmentToDoctor from "../AssignAppointmentToDoctor/AssignAppointmentToDoctor";
 import Doctors from "../../../DummyData/Doctors.json"
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+=======
+import AssignAppointmentToDoctor from "./AssignAppointmentToDoctor/AssignAppointmentToDoctor";
+import { doctors } from "../DummyData/Doctors";
+>>>>>>> d4f19a854bc47bbe7ebeda6e029c6ce1dd1c7cde:src/AdminModule/ViewDoctors.jsx
 
 const ViewDoctors = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,7 +47,12 @@ const ViewDoctors = () => {
         ...prevVisibility,
         [id]: !prevVisibility[id],
       };
+<<<<<<< HEAD:src/components/AdminComponents/ViewDoctors/ViewDoctors.jsx
       // Reset visibility for other rows
+=======
+  
+      
+>>>>>>> d4f19a854bc47bbe7ebeda6e029c6ce1dd1c7cde:src/AdminModule/ViewDoctors.jsx
       Object.keys(prevVisibility).forEach((key) => {
         if (key !== id && prevVisibility[key]) {
           newVisibility[key] = false;

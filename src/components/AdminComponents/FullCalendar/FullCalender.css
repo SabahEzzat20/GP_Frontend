@@ -1,26 +1,57 @@
-.full-calender {
+.full-calendar {
     width: 100%;
-    padding: 4rem;
+}
+
+.fc-scroller .fc-col-header {
+    background-color: #b3afae;
+}
+
+.fc-scroller .fc-col-header .fc-day-today {
+    font-size: 20px;
+}
+
+.full-calendar .actual-calendar {
+    padding: 2rem 4rem;
+    justify-content: center;
 }
 
 .fc-toolbar-chunk {
-    color: #c54b43;
+    color: #858180;
+}
+
+.fc-timegrid-divider {
+    display: none;
 }
 
 .fc-scroller-harness {
     color: #c54b43;
-    font-weight: 600;
-    text-align: center;
+    font-weight: 700;
 }
 
-.fc-button-group {
+
+/* .fc-timegrid-body {
+    background-color: #b3afae;
+} */
+
+.fc-view-harness {
+    background-color: rgba(245, 233, 233, 0.918);
+    /* border: 3px solid #c54b43; */
+}
+
+
+/* .fc-timegrid-axis-frame {
+    background-color: #b3afae;
+} */
+
+.fc-day {
     color: #c54b43;
 }
 
-.fc-view-harness {
-    background-color: #aaa9a9bd;
+.fc-timegrid-col-events .fc-timegrid-event-harness .fc-event-main {
+    background-color: rgb(247, 191, 165);
+    border: 1px solid #c54b43;
 }
 
-.fc-timegrid-axis-frame {
-    color: #768812;
+.fc-timegrid-col-events .fc-timegrid-event-harness .fc-event-main-frame {
+    color: #c54b43;
 }
