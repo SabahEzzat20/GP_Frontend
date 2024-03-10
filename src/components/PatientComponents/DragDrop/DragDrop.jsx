@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import './DragDrop.scss';
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { ShowResult } from '../ShowResult/ShowResult';
 
 const DragDrop = () => {
     const [image, setImage] = useState(null);
@@ -37,12 +38,7 @@ const DragDrop = () => {
                             <img src={image} alt="Preview" style={{ width: '60px', height: '60px', objectFit: 'cover' }} />
                         </div>
                     )}
-                    <button className='scan-btn'>
-                        <div className="upload-icon">
-                            <IoCloudUploadOutline />
-                        </div>
-                        <p>upload</p>
-                    </button>
+                    <ShowResult />
                 </div>
             </div>
         </>

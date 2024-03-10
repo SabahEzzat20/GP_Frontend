@@ -2,6 +2,7 @@ import React from "react";
 import "./LoginForm.css";
 import { FaUser, FaLock, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ResetPassword from "../ResetPassword/ResetPassword";
 const LoginForm = () => {
   return (
        <div className="login-bg">
@@ -33,9 +34,7 @@ const LoginForm = () => {
               <input type="checkbox" id="check" />
               <label htmlFor="check">Remember me</label>
             </div>
-            <a href="/#" className="forgot__password">
-              Forgot Password?
-            </a>
+            <ResetPassword />
           </div>
           <button className="login__btn">Login</button>
           <div className="register">

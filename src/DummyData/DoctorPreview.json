@@ -1,0 +1,245 @@
+
+[
+    {
+        "id" : 1 ,
+        "name" : "omar ahmed",
+        "profilePhoto" : "../../../images/2.jpeg",
+        "Appointments" : [
+            {
+                "id" : 1 ,
+                "date" : "Sat , Mar 09 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 2 ,
+                "date" : "Fri , Mar 15 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 3 ,
+                "date" : "Sat , Mar 16 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 4 ,
+                "date" : "Sat , Mar 16 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            }
+    ]
+    },
+    {
+        "id" : 2 ,
+        "name" : "ghada mohammed",
+        "profilePhoto" : "../../../images/1.jpeg",
+        "Appointments" : [
+            {
+                "id" : 1 ,
+                "date" : "Sat , Mar 09 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 2 ,
+                "date" : "Fri , Mar 15 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 3 ,
+                "date" : "Sat , Mar 16 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            }
+    ]
+    },
+    {
+        "id" : 1 ,
+        "name" : "hani ahmed",
+        "profilePhoto" : "../../../images/2.jpeg",
+        "Appointments" : [
+            {
+                "id" : 1 ,
+                "date" : "Sat , Mar 09 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 2 ,
+                "date" : "Fri , Mar 15 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            },
+            {
+                "id" : 3 ,
+                "date" : "Sat , Mar 16 2024",
+                "time" : [
+                    {
+                        "id" : 1,
+                        "exactTime" : "02:30 pm" 
+                    },
+                    {
+                        "id" : 2,
+                        "exactTime" : "03:00 pm" 
+                    },
+                    {
+                        "id" : 3,
+                        "exactTime" : "03:30 pm" 
+                    },
+                    {
+                        "id" : 4,
+                        "exactTime" : "04:00 pm" 
+                    }
+                ]
+            }
+    ]
+    }
+    
+]

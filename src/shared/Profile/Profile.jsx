@@ -13,6 +13,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import ResetPassword from "../ResetPassword/ResetPassword";
 const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const handleVisibility = () => {
@@ -96,7 +97,7 @@ const Profile = () => {
                                     </RadioGroup>
                                 </FormControl>
                             </Form.Group>
-                            <Link className="change-pass-link">Change password</Link>
+                            <ResetPassword />
                             <button className="update-profile-btn">Update</button>
                         </Form>
                     </div>

@@ -40,7 +40,7 @@ function HomePage(){
               </li>
               <li>
                 <span><FaCheck /></span>
-                Expert Doctors
+                  Expert Doctors
               </li>
             </ul>
           </div>

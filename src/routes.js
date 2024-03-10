@@ -14,6 +14,10 @@ import ContactUs from './components/PatientComponents/ContactUs/ContactUs'
 import Services from './components/PatientComponents/Services/Services'
 import HomePage2 from './components/PatientComponents/HomePage2/HomePage2'
 import Patient from './Pages/Patient'
+import Benefits from './components/PatientComponents/Benefits/Benefits.jsx'
+import DragDrop from "./components/PatientComponents/DragDrop/DragDrop.jsx";
+import DoctorsPreview from "./components/PatientComponents/DoctorsPreview/DoctorsPreview.jsx";
+import ResetPassword from "./shared/ResetPassword/ResetPassword.jsx";
 export const routes = createBrowserRouter([
   {
     path: "/admin",
@@ -52,6 +56,10 @@ export const routes = createBrowserRouter([
     element: <Patient />,
     children: [
       {
+        path: "/patient/doctors-preview",
+        element: <DoctorsPreview />
+      },
+      {
         path: "/patient/homepage",
         element: <HomePage />
       },
@@ -67,11 +75,23 @@ export const routes = createBrowserRouter([
         path: "/patient/homepage2",
         element: <HomePage2 />,
       },
+      {
+        path: "/patient/benefits",
+        element: <Benefits />,
+      },
+      {
+        path: "/patient/uploadXRay",
+        element: <DragDrop />,
+      },
     ],
   },
   {
     path: "/login",
     element: <LoginForm />,
+  },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword />,
   },
   {
     path: "/register",

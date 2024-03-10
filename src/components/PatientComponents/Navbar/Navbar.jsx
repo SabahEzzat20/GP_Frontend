@@ -17,10 +17,10 @@ function Navbar() {
           <Link className="nav-link active" aria-current="page" href="/#">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/Benefits">Benefits</Link>
+          <Link className="nav-link" to="/patient/benefits">Benefits</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/HomePage2">Info</Link>
+          <Link className="nav-link" to="/patient/uploadXRay">Upload</Link>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
