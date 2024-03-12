@@ -1,7 +1,6 @@
 import React from "react";
 import "../Sass/BigForm.scss";
 
-
 const BigForm = () => {
   return (
     <div className="big-form-component">

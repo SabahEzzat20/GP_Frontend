@@ -1,24 +1,16 @@
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.min.js";
-// import { Outlet } from 'react-router-dom';
-// import './App.css';
-// import Sidebar from './AdminModule/Sidebar';
-// import UpperNav from './DoctorModule/UpperNav';
+ import "bootstrap/dist/css/bootstrap.min.css";
+ import "bootstrap/dist/js/bootstrap.min.js";
+ import './App.css';
+import BigForm from "./PatientsModule/BigForm";
 
-// const App = () => {
-//   return (
-//     <div className="App">
-//       <Sidebar />
-//       <div className='right-side'>
-//         <>
-//           <UpperNav />
-//           <Outlet />
-//         </>
-//       </div>
-//     </div>
-//   );
-// }
+ const App = () => {
+   return (
+     <div className="App">
+       <BigForm />
+     </div>
+   );
+ }
 
-// export default App;
+ export default App;
 
 
