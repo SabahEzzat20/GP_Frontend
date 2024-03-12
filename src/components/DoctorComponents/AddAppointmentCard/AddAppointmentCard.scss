@@ -1,12 +1,12 @@
 .add-appointment{
-    // margin-top: 10px;
     display: flex;
     border-radius: 5px;
     background-color: white;
-    width: 45%;
+    width: 600px;
     padding-left: 20px;
     padding-top: 20px;
     padding-right: 20px;
+    height: 330px;
     .add-appointmetn-rightside{
         margin-left: 30px;
         margin-top: auto;
@@ -16,10 +16,11 @@
         p{
             font-size: 27px;
             color: rgb(109, 109, 109);
+            padding-top: 50px;
         }
         .addapp-btn{
             background-color: #C54B43;
-            margin-top: 30px;
+            margin-top: 40px;
             text-transform: lowercase;
         }
     }
