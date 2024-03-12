@@ -1,0 +1,33 @@
+@import '../../../Sass/colors';
+.stat-container{
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+    height: 100px;
+    display: flex;
+    // justify-content: center;
+    padding-left: 13%;
+    align-items: center;
+    .stat-icon{
+        width: 40px;
+        height: 40px;
+        color: $second-basic-color;
+        background-color: #fff4f4;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+    .stat-details{
+        .stat-title{
+            color: rgb(58, 58, 58);
+        }
+        .stat-total{
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(58, 58, 58);
+        }
+    }
+}
