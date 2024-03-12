@@ -9,9 +9,7 @@ const UpperNav = () => {
             <div className="doctor-nav">
                 <ReservationNotification />
                 <div className="doctor-profile">
-                    <div className="profile-container">
-                        <Profile />
-                    </div>
+                            <Profile />
                 </div>
             </div>
         </>

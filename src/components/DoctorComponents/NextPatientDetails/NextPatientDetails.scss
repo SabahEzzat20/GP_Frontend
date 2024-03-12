@@ -1,0 +1,21 @@
+.next-patient-details{
+    width: 520px;
+    box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: transparent; 
+    }
+}
+.patient-information{
+    color: rgb(155, 155, 155);
+    font-size: 14px;
+}

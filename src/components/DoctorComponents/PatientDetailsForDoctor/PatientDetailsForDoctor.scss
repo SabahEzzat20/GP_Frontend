@@ -1,0 +1,42 @@
+.patients-preview-container{
+    width: 520px;
+    box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: transparent; 
+    }
+
+}
+.patient-identification{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+.last-of-stack{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cancel-appointment{
+    margin-left: 15px;
+}
+
+.patient-date{
+    color: rgb(175, 175, 175);
+    font-size: 13px;
+}
+.patient-name{
+    font-size: 15px;
+    font-weight: 350;
+}
