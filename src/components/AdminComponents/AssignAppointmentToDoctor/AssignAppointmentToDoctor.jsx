@@ -9,7 +9,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Doctors from "../../../DummyData/Doctors.json"
 import Fab from '@mui/material/Fab';
-import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import { AiOutlineDelete } from "react-icons/ai";
 
@@ -85,10 +84,10 @@ const AssignAppointmentToDoctor = () => {
                 className="app-modal"
             >
                 <Modal.Header className="modalHeader-app" closeButton>
-                    <Stack dicrection='row' spacing={2}>
+                    {/* <Stack dicrection='row' spacing={2}>
                         <item>hello</item>
                         <item>omar</item>
-                    </Stack>
+                    </Stack> */}
                     <p>Assign appointment to doctor</p>
                 </Modal.Header>
                 <Modal.Body className="modalBody-app">
