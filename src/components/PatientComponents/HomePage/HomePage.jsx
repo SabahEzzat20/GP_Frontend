@@ -2,14 +2,12 @@ import React from "react";
 import './HomePage.css';
 import { FaCheck } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import Navbar from "../Navbar/Navbar";
 const doctor = require('../../../images/header-bg.png');
 
 function HomePage(){
     return(
         <>
         <div className="HomePage">
-          <Navbar />
         <header className="header">
         <div className="content">
           <h1><span>Get Quick</span><br />Medical Services</h1>

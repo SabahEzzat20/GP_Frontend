@@ -2,7 +2,11 @@ import "./navbar.css";
 import React from "react";
 import { LuLogIn } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import Avatar from '@mui/material/Avatar';
+const sabah = require ('../../../images/saboha.jpeg') ;
 function Navbar() {
+
+
   return (
     <>
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -14,28 +18,21 @@ function Navbar() {
     <div className="collapse navbar-collapse" id="navbarScroll">
       <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" href="/#">Home</Link>
+          <Link className="nav-link" to="/patient/homepage">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/patient/benefits">Benefits</Link>
+          <Link className="nav-link" to="/patient/services">Services</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/patient/uploadXRay">Upload</Link>
         </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Link
-          </a>
-          <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li className="nav-item">
+          <Link className="nav-link" to="/patient/contact">Contact Us</Link>
         </li>
+       
       </ul>
-      <div className="two-buttons">
 
+      <div className="two-buttons">
       <div className="right-part">
           <Link className="nav-btn" to="/register">Sign-UP</Link>
       </div>
@@ -44,9 +41,16 @@ function Navbar() {
           <i className="icon"><LuLogIn /></i>
           
       </div>
+
       </div>
+
     </div>
   </div>
+      <Link className='profile-menu-btn' to="/patient/profilePage">
+                <Avatar alt="Sabah hassan" src={sabah} />
+            </Link>
+           
+
 </nav>
     </>
   );

@@ -9,12 +9,11 @@ import ViewDoctorSchedule from './components/DoctorComponents/ViewDoctorSchedule
 import Doctor from "./Pages/Doctor";
 import Register from './shared/Register/Register'
 import LoginForm from './shared/LoginForm/LoginForm'
+import BigForm from "./PatientsModule/BigForm.jsx";
 import HomePage from './components/PatientComponents/HomePage/HomePage'
 import ContactUs from './components/PatientComponents/ContactUs/ContactUs'
 import Services from './components/PatientComponents/Services/Services'
-import HomePage2 from './components/PatientComponents/HomePage2/HomePage2'
 import Patient from './Pages/Patient'
-import Benefits from './components/PatientComponents/Benefits/Benefits.jsx'
 import DragDrop from "./components/PatientComponents/DragDrop/DragDrop.jsx";
 import DoctorsPreview from "./components/PatientComponents/DoctorsPreview/DoctorsPreview.jsx";
 import ResetPassword from "./shared/ResetPassword/ResetPassword.jsx";
@@ -69,19 +68,14 @@ export const routes = createBrowserRouter([{
                 element: < Services / > ,
             },
             {
-                path: "/patient/homepage2",
-                element: < HomePage2 / > ,
-            },
-            {
-                path: "/patient/benefits",
-                element: < Benefits / > ,
-            },
-            {
                 path: "/patient/uploadXRay",
                 element: < DragDrop / > ,
             }, {
                 path: "/patient/profilePage",
                 element: < ProfilePage / > ,
+            }, {
+                path: "/patient/bigForm",
+                element: < BigForm / > ,
             }
         ],
     },

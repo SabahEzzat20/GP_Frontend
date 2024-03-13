@@ -1,8 +1,5 @@
 :root {
-    --primary-color: #12ac8e;
-    --primary-color-dark: #0d846c;
-    --primary-color-light: #e9f7f7;
-    --secondary-color: #fb923c;
+    --primary-color: #C54B43;
     --text-dark: #333333;
     --text-light: #767268;
     --white: #ffffff;
@@ -19,7 +16,7 @@
     margin-bottom: 0.5rem;
     font-size: 2rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #C54B43;
 }
 
 .service__header {
@@ -31,15 +28,15 @@
 
 .service__header__content p {
     max-width: 600px;
-    color: var(--text-light);
+    color: rgb(77, 77, 77);
 }
 
 .service__btn {
     padding: 0.75rem 1rem;
     outline: none;
     font-size: 1rem;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    color: #C54B43;
+    border: 1px solid #C54B43;
     background-color: transparent;
     border-radius: 5px;
     white-space: nowrap;
@@ -49,7 +46,7 @@
 
 .service__btn:hover {
     color: var(--white);
-    background-color: var(--primary-color);
+    background-color: #C54B43;
 }
 
 .service__grid {
@@ -72,8 +69,7 @@
     margin-bottom: 1rem;
     padding: 10px 20px;
     font-size: 2.5rem;
-    color: var(--primary-color);
-    background-color: var(--primary-color-light);
+    color: #C54B43;
     border-radius: 100%;
     transition: 0.3s;
 }
@@ -87,7 +83,7 @@
 
 .service__card p {
     margin-bottom: 1rem;
-    color: var(--text-light);
+    color: rgb(77, 77, 77);
 }
 
 .service__card a {
@@ -95,12 +91,12 @@
 }
 
 .service__card a:hover {
-    color: var(--primary-color-dark);
+    color: #C54B43;
 }
 
 .service__card:hover span {
-    color: var(--primary-color-light);
-    background-color: var(--primary-color);
+    color: white;
+    background-color: #C54B43;
 }
 
 .btn {
