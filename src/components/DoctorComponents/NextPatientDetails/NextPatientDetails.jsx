@@ -5,8 +5,11 @@ import userAvatar from '../../../images/saboha.jpeg';
 import './NextPatientDetails.scss';
 import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
-
+import xray from '../../../images/hand-255x300.jpg'
 const NextPatientDetails = () => {
+    const openImageInNewTab = (imageUrl) => {
+        window.open(imageUrl, '_blank');
+    };
     return (
         <div>
             <div className="next-patient-details">
@@ -48,7 +51,7 @@ const NextPatientDetails = () => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className="">
-                        <Button variant="outlined" startIcon={<FolderIcon />}>
+                        <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
                             Attached X-Rays
                         </Button>
                         </div>

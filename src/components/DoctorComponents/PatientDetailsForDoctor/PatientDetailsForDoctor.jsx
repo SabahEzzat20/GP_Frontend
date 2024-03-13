@@ -7,6 +7,7 @@ import { VscClose } from "react-icons/vsc";
 import IconButton from '@mui/material/IconButton';
 import './PatientDetailsForDoctor.scss';
 const PatientDetailsForDoctor = ({patient}) => {
+    
     return (
         <div>
             <div className="patient-identification" style={{backgroundColor: patient.status==="On Going" ? 'rgba(243, 252, 255, 0.986)' : 'transparent'}}>

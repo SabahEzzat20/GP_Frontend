@@ -1,4 +1,5 @@
 @import '../../Sass/colors'; 
+@import url('https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap');
 .sidebar{
     background-color: $basic-background;
     height: 100vh;
@@ -15,62 +16,67 @@
     font-size: 23px;
     line-height: 0;
     padding-left: 10px;
+    padding-right: 25px;
     text-transform: capitalize;
+    font-family: "Pacifico", cursive;
+
+
 }
-.logo::after{
-    content: ' |';
-    animation: type 3s infinite;
-}
-@keyframes type {
-    0%{
-        content: 'o|';
-    }
-    7%{
-        content: 'op|';
-    }
-    14%{
-        content: 'ope|';
-    }
-    21%{
-        content: 'oped|';
-    }
-    28%{
-        content: 'opedi|';
-    }
-    35%{
-        content: 'opedis|';
-    }
-    42%{
-        content: 'opedist|';
-    }
-    49%{
-        content: 'opedista|';
-    }
-    56%{
-        content: 'opedist|';
-    }
-    63%{
-        content: 'opedis|';
-    }
-    70%{
-        content: 'opedi|';
-    }
-    77%{
-        content: 'oped|';
-    }
-    84%{
-        content: 'ope|';
-    }
-    91%{
-        content: 'op|';
-    }
-    98%{
-        content: 'o|';
-    }
-    100%{
-        content: '|';
-    }
-}
+
+// .logo::after{
+//     content: ' |';
+//     animation: type 3s infinite;
+// }
+// @keyframes type {
+//     0%{
+//         content: 'o|';
+//     }
+//     7%{
+//         content: 'op|';
+//     }
+//     14%{
+//         content: 'ope|';
+//     }
+//     21%{
+//         content: 'oped|';
+//     }
+//     28%{
+//         content: 'opedi|';
+//     }
+//     35%{
+//         content: 'opedis|';
+//     }
+//     42%{
+//         content: 'opedist|';
+//     }
+//     49%{
+//         content: 'opedista|';
+//     }
+//     56%{
+//         content: 'opedist|';
+//     }
+//     63%{
+//         content: 'opedis|';
+//     }
+//     70%{
+//         content: 'opedi|';
+//     }
+//     77%{
+//         content: 'oped|';
+//     }
+//     84%{
+//         content: 'ope|';
+//     }
+//     91%{
+//         content: 'op|';
+//     }
+//     98%{
+//         content: 'o|';
+//     }
+//     100%{
+//         content: '|';
+//     }
+// }
 .bars{
     font-size: 25px;
     padding-left: 5px;

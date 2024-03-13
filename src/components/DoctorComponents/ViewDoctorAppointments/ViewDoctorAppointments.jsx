@@ -6,6 +6,24 @@ import './ViewDoctorAppointments.scss'
 import PatientQueue from '../PatientsQueue/PatientQueue.jsx';
 import NextPatientDetails from '../NextPatientDetails/NextPatientDetails.jsx';
 const ViewDoctorAppointments = () => {
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleResize = () => {
+        setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+        };
+
+        // Initial check on component mount
+        handleResize();
+
+        // Add event listener for resize events
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup function to remove the event listener
+        return () => {
+        window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         <div className='doc-app-container'>
             <Stack direction="row" spacing={2}>
@@ -13,7 +31,7 @@ const ViewDoctorAppointments = () => {
                     <StatisticsBar key={statistic.id} statistic={statistic} />
                 ))}
             </Stack>
-            <Stack direction="row" spacing={10}>
+            <Stack direction= {isMobile? "column" :"row"} spacing={isMobile? 2 : 10} >
                 <div className="patients-preview">
                     <div className="patients-details-title">Patients Appointments</div>
                     <PatientQueue />

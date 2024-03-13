@@ -1,3 +1,5 @@
+// @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap');
 .footer-container{
     padding: 30px;
     border-top: 1px solid rgb(241, 241, 241,0.5);
@@ -7,7 +9,12 @@
     font-size: 15px;
 }
 .footer-title{
-    font-size: 28px;
+    font-size: 40px;
+    font-weight: 500;
+    // font-family: "Italianno", cursive;
+    font-family: "Pacifico", cursive;
+
+
 }
 .footer-highlights{
     font-size: 19px;
