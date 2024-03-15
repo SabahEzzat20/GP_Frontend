@@ -8,7 +8,7 @@ const ProvidingEmail = () => {
             <div className="provide-pass-form">
                 <div className='forgot-pass-paragraph'>
                     <p className='forgot-pass'>Forgot <br /> your password?</p>
-                    <p className='tips'>please provide your email for verification</p>
+                    <p className='tips'>Please provide your email for verification</p>
                 </div>
                 <Form>
                     <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">

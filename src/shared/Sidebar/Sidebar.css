@@ -1,1 +1,62 @@
-@import"https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap";.sidebar{background-color:#f7f7f3;height:100vh;z-index:10}.top_section{display:flex;align-items:baseline;color:#c54b43;padding:10px;padding-bottom:10em}.logo{font-size:23px;line-height:0;padding-left:10px;padding-right:25px;text-transform:capitalize;font-family:"Pacifico",cursive}.bars{font-size:25px;padding-left:5px;cursor:pointer}.icon{font-size:20px}.link{text-decoration:none;color:#c54b43;display:flex;border-radius:5px;margin:auto;-moz-column-gap:10px;column-gap:10px;padding-left:10px;padding-right:10px;padding-top:3px;padding-bottom:5px;text-align:center;border-left:4px solid rgba(0,0,0,0);transition:.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);align-items:baseline;border:1px solid rgba(0,0,0,0);margin:5px}.link:hover{transition:.2s cubic-bezier(0.6, -0.28, 0.735, 0.045)}.active{transition:.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);color:#fff;background-color:#c54b43}
+@import url("https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap");
+.sidebar {
+  background-color: #F7F7F3;
+  height: 100vh;
+  z-index: 10;
+}
+
+.top_section {
+  display: flex;
+  align-items: baseline;
+  color: #C54B43;
+  padding: 10px;
+  padding-bottom: 10em;
+}
+
+.logo {
+  font-size: 23px;
+  line-height: 0;
+  padding-left: 10px;
+  padding-right: 25px;
+  text-transform: capitalize;
+  font-family: "Pacifico", cursive;
+}
+
+.bars {
+  font-size: 25px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: #C54B43;
+  display: flex;
+  border-radius: 5px;
+  margin: auto;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  text-align: center;
+  border-left: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  align-items: baseline;
+  border: 1px solid transparent;
+  margin: 5px;
+}
+.link:hover {
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.active {
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  color: white;
+  background-color: #C54B43;
+}/*# sourceMappingURL=Sidebar.css.map */

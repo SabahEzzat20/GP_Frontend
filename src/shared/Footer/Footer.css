@@ -1,1 +1,25 @@
-@import"https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap";.footer-container{padding:30px;border-top:1px solid rgba(241,241,241,.5)}.footer-tail{text-align:center;font-size:15px}.footer-title{font-size:40px;font-weight:500;font-family:"Pacifico",cursive}.footer-highlights{font-size:19px}.highlights-details{font-size:15px;color:gray}
+@import url("https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap");
+.footer-container {
+  padding: 30px;
+  border-top: 1px solid rgba(241, 241, 241, 0.5);
+}
+
+.footer-tail {
+  text-align: center;
+  font-size: 15px;
+}
+
+.footer-title {
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Pacifico", cursive;
+}
+
+.footer-highlights {
+  font-size: 19px;
+}
+
+.highlights-details {
+  font-size: 15px;
+  color: gray;
+}/*# sourceMappingURL=Footer.css.map */

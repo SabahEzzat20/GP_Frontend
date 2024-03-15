@@ -1,1 +1,32 @@
-.doctor-preview-container{background-color:#f8f8f8;color:#6d6d6d;width:700px;height:26em;border-radius:10px;padding:40px;box-shadow:1px 1px 7px rgba(94,93,93,.2)}.doctor-preview-container .continue-btn{margin-top:30px;margin-left:420px}.doctor-preview-container .App-cont{border:1px solid #bebebe;border-radius:10px;padding:20px;width:540px;text-align:center;margin-top:40px}.doctor-preview-container .App-cont .appointments-box{background-color:#f8f8f8}.doctor-preview-container .App-cont .appointments-box .hour{margin:5px}.doctor-preview-container .time-container{padding:50px;background-color:#f8f8f8;width:480px}
+.doctor-preview-container {
+  background-color: rgb(248, 248, 248);
+  color: rgb(109, 109, 109);
+  width: 700px;
+  height: 26em;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 1px 1px 7px rgba(94, 93, 93, 0.2);
+}
+.doctor-preview-container .continue-btn {
+  margin-top: 30px;
+  margin-left: 420px;
+}
+.doctor-preview-container .App-cont {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 10px;
+  padding: 20px;
+  width: 540px;
+  text-align: center;
+  margin-top: 40px;
+}
+.doctor-preview-container .App-cont .appointments-box {
+  background-color: rgb(248, 248, 248);
+}
+.doctor-preview-container .App-cont .appointments-box .hour {
+  margin: 5px;
+}
+.doctor-preview-container .time-container {
+  padding: 50px;
+  background-color: rgb(248, 248, 248);
+  width: 480px;
+}/*# sourceMappingURL=DoctorPreview.css.map */
