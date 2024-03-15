@@ -28,7 +28,7 @@ const BigForm = () => {
           <input type="text"  />
         </div>
       </div>
-      <div className="last-section">
+      <div className="last-section-big-form">
       <button className="btn-confirm">Confirm</button>
       </div>
     </div>

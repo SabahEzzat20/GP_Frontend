@@ -34,7 +34,7 @@
             }
         }
     }
-    .last-section {
+    .last-section-big-form {
         display: flex;
         justify-content: center;
         .btn-confirm {
@@ -45,6 +45,7 @@
             color: white;
             padding: 1rem;
             border-radius: 5px;
+            width: 20%;
         }
     }
 }

@@ -6,7 +6,7 @@ const Patient = () => {
     return (
         <div className='patient'>
            <Navbar />
-                <Outlet />
+            <Outlet />
         </div>
     );
 };

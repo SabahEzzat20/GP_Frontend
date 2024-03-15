@@ -3,11 +3,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 1rem;
-    margin: 2rem 20rem;
-    min-height: 70vh;
-    gap: 10rem;
-    border: 3px solid #C54B43;
+    padding: 0.5rem;
+    /* margin: 2rem 20rem; */
+    min-height: 80vh;
+    gap: 2rem;
     border-radius: 50px;
 }
 
@@ -38,11 +37,17 @@
     margin-bottom: 20px;
 }
 
+.MuiBox-root .MuiTab-root {
+    gap: 3rem;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .profile-age,
 .profile-gender,
 .profile-email {
     font-size: 23px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .profile-container {
@@ -69,4 +74,20 @@
 .update-photo .profile-photo-dropzone {
     width: 100px;
     height: 100px;
+}
+
+.last-section {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-confirm {
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+    background-color: #C54B43;
+    color: white;
+    padding: 0.7rem;
+    border: none;
 }
