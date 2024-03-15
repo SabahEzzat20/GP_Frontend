@@ -1,1 +1,29 @@
-.stat-container{width:250px;background-color:#fff;border-radius:10px;box-shadow:1px 1px 5px rgba(175,175,175,.3);height:100px;display:flex;padding-left:13%;align-items:center}.stat-container .stat-icon{width:40px;height:40px;color:#c54b43;background-color:#fff4f4;border-radius:10px;display:flex;justify-content:center;align-items:center;font-size:20px}.stat-container .stat-details .stat-title{color:#3a3a3a}.stat-container .stat-details .stat-total{font-size:20px;font-weight:bold;color:#3a3a3a}
+.stat-container {
+  width: 250px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+  height: 100px;
+  display: flex;
+  padding-left: 13%;
+  align-items: center;
+}
+.stat-container .stat-icon {
+  width: 40px;
+  height: 40px;
+  color: #C54B43;
+  background-color: #fff4f4;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.stat-container .stat-details .stat-title {
+  color: rgb(58, 58, 58);
+}
+.stat-container .stat-details .stat-total {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(58, 58, 58);
+}/*# sourceMappingURL=StatisticsBar.css.map */

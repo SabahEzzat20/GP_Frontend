@@ -1,1 +1,10 @@
-.provide-pass-form .forgot-pass-paragraph .tips{font-size:15px;color:#9b9b9b}.provide-pass-form .email-providing-group{display:block}.provide-pass-form .email-providing-group .email-textfield{width:330px}
+.provide-pass-form .forgot-pass-paragraph .tips {
+  font-size: 15px;
+  color: rgb(155, 155, 155);
+}
+.provide-pass-form .email-providing-group {
+  display: block;
+}
+.provide-pass-form .email-providing-group .email-textfield {
+  width: 330px;
+}/*# sourceMappingURL=ProvidingEmail.css.map */

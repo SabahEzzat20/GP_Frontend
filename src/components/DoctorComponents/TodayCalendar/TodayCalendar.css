@@ -1,1 +1,7 @@
-.today-calendar{border-radius:10px;box-shadow:1px 1px 5px rgba(175,175,175,.3);background-color:#fff;width:330px;height:330px}
+.today-calendar {
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+  background-color: white;
+  width: 330px;
+  height: 330px;
+}/*# sourceMappingURL=TodayCalendar.css.map */

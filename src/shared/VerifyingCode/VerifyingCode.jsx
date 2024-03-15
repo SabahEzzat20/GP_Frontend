@@ -7,7 +7,7 @@ const VerifyingCode = () => {
         <div className="provide-pass-form">
                 <div className='verify-code'>
                 <p className='forgot-pass'>Forgot <br /> your password?</p>
-                <p>Please enter your verification code</p>
+                <p className='tips'>Please enter your verification code</p>
             </div>
             <Form>
                 <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
