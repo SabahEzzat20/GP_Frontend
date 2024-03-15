@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from "react";
 import "./ProfilePage.css";
+import Accordion from 'react-bootstrap/Accordion';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import Card from 'react-bootstrap/Card';
 import Modal from "react-bootstrap/Modal";
 import { useDropzone } from "react-dropzone";
 import Button from "react-bootstrap/Button";
@@ -15,7 +18,23 @@ const handleUpdateData = () => {
 };
 
 const ProfilePage = () => {
-  const [showModal, setShowModal] = useState(false);
+
+  function CustomToggle({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+      console.log('totally custom!'),
+    );
+  
+    return (
+      <button
+        type="button"
+        style={{ backgroundColor: 'pink' }}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+ 
 
   const [image, setImage] = useState(null);
   const onDrop = useCallback((acceptedFiles) => {
@@ -28,16 +47,6 @@ const ProfilePage = () => {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   const [gender, setGender] = useState("");
-  const handleChange = (event) => {
-    setGender(event.target.value);
-  };
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
   return (
     <div className="profile-container">
@@ -46,6 +55,13 @@ const ProfilePage = () => {
           <img src={profilePhoto} alt="User" />
         </div>
       </div>
+      <Accordion defaultActiveKey="0">
+      <Card>
+        <Card.Header>
+          <CustomToggle eventKey="1">My Profile</CustomToggle>
+        </Card.Header>
+        <Accordion.Collapse eventKey="1">
+          <Card.Body>
 
       <div className="second-part">
         <div className="profile-details">
@@ -54,15 +70,17 @@ const ProfilePage = () => {
           <p className="profile-gender">Gender: Female</p>
           <p className="profile-email">Email: samadoe@example.com</p>
         </div>
-        <Button variant="primary" onClick={handleOpenModal}>
-          Update Data
-        </Button>
-        <Modal show={showModal} onHide={handleCloseModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Update Data</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Modal.Body>
+      
+      </div>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+      <Card>
+        <Card.Header>
+          <CustomToggle eventKey="0"> Update Data</CustomToggle>
+        </Card.Header>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
               <form>
                 <div style={{ marginBottom: "1rem" }}>
                   <label htmlFor="name">Name:</label>
@@ -122,18 +140,12 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </form>
-            </Modal.Body>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleUpdateData}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
+          
+      
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
     </div>
   );
 };

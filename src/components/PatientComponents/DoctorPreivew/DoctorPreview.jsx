@@ -8,7 +8,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Button from '@mui/material/Button';
 import './DoctorPreview.scss';
-import photo from '../../../images/1.jpeg'
+import { Link } from 'react-router-dom';
 const DoctorPreview = ({ doctor }) => {
     const [value, setValue] = useState(1);
     const [buttonClick, setButtonClick] = useState({});
@@ -59,7 +59,9 @@ const DoctorPreview = ({ doctor }) => {
                     </TabContext>
                 </Box>
             </div>
+            <Link to="/patient/BigForm">
             <Button variant="contained" disabled={continueDisabled} className='continue-btn'>continue</Button>
+            </Link>
         </div>
     );
 };

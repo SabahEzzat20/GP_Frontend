@@ -4,18 +4,19 @@
     box-sizing: border-box;
 }
 
-:root {
+
+/* :root {
     --primary-color: #28bf96;
-    --primary-color-dark: #6011bb;
+    --primary-color-dark: #C54B43;
     --text-dark: #111827;
     --text-light: #6b7280;
     --white: #ffffff;
-}
+} */
 
 .HomePage {
     max-width: 1500px;
     margin: auto;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
 }
@@ -26,14 +27,14 @@
     border: none;
     font-size: 1rem;
     color: var(--white);
-    background-color: var(--primary-color-dark);
+    background-color: #C54B43;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .getServices:hover {
-    background-color: var(--text-light);
+    background-color: rgb(77, 77, 77);
 }
 
 .header {
@@ -49,7 +50,7 @@
     margin-bottom: 1rem;
     font-size: 3rem;
     font-weight: 800;
-    color: var(--primary-color-dark);
+    color: #C54B43;
 }
 
 .content h1 span {
@@ -58,7 +59,7 @@
 
 .content p {
     margin-bottom: 2rem;
-    color: var(--text-light);
+    color: rgb(77, 77, 77);
     line-height: 1.75rem;
     font-size: large;
 }
@@ -76,14 +77,17 @@
     transform: translate(-50%, -50%);
     height: 470px;
     width: 470px;
-    background-color: var(--primary-color-dark);
+    background-color: #C54B43;
     border-radius: 100%;
     z-index: -1;
 }
 
 .image img {
     width: 100%;
-    max-width: 470px;
+    max-width: 480px;
+    position: relative;
+    top: 50%;
+    left: 15%;
     animation: mover 1s infinite alternate;
     transition: .3s ease all;
 }
@@ -118,7 +122,7 @@
 .image__content__1 span {
     padding: 6px 12px;
     font-size: 2.7rem;
-    color: var(--primary-color-dark);
+    color: #C54B43;
     border-radius: 100%;
 }
 
@@ -129,7 +133,7 @@
 }
 
 .image__content__1 p {
-    color: var(--text-light);
+    color: rgb(77, 77, 77);
 }
 
 .image__content__2 {
@@ -146,12 +150,12 @@
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    color: var(--text-light);
+    color: rgb(77, 77, 77);
 }
 
 .image__content__2 span {
     font-size: 1.5rem;
-    color: var(--primary-color-dark);
+    color: #C54B43;
 }
 
 @media (width < 980px) {

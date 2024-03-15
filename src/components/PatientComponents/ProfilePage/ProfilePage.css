@@ -3,12 +3,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 2rem;
-    margin: 6rem 20rem;
+    padding: 1rem;
+    margin: 2rem 20rem;
     min-height: 70vh;
     gap: 10rem;
-    /* border: 3px solid #C54B43; */
-    background-color: rgb(204, 203, 203);
+    border: 3px solid #C54B43;
     border-radius: 50px;
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from '../shared/Footer/Footer';
+import Navbar from '../components/PatientComponents/Navbar/Navbar';
+
 const Patient = () => {
     return (
-        <div>
-            <Outlet />
-            <Footer />
+        <div className='patient'>
+           <Navbar />
+                <Outlet />
         </div>
     );
 };

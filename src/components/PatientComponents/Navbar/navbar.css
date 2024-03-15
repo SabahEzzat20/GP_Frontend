@@ -4,6 +4,7 @@
     font-family: 'Roboto', sans-serif;
     transition: #C54B43 0.3s ease-in-out;
     width: 100%;
+    position: absolute;
 }
 
 .navbar.navbar-scroll {
@@ -61,4 +62,13 @@
 .navbar .two-buttons .right-part .icon {
     font-size: 20px;
     color: #C54B43;
+}
+
+.profile-menu-btn {
+    border: none;
+    display: flex;
+    position: relative;
+    right: 2rem;
+    background-color: transparent;
+    align-items: center;
 }
