@@ -29,7 +29,6 @@ function Navbar() {
         <li className="nav-item">
           <Link className="nav-link" to="/patient/contact">Contact Us</Link>
         </li>
-       
       </ul>
 
       <div className="two-buttons">
@@ -46,10 +45,9 @@ function Navbar() {
 
     </div>
   </div>
-      <Link className='profile-menu-btn' to="/patient/profilePage">
+      <Link className='profile-menu-btn' to="/patientprofile">
                 <Avatar alt="Sabah hassan" src={sabah} />
             </Link>
-           
 
 </nav>
     </>

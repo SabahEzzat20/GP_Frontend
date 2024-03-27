@@ -35,11 +35,11 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.big-form-component .last-section {
+.big-form-component .last-section-big-form {
   display: flex;
   justify-content: center;
 }
-.big-form-component .last-section .btn-confirm {
+.big-form-component .last-section-big-form .btn-confirm {
   font-size: 30px;
   font-weight: 600;
   margin: 0 0 2rem 0;
@@ -47,4 +47,5 @@
   color: white;
   padding: 1rem;
   border-radius: 5px;
+  width: 20%;
 }/*# sourceMappingURL=BigForm.css.map */

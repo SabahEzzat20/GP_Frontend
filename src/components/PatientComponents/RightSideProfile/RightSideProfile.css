@@ -1,0 +1,22 @@
+.breadcrumbs {
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0px 0px 6px rgba(214, 214, 214, 0.5);
+}
+
+.profile-route {
+  text-decoration: none;
+  color: rgb(83, 83, 83);
+  padding: 10px;
+}
+
+.routes-stack {
+  padding: 20px;
+}
+
+.activate {
+  border-bottom: 1px solid blue;
+  background-color: red;
+  color: rgb(16, 42, 126);
+  width: 100px;
+}/*# sourceMappingURL=RightSideProfile.css.map */

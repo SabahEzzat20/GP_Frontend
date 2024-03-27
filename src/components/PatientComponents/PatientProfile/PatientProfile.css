@@ -1,0 +1,9 @@
+.patient-profile {
+  display: flex;
+}
+.patient-profile .leftsideprofile {
+  width: 250px;
+}
+.patient-profile .rightsideprofile {
+  width: 100%;
+}/*# sourceMappingURL=PatientProfile.css.map */

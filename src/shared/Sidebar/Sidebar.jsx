@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './Sidebar.scss'
 import { FaBars} from 'react-icons/fa';
 import { doctorRoutes } from '../../DummyData/doctorRoutes';
-import { adminRoutes } from '../../DummyData/adminRoutes'
+import { adminRoutes } from '../../DummyData/adminRoutes';
 
 
 const Sidebar = (props) => {
@@ -28,7 +28,7 @@ const Sidebar = (props) => {
                             <>
                                 {adminRoutes.map((route) => (
                                     
-                                        <NavLink to={route.path} key={route.name} className="link">
+                                        <NavLink to={route.path} key={route.name} className="link" activeClassName='active'>
                                             <div className="icon">{route.icon}</div>
                                             <AnimatePresence>
                                                 {isOpen && <motion.div className="link_text">{route.name}</motion.div>}

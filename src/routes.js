@@ -17,79 +17,99 @@ import Patient from './Pages/Patient'
 import DragDrop from "./components/PatientComponents/DragDrop/DragDrop.jsx";
 import DoctorsPreview from "./components/PatientComponents/DoctorsPreview/DoctorsPreview.jsx";
 import ResetPassword from "./shared/ResetPassword/ResetPassword.jsx";
-import ProfilePage from "./components/PatientComponents/ProfilePage/ProfilePage.jsx";
+// import ProfilePage from "./components/PatientComponents/ProfilePage/ProfilePage.jsx";
+import PatientProfile from "./components/PatientComponents/PatientProfile/PatientProfile.jsx";
+import EditPatientProfile from "./components/PatientComponents/EditPatientProfile/EditPatientProfile.jsx";
+import PatientHistory from "./components/PatientComponents/PatientHistory/PatientHistory.jsx";
+import PatientReservedAppointment from "./components/PatientComponents/PatientReservedAppointment/PatientReservedAppointment.jsx";
 export const routes = createBrowserRouter([{
         path: "/admin",
-        element: < Admin / > ,
+        element: < Admin /> ,
         children: [{
                 path: "/admin/viewPatients",
-                element: < ViewPatients / > ,
+                element: < ViewPatients /> ,
             },
             {
                 path: "/admin/viewDoctors",
-                element: < ViewDoctors / > ,
+                element: < ViewDoctors /> ,
             },
             {
                 path: "/admin/calendar",
-                element: < FullCalender / > ,
+                element: < FullCalender /> ,
             }
         ],
     },
     {
         path: "/doctor",
-        element: < Doctor / > ,
+        element: < Doctor /> ,
         children: [{
                 path: "/doctor/viewDoctorAppointments",
-                element: < ViewDoctorAppointments / >
+                element: < ViewDoctorAppointments />
             },
             {
                 path: "/doctor/viewDoctorSchedule",
-                element: < ViewDoctorSchedule / >
+                element: < ViewDoctorSchedule />
             }
         ],
     },
     {
         path: "/patient",
-        element: < Patient / > ,
+        element: < Patient /> ,
         children: [{
                 path: "/patient/doctors-preview",
-                element: < DoctorsPreview / >
+                element: < DoctorsPreview />
             },
             {
                 path: "/patient/homepage",
-                element: < HomePage / >
+                element: < HomePage />
             },
             {
                 path: "/patient/contact",
-                element: < ContactUs / > ,
+                element: < ContactUs /> ,
             },
             {
                 path: "/patient/services",
-                element: < Services / > ,
+                element: < Services /> ,
             },
             {
                 path: "/patient/uploadXRay",
-                element: < DragDrop / > ,
-            }, {
-                path: "/patient/profilePage",
-                element: < ProfilePage / > ,
-            }, {
+                element: < DragDrop /> ,
+            },
+            {
                 path: "/patient/bigForm",
-                element: < BigForm / > ,
+                element: < BigForm /> ,
             }
         ],
     },
     {
         path: "/login",
-        element: < LoginForm / > ,
+        element: < LoginForm /> ,
     },
     {
         path: "/resetpassword",
-        element: < ResetPassword / > ,
+        element: < ResetPassword /> ,
     },
     {
         path: "/register",
-        element: < Register / > ,
+        element: < Register /> ,
+    },
+    {
+        path: "/patientprofile",
+        element: < PatientProfile />,
+        children: [
+            {
+                path: "/patientprofile/Editprofile",
+                element: <EditPatientProfile /> ,
+            },
+            {
+                path: "/patientprofile/patient-history",
+                element: <PatientHistory /> ,
+            },
+            {
+                path: "/patientprofile/patient-reserved-appointment",
+                element: <PatientReservedAppointment /> ,
+            },
+        ]
     },
 
 ]);
