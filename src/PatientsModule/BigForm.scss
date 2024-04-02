@@ -1,3 +1,4 @@
+@import '../Sass/colors';
 .big-form-component {
     display: flex;
     justify-content: center;
@@ -41,11 +42,54 @@
             font-size: 30px;
             font-weight: 600;
             margin: 0 0 2rem 0;
-            background-color: #C54B43;
+            // background-color: #C54B43;
             color: white;
             padding: 1rem;
             border-radius: 5px;
             width: 20%;
         }
     }
+}
+.go-back-arrow{
+    font-size: 20px;
+    a{
+        color: rgb(114, 114, 114);
+        &:hover{
+            color: $second-basic-color;
+        }
+    }
+}
+.doctor-details{
+    color: gray;
+    // font-size: 15px;
+    .expertise{
+        font-size: 13px;
+    }
+    .doctor-name{
+        font-size: 15px;
+    }
+}
+.reservation-form{
+    border: 1px solid rgb(233, 233, 233);
+    margin: auto;
+    width: 700px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px rgb(190, 190, 190, 0.3);
+}
+.submit-reservation{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: $second-basic-color;
+    padding: 5px;
+    &:hover{
+        background-color: #ce3f34;
+    }
+}
+.gender-option{
+    font-size: 20px;
+}
+.gender{
+    color: gray;
 }

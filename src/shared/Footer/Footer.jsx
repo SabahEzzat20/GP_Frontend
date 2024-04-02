@@ -7,8 +7,15 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { ImFacebook } from "react-icons/im";
 import './Footer.scss'
 import { PiCopyrightLight } from "react-icons/pi";
-
+import { MdEmail } from "react-icons/md";
+import { SiMinutemailer } from "react-icons/si";
 import Fab from '@mui/material/Fab';
+import { Link } from 'react-router-dom';
+import { TbLineScan } from "react-icons/tb";
+import { RiBodyScanFill } from "react-icons/ri";
+import { BiLogoTelegram } from "react-icons/bi";
+import { FaUserDoctor } from "react-icons/fa6";
+
 const Footer = () => {
     return (
         <div className='footer-container'>
@@ -18,7 +25,7 @@ const Footer = () => {
                         <div className="footer-title">Orthopedista</div>
                         <div className="">
                             <Stack direction='column' spacing={2}>
-                                <div className="footer-highlights">about</div>
+                                <div className="footer-highlights">About</div>
                                 <div className='highlights-details'>Our mission is to easily scan your x-ray as fast as possible , <br /> we also provide online diagnosis with proffesionel doctors.</div>
                                 <Stack direction='row' spacing={3}>
                                     <Fab size="small" color="dark" aria-label="add" className='add-app-btn'>
@@ -35,18 +42,42 @@ const Footer = () => {
                         </div>
                         <div className="">
                             <Stack direction='column' spacing={2}>
-                                <div className="footer-highlights">Contact</div>
-                                <div className='highlights-details'>sabahhassan@gmail.com</div>
-                                <div className='highlights-details'>+201119314797</div>
+                                <div className="footer-highlights">Contact us</div>
+                                <div className='highlights-details'>
+                                    <Link to={'/contact'}>
+                                        <Stack spacing={1} direction='row'>
+                                            <div className='mail-icon'><BiLogoTelegram /></div>
+                                            <p>Via Website</p>
+                                        </Stack>
+                                    </Link>
+                                </div>
+                                <div className='highlights-details'>
+                                    <Link to={'mailto:orthopedistawebsite@gmail.com'}>
+                                        <Stack spacing={1} direction='row'>
+                                            <div className='mail-icon'><MdEmail /></div>
+                                            <p>orthopedistawebsite@gmail.com</p>
+                                        </Stack>
+                                    </Link>
+                                </div>
                             </Stack>
                         </div>
                         <div className="">
                             <Stack direction='column' spacing={2}>
                                 <div className="footer-highlights">Services</div>
                                 <div className='highlights-details'>
-                                    <Stack>
-                                        <div>Bones fracture detection.</div>
-                                        <div>Online diagnosis.</div>
+                                    <Stack direction='column' spacing={2}>
+                                        <Link to={'/patient/uploadXRay'}>
+                                            <Stack spacing={1} direction='row'>
+                                                <div className='mail-icon'><RiBodyScanFill /></div>
+                                                <p>Bones fracture detection.</p>
+                                            </Stack>
+                                        </Link>
+                                        <Link to={'/patient/doctors-preview'}>
+                                            <Stack spacing={1} direction='row'>
+                                                <div className='mail-icon'><FaUserDoctor /></div>
+                                                <p>Online diagnosis with a doctor.</p>
+                                            </Stack>
+                                        </Link>
                                     </Stack>
                                 </div>
                             </Stack>

@@ -35,14 +35,16 @@
     font-size: 20px;
     color: red;
     // background-color: black;
-    position: absolute;
+    // position: absolute;
     bottom: 0;
     // justify-content: center;
     width: inherit;
     // padding-left: 5px;
-
+    
 }
-
+.logout-link{
+    text-decoration: none;
+}
 .profile-sidebar{
     min-height: 100vh;
     padding-top: 5px;

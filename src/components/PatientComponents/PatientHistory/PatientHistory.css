@@ -1,1 +1,1 @@
-/*# sourceMappingURL=PatientHistory.css.map */
+.history-bar{padding:30px;overflow-y:scroll;max-height:500px}.history-bar::-webkit-scrollbar{width:5px}.history-bar::-webkit-scrollbar-track{background:rgba(0,0,0,0)}.history-bar::-webkit-scrollbar-thumb{background:rgba(0,0,0,0)}.nonfractured{color:#14b614;font-weight:bold}.fractured{color:red;font-weight:bold}.history-time{color:gray}.empty-page{display:flex;margin:auto;justify-content:center;align-items:center;width:550px;height:460px}.empty-page img{-o-object-fit:contain;object-fit:contain}

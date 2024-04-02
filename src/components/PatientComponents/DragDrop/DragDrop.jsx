@@ -3,6 +3,10 @@ import { useDropzone } from 'react-dropzone';
 import './DragDrop.scss';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { ShowResult } from '../ShowResult/ShowResult';
+import { BiSolidCloudUpload } from "react-icons/bi";
+import { BiCloudUpload } from "react-icons/bi";
+import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
 
 const DragDrop = () => {
     const [image, setImage] = useState(null);
@@ -38,8 +42,19 @@ const DragDrop = () => {
                             <img src={image} alt="Preview" style={{ width: '60px', height: '60px', objectFit: 'cover' }} />
                         </div>
                     )}
-                    <ShowResult />
+                    {/* <ShowResult /> */}
+                    <button className="upload-btn">
+                        <Stack spacing={0.5} direction='row' className='upload-btn-stack'>
+                            <div className="upload-icon">
+                                <BiCloudUpload />
+                            </div>
+                            <p>upload</p>
+                        </Stack>
+                    </button>
                 </div>
+            </div>
+            <div className="scan-result">
+                <Alert severity='success'>none fractured</Alert>
             </div>
         </>
     );

@@ -1,20 +1,22 @@
 // @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap');
+@import '../../Sass/colors';
 .footer-container{
     padding: 30px;
     border-top: 1px solid rgb(241, 241, 241,0.5);
+    margin-top: 60px;
 }
 .footer-tail{
     text-align: center;
     font-size: 15px;
+    color: gray;
 }
 .footer-title{
     font-size: 40px;
     font-weight: 500;
     // font-family: "Italianno", cursive;
     font-family: "Pacifico", cursive;
-
-
+    // color: $second-basic-color;
 }
 .footer-highlights{
     font-size: 19px;
@@ -22,4 +24,8 @@
 .highlights-details{
     font-size: 15px;
     color: gray;
+    a{
+        text-decoration: none;
+        color: gray;
+    }
 }

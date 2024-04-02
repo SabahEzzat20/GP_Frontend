@@ -5,7 +5,6 @@ import './Profile.scss'
 import { VscClose } from "react-icons/vsc";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import  scanProfilePhoto  from '../../images/face-id (1).png';
 import { useDropzone } from "react-dropzone";
 import { HiOutlineLogout } from "react-icons/hi";
 import Radio from '@mui/material/Radio';
@@ -14,6 +13,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import ResetPassword from "../ResetPassword/ResetPassword";
+import Stack from '@mui/material/Stack';
+import { FiCamera } from "react-icons/fi";
+import Input from '@mui/joy/Input';
+import { FaUser } from "react-icons/fa";
+import { MdOutlineAlternateEmail } from "react-icons/md";
+
 const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const handleVisibility = () => {
@@ -33,6 +38,7 @@ const Profile = () => {
     const handleChange = (event) => {
         setGender(event.target.value);
     };
+    const camera = <FiCamera />;
     return (
         <>  
             <button className='profile-menu-btn' onClick={handleVisibility}>
@@ -49,56 +55,38 @@ const Profile = () => {
                             <HiOutlineLogout />
                         </Link>
                     </div>
-                    {/* <div className="profile-content">
-                        <div className="profile-photo-container">
-                            <img src={sabah} alt="profilePhoto" />
-                        </div>
-                        <div className="para-container">
-                            <p>sabah hassan</p>
-                            <p>doctor</p>
-                        </div>
-                    </div> */}
-                    <div className="update-photo">
-                        <div {...getRootProps()} className='profile-photo-dropzone'>
-                            <input {...getInputProps()} />
-                            {
-                                isDragActive ?
-                                    <p>Drop photo here...</p> :
-                                    image ? (
-                                        <div className='image-preview'>
-                                            <img src={image} alt="Preview" style={{ width: '128px', height: '128px', objectFit: 'cover' }} />
+                    <Stack spacing={43} direction='column'>
+                        <Stack spacing={4} direction='column'>
+                            <div className="update-photo">
+                                <div {...getRootProps()} className='profile-photo-dropzone'>
+                                    <input {...getInputProps()} />
+                                    <div className='user-photo'>
+                                        <img src={sabah} alt="userPhoto" />
+                                        <div className="camera">
+                                            {camera}
                                         </div>
-                                    ):
-                                    <img src={scanProfilePhoto} alt="reset img" />
-                            }
-                            
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="user-name">
+                                <p>Fatma hassan</p>
+                            </div>
+                        </Stack>
+                    </Stack>
                     <div className="update-profile">
                         <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>user name</Form.Label>
-                                <Form.Control className="textField" type="text" />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>email</Form.Label>
-                                <Form.Control className="textField" type="email" />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>phone</Form.Label>
-                                <Form.Control className="textField" type="text" />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <FormControl className="gender-container">
-                                    <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-                                    <RadioGroup row aria-labelledby="demo-radio-buttons-group-label" defaultValue="female" name="radio-buttons-group">
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Form.Group>
-                            <ResetPassword />
-                            <button className="update-profile-btn">Update</button>
+                            <Stack direction='column' spacing={3} className="profile-details-stack">
+                                <Stack direction='column' spacing={0.2}>
+                                    <Input placeholder="user name" startDecorator={<FaUser />} variant="plain" color="neutral"/>
+                                </Stack>
+                                <Stack spacing={0.2} direction='column'>
+                                    <Input placeholder="email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email"/>
+                                </Stack>
+                            </Stack>
+                            <div className="reset-pass">
+                                <ResetPassword />
+                            </div>
+                            <button className="update-profile-btn">Update</button> 
                         </Form>
                     </div>
                 </div>

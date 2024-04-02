@@ -33,8 +33,8 @@ const DoctorPreview = ({ doctor }) => {
                     <Avatar alt={doctor.name} src={doctor.profilePhoto} />
                     <div className="doctor-info">
                         <Stack direction="column" spacing={0.5}>
-                            <p>{doctor.name}</p>
-                            <p>Consultant orthopedic and joint surgeon</p>
+                            <p className='doctor-name'>Dr.{doctor.name}</p>
+                            <p className="expertise">consultant orthopedic and joint surgeon</p>
                         </Stack>
                     </div>
                 </Stack>
@@ -60,7 +60,7 @@ const DoctorPreview = ({ doctor }) => {
                 </Box>
             </div>
             <Link to="/patient/BigForm">
-            <Button variant="contained" disabled={continueDisabled} className='continue-btn'>continue</Button>
+                <Button variant="contained" disabled={continueDisabled} className='continue-btn'>continue</Button>
             </Link>
         </div>
     );

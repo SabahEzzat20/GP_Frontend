@@ -82,17 +82,17 @@ const ViewDoctors = () => {
         <table className="doctor-table">
           <thead>
             <tr>
-              <th>id</th>
+              {/* <th>id</th> */}
               <th>doctor name</th>
               <th>e-mail</th>
-              <th>qualification</th>
+              <th>speciality</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {filteredDoctors.map((doctor,i) => (
               <tr key={i}>
-                <td>{doctor.id}</td>
+                {/* <td>{doctor.id}</td> */}
                 <td>{doctor.name}</td>
                 <td>{doctor.email}</td>
                 <td>{doctor.qualification}</td>

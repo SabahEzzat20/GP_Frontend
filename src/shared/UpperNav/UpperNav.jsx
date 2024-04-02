@@ -59,20 +59,13 @@ const UpperNav = () => {
         <>
             
             <div className="doctor-nav">
-                {/* <ButtonGroup
-                    color="primary"
-                    orientation="horizontal"
-                    size="small"
-                    variant="filled"
-                >
-                    <Button>One</Button>
-                    <Button>Two</Button>
-                </ButtonGroup> */}
-                <FormControlLabel
+                {/* <FormControlLabel
                     control={<MaterialUISwitch sx={{ m: 0 }} defaultChecked />}
                     // label="MUI switch"
-                />
-                <ReservationNotification />
+                /> */}
+                <div className='notification-icon'>
+                  <ReservationNotification />
+                </div>
                 <div className="doctor-profile">
                     <Profile />
                 </div>

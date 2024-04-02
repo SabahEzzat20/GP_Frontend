@@ -17,11 +17,11 @@ import Patient from './Pages/Patient'
 import DragDrop from "./components/PatientComponents/DragDrop/DragDrop.jsx";
 import DoctorsPreview from "./components/PatientComponents/DoctorsPreview/DoctorsPreview.jsx";
 import ResetPassword from "./shared/ResetPassword/ResetPassword.jsx";
-// import ProfilePage from "./components/PatientComponents/ProfilePage/ProfilePage.jsx";
 import PatientProfile from "./components/PatientComponents/PatientProfile/PatientProfile.jsx";
 import EditPatientProfile from "./components/PatientComponents/EditPatientProfile/EditPatientProfile.jsx";
 import PatientHistory from "./components/PatientComponents/PatientHistory/PatientHistory.jsx";
 import PatientReservedAppointment from "./components/PatientComponents/PatientReservedAppointment/PatientReservedAppointment.jsx";
+import NotFoundPage from "./shared/NotFoundPage/NotFoundPage.jsx";
 export const routes = createBrowserRouter([{
         path: "/admin",
         element: < Admin /> ,
@@ -62,10 +62,6 @@ export const routes = createBrowserRouter([{
             {
                 path: "/patient/homepage",
                 element: < HomePage />
-            },
-            {
-                path: "/patient/contact",
-                element: < ContactUs /> ,
             },
             {
                 path: "/patient/services",
@@ -111,5 +107,13 @@ export const routes = createBrowserRouter([{
             },
         ]
     },
+    {
+        path: "/contact",
+        element: < ContactUs /> ,
+    },
+    {
+        path: "*" ,
+        element: <NotFoundPage />
+    }
 
 ]);

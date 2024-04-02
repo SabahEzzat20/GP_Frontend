@@ -6,7 +6,7 @@
     background-color: rgb(245, 245, 245);
     width: 200px;
     height: 100vh;
-    padding: 10px;
+    padding: 20px;
     width: 300px;
     z-index: 100;
     .gender-container{
@@ -69,4 +69,11 @@
             }
         }
     }
+}
+.profile-details-stack{
+    margin-bottom: 20px;
+}
+.reset-pass{
+    width: 140px;
+    margin-left: auto;
 }

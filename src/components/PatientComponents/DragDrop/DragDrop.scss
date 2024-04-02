@@ -1,8 +1,10 @@
+@import '../../../Sass/colors';
 $standard-border-radius: 10px;
 .dropzone-container{
     margin: auto;
     margin-top: 60px;
     width: 70%;
+    margin-bottom: 40px;
     height: 400px;
     border-radius: $standard-border-radius;
     padding: 20px;
@@ -11,32 +13,16 @@ $standard-border-radius: 10px;
     box-shadow: 1px 1px 3px rgb(146, 145, 145 , 0.4);
     .img-btn{
         display: flex;
-        // background-color: #afafaf;
         width: 80%;
         height: 25%;
         margin: auto;
-        .scan-btn{
-            border: none;
-            border-radius: $standard-border-radius;
-            background-color: rgb(108, 123, 255);
-            width: 130px;
-            height: 50px;
-            font-size: 23px;
-            color: white;
-            margin-left: auto;
-            margin-top: 2%;
-            display: flex;
-            padding-top: 8px;
-            justify-content: space-evenly;
-            &:hover{
-                box-shadow: 2px 2px 6px rgb(146, 145, 145 , 0.5);
-                background-color: rgb(130, 142, 253);
-                transition: 0.2s ease;
-            }
-            
-        }
+        // margin-bottom: 60px;
     }
     
+}
+.scan-result{
+    width: 70%;
+    margin: auto;
 }
 .dropzone{
     display: flex;
@@ -53,9 +39,32 @@ $standard-border-radius: 10px;
     font-size: 20px;
 }
 .image-preview{
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 2%;
     width: 60px;
     height: 60px;
     overflow: hidden;
+}
+.upload-btn{
+    border: none;
+    border-radius: 10px;
+    background-color: $second_basic-color;
+    width: 130px;
+    height: 50px;
+    font-size: 23px;
+    color: white;
+    margin-left: auto;
+    margin-top: 5%;
+    display: flex;
+    padding-top: 8px;
+    justify-content: space-evenly;
+    &:hover{
+        // box-shadow: 1px 1px 16px rgba(172, 172, 172, 0.5);
+        box-shadow: 1px 1px 3px rgb(146, 145, 145 , 0.4);
+        background-color: #ca3b30;
+        transition: 0.3s ease;
+    }
+}
+.upload-btn-stack{
+    // background-color: $second_basic-color;
 }

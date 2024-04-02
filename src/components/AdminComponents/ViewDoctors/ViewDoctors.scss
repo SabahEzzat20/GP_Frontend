@@ -85,20 +85,22 @@
                     color: #777;
                     display: flex; 
                     .options{
-                        position: relative;
+                        position: absolute;
                         margin-left: 50px;
                         background-color: #ffffff;
-                        display: flex;
+                        display: block;
                         width: 100px;
                         color: rgb(95, 95, 95);
-                        box-shadow: 1px 3px 10px  #a5a5a5;
+                        box-shadow: 1px 1px 6px  #bebebe;
                         border-radius: 5px;
                         button{
                             width: 100%;
                             border: none;
                             border-bottom: 2px solid #dbdbdb;
                             padding: 5px;
-                            display: block;
+                            // display: block;
+                            // height: 100px;
+                            // position: relative;
                             background-color: transparent;
                             color: #777;
                             &:hover{

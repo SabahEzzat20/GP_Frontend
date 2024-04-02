@@ -1,12 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Italianno&family=Pacifico&display=swap');
+
 .navbar {
     background-color: #C54B43;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
     transition: #C54B43 0.3s ease-in-out;
     width: 100%;
-    position: absolute;
+    height: 100px;
+    /* position:fixed; */
+    margin-bottom: 30px;
 }
-
+.right-side-header{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #C54B43;
+    /* padding: 40px; */
+    width: 400px;
+    /* position: absolute;
+    right: 0; */
+}
+.home , .services{
+    color: gray;
+}
+.web-header{
+    font-family: "Pacifico", cursive;
+    color: #C54B43;
+    /* background-color: red; */
+    /* margin-left: 10px; */
+    text-transform: capitalize;
+}
 .navbar.navbar-scroll {
     background-color: #C54B43;
 }
@@ -50,13 +72,17 @@
 .navbar .two-buttons {
     display: flex;
     gap: 1rem;
+    a{
+        text-decoration: none;
+    }
 }
 
 .navbar .two-buttons .right-part .nav-btn {
     padding: 1rem 0.4rem 1rem 1rem;
     color: #C54B43;
-    font-weight: 600;
-    font-size: larger;
+    /* font-weight: 600; */
+    /* font-size: larger; */
+    font-size: 20px;
 }
 
 .navbar .two-buttons .right-part .icon {

@@ -32,31 +32,35 @@ const LeftSideProfile = () => {
             <Link className="home-icon" to={'/patient/homepage'}>
                 <FaHome />
             </Link>
-            <Stack spacing={4} direction='column'>
-                {/* <Badge color="secondary" badgeContent='7'> */}
-                <div className="update-photo">
-                        <div {...getRootProps()} className='profile-photo-dropzone'>
-                            <input {...getInputProps()} />
-                            <div className='user-photo'>
-                                <img src={image} alt="userPhoto" />
-                                <div className="camera">
-                                    {camera}
+            <Stack spacing={43} direction='column'>
+                <Stack spacing={4} direction='column'>
+                    {/* <Badge color="secondary" badgeContent='7'> */}
+                    <div className="update-photo">
+                            <div {...getRootProps()} className='profile-photo-dropzone'>
+                                <input {...getInputProps()} />
+                                <div className='user-photo'>
+                                    <img src={image} alt="userPhoto" />
+                                    <div className="camera">
+                                        {camera}
+                                    </div>
                                 </div>
                             </div>
+                    </div>
+                {/* </Badge> */}
+                    <div className="user-name">
+                        <p>Fatma hassan</p>
+                    </div>
+                </Stack>
+                <Link className='logout-link'>
+                    <Stack direction='row' spacing={1} className='logout'>
+                        <div >
+                            <TbLogout2 /> 
                         </div>
-                </div>
-            {/* </Badge> */}
-                <div className="user-name">
-                    <p>Fatma hassan</p>
-                </div>
-            </Stack>
-            <Stack direction='row' spacing={1} className='logout'>
-                <div >
-                    <TbLogout2 /> 
-                </div>
-                <div > 
-                    <p>logout</p>
-                </div>
+                        <div > 
+                            <p>logout</p>
+                        </div>
+                    </Stack>
+                </Link>
             </Stack>
         </div>
     );

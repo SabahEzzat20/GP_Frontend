@@ -1,4 +1,1 @@
-.doctors-preview-container {
-  padding-top: 30px;
-  padding-left: 80px;
-}/*# sourceMappingURL=DoctorsPreview.css.map */
+.doctors-preview-container{display:flex;justify-content:center;align-items:center}

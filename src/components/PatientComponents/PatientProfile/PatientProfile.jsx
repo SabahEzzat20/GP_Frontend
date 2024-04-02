@@ -1,6 +1,5 @@
 import React from 'react';
 import LeftSideProfile from '../LeftSideProfile/LeftSideProfile';
-// import RightSideProfile from '../RightSideProfile/RightSideProfile';
 import './PatientProfile.scss'
 import ProfileLowerBar from '../ProfileLowerBar/ProfileLowerBar';
 const PatientProfile = () => {
