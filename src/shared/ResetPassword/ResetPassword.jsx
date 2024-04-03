@@ -9,8 +9,6 @@ import NewPassword from '../NewPassword/NewPassword';
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMdArrowBack } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
-
-
 const ResetPassword = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
