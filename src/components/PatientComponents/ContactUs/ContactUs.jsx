@@ -49,8 +49,37 @@ const ContactUs = () => {
           </Stack>
         </Grid>
       </div>
-      <Grid container >
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+      <Grid container alignItems={"center"}>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}
+          sx={{
+            padding: { 
+              xs: '20px', 
+              sm: '23px', 
+              md: '30px', 
+              lg: '60px', 
+              xl: '60px' },
+            marginTop: {
+              xs: '20px', 
+              sm: '23px', 
+              md: '30px', 
+              lg: '100px', 
+              xl: '100px' },
+            margin: {
+              xs: '20px',
+              sm: '20px'
+            },
+            boxShadow: {
+              xs: '1px 1px 6px rgb(216, 216, 216);',
+              sm: '1px 1px 6px rgb(216, 216, 216)',
+              md: 'none',
+              lg: 'none',
+              xl: 'none'
+            },
+            borderRadius: {
+              xs: '10px',
+              sm: '10px'
+            }
+          }}>
           <Form className="contact-form" ref={form} onSubmit={sendEmail}>
             <Stack direction='column' spacing={3} className="profile-details-stack">
               <Stack direction='column' spacing={0.2}>
@@ -70,7 +99,7 @@ const ContactUs = () => {
           </Form>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'flex', xl: 'flex'}}}>
-          <img src={contactImage} alt="contactus" style={{ width: '100%', height: 'auto' }}/>
+          <img src={contactImage} alt="contactus" style={{ maxWidth: '550px', maxHeight: '550px', height: 'auto' }}/>
         </Grid>
       </Grid>
 
