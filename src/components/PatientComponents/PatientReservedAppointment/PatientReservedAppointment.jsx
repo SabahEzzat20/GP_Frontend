@@ -7,7 +7,7 @@ import './PatientReservedAppointment.scss'
 import Divider from '@mui/material/Divider';
 import emptyPage from '../../../images/No data-cuate.png'
 const PatientReservedAppointment = () => {
-    const data = 0;
+    const data = 1;
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };

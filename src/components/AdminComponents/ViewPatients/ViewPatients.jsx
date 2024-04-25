@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import './ViewPatients.scss'
 import { FaSearch } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
@@ -6,8 +6,12 @@ import { MdDelete } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import Patients from "../../../DummyData/Patients.json"
+import axios from 'axios';
 
 const ViewPatients = () => {
+
+  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);

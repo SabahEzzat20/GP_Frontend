@@ -39,7 +39,7 @@ const BigForm = () => {
         </Stack>
         <Stack direction='row' spacing={2}>
           <Stack direction='column' spacing={0.2}>
-            <Input placeholder="user name" startDecorator={<FaUser />} variant="plain" color="neutral"/>
+            <Input placeholder="name" startDecorator={<FaUser />} variant="plain" color="neutral"/>
           </Stack>
           <Stack spacing={0.2} direction='column'>
             {/* <input className='' type="email" name="user_email" /> */}
@@ -51,7 +51,7 @@ const BigForm = () => {
             <Input placeholder="phone number" startDecorator={<HiPhone />} variant="plain" color="neutral" type="phone number"/>
           </Stack>
           <Stack spacing={0.2} direction='column'>
-            <Input placeholder="age" startDecorator={<FaChild />} variant="plain" color="neutral" type='number'/>
+            <Input placeholder="birthdate" startDecorator={<FaChild />} variant="plain" color="neutral" type='number'/>
           </Stack>
         </Stack>
         <Stack direction='row' spacing={3}>

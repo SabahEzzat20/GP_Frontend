@@ -1,10 +1,14 @@
-import "./ContactUs.scss";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";  
-import contactImage from '../../../images/Sent Message-bro.png'
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from '@mui/material';
+import contactImage from '../../../images/Sent Message-bro.png'
+
+
 const ContactUs = () => {
   const form = useRef();
   const sendEmail = (e) => {
@@ -27,19 +31,30 @@ const ContactUs = () => {
         }
       );
   };
+
+  // Use Media Query hook to check screen size
+  const isMediumOrSmaller = useMediaQuery('(max-width: 960px)');
+
   return (
-    <div className="contact-container">
-      <Stack direction='row' spacing={0}>
-        <Link className="back-to-home-from-contact" to={'/patient/homepage'}>
-          <FaHome />
-        </Link>
-        <div className="contact-img">
-          <img src={contactImage} alt="contactus" />
-        </div>
-        <div className="cntct-form">
-          <h1 className="title">Contact us</h1>
-          <form className="contact-form" ref={form} onSubmit={sendEmail}>
-            <Stack direction='column' spacing={2}>
+    <Container>
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12}>
+          <Link className="back-to-home-from-contact" to={'/patient/homepage'}>
+            <FaHome />
+          </Link>
+        </Grid>
+        {/* Conditionally render the image based on screen size */}
+        {!isMediumOrSmaller && (
+          <Grid item xs={12} md={6}>
+            <img src={contactImage} alt="contactus" style={{ width: '100%', height: 'auto' }} />
+          </Grid>
+        )}
+        <Grid item xs={12} md={6}>
+          <div className="cntct-form">
+            <h1 className="title">Contact us</h1>
+            <form className="contact-form" ref={form} onSubmit={sendEmail}>
+              {/* Your form content goes here */}
+              <Stack direction='column' spacing={2}>
               <Stack direction='column' spacing={0.2}>
                 <label className="contact-label">Name</label>
                 <input className="contact-input" type="text" name="user_name" />
@@ -54,11 +69,12 @@ const ContactUs = () => {
               </Stack>
               <input className="submit-btn" type="submit" value="send message" />
               </Stack>
-          </form>
-        </div>
-      </Stack>
-    </div>
+            </form>
+          </div>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
-export default ContactUs;
 
+export default ContactUs;
