@@ -56,8 +56,8 @@ const ContactUs = () => {
               xs: '20px', 
               sm: '23px', 
               md: '30px', 
-              lg: '60px', 
-              xl: '60px' },
+              lg: '30px', 
+              xl: '50px' },
             marginTop: {
               xs: '20px', 
               sm: '23px', 
@@ -98,8 +98,8 @@ const ContactUs = () => {
             </Stack>
           </Form>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'flex', xl: 'flex'}}}>
-          <img src={contactImage} alt="contactus" style={{ maxWidth: '550px', maxHeight: '550px', height: 'auto' }}/>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex'}}}>
+          <img src={contactImage} alt="contactus" style={{ maxWidth: '500px', maxHeight: '500px' }}/>
         </Grid>
       </Grid>
 
