@@ -84,11 +84,11 @@ const ContactUs = () => {
             <Stack direction='column' spacing={3} className="profile-details-stack">
               <Stack direction='column' spacing={0.2}>
                   <label className="contact-label">Name</label>
-                  <Input placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral"/>
+                  <Input placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name"/>
               </Stack>
               <Stack spacing={0.2} direction='column'>
                 <label className="contact-label">Email</label>
-                  <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email"/>
+                  <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email"/>
               </Stack>
               <Stack spacing={0.2} direction='column'>
                 <label className="contact-label">Message</label>
