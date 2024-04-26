@@ -12,9 +12,25 @@ import Input from '@mui/joy/Input';
 import { FaUser } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
-
+import toast from 'react-hot-toast';
 import './ContactUs.scss';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 const ContactUs = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const showMessage = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
@@ -30,6 +46,11 @@ const ContactUs = () => {
           console.log(result.text);
           console.log("message sent");
           e.target.reset();
+//           toast.success('Message was sent successfully!', { 
+//           position: "top-center",
+//           toastClassName: 'custom-toast-container'
+// });
+
         },
         (error) => {
           console.log(error.text);
@@ -94,7 +115,7 @@ const ContactUs = () => {
                 <label className="contact-label">Message</label>
                 <textarea name="message" />
               </Stack>
-              <input className="submit-btn" type="submit" value="send message" />
+              <input className="submit-btn" type="submit" value="send message" onClick={(e)=>showMessage()}/>
             </Stack>
           </Form>
         </Grid>
@@ -103,6 +124,16 @@ const ContactUs = () => {
         </Grid>
       </Grid>
 
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Message sent successfully!
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 };
