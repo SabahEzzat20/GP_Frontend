@@ -4,15 +4,6 @@
     box-sizing: border-box;
 }
 
-
-/* :root {
-    --primary-color: #28bf96;
-    --primary-color-dark: #C54B43;
-    --text-dark: #111827;
-    --text-light: #6b7280;
-    --white: #ffffff;
-} */
-
 .HomePage {
     max-width: 1500px;
     margin: auto;
@@ -168,5 +159,14 @@
     }
     .image {
         grid-area: 1/1/2/2;
+    }
+    .image img {
+        left: 1%;
+    }
+    .image__content__1 {
+        display: none;
+    }
+    .image__content__2 {
+        display: none;
     }
 }

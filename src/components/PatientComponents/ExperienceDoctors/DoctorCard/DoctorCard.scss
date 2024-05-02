@@ -1,0 +1,19 @@
+.doctor-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    .doctor-image {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+        margin-bottom: 10px;
+    }
+    .doctor-info {
+        h3,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.experience-doctors {
+    h2 {
+        text-align: center;
+        font-weight: 700;
+    }
+    .doctor-cards {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 713px) {
+    .doctor-cards {
+        justify-content: center;
+        flex-direction: column;
+    }
+}
