@@ -22,9 +22,13 @@ import EditPatientProfile from "./components/PatientComponents/EditPatientProfil
 import PatientHistory from "./components/PatientComponents/PatientHistory/PatientHistory.jsx";
 import PatientReservedAppointment from "./components/PatientComponents/PatientReservedAppointment/PatientReservedAppointment.jsx";
 import NotFoundPage from "./shared/NotFoundPage/NotFoundPage.jsx";
+
 import Guarantee from "./components/PatientComponents/Guarantee/Guarantee.jsx";
 import About from "./components/PatientComponents/About/About.jsx";
 import ExperienceDoctors from "./components/PatientComponents/ExperienceDoctors/ExperienceDoctors.jsx";
+
+import Footer from "./shared/Footer/Footer.jsx"
+
 export const routes = createBrowserRouter([{
         path: "/admin",
         element: < Admin / > ,
@@ -122,7 +126,7 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/contact",
-        element: < ContactUs / > ,
+        element: < > < ContactUs / > < Footer / > < /> ,
     },
     {
         path: "*",

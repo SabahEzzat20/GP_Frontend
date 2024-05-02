@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import './ViewDoctors.scss'
 import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "../AddDoctorModal/AddDoctorModal";
@@ -8,8 +8,27 @@ import AssignAppointmentToDoctor from "../AssignAppointmentToDoctor/AssignAppoin
 import Doctors from "../../../DummyData/Doctors.json"
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-
+import axios from 'axios'
 const ViewDoctors = () => {
+  const [doctors, setDoctors] = useState({
+    loading: true,
+    results: [],
+    err: null,
+    reload: 0,
+  })
+
+  useEffect(() => {
+    setDoctors({...doctors,loading: true})
+    axios
+    .get('localhost:8070/admin/getAllDoctors')
+    .then((resp) => {
+        console.log(resp.headers.getAuthor);
+        setDoctors({...doctors, results:resp.data , loading: false , err: null})
+      })
+      .catch((err) => {
+        setDoctors({...doctors, err:'something went wrong' , loading: false})
+      })
+  }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);

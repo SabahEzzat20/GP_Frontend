@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import './AddDoctorModal.scss';
 import { RiUserAddFill } from "react-icons/ri";
-
+import axios from 'axios';
 export const AddDoctorModal = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
