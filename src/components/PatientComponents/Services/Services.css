@@ -60,7 +60,7 @@
     padding: 2rem;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.336);
     cursor: pointer;
 }
 
@@ -84,14 +84,6 @@
 .service__card p {
     margin-bottom: 1rem;
     color: rgb(77, 77, 77);
-}
-
-.service__card a {
-    color: var(--primary-color);
-}
-
-.service__card a:hover {
-    color: #C54B43;
 }
 
 .service__card:hover span {

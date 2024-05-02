@@ -12,7 +12,7 @@ import Input from '@mui/joy/Input';
 import { FaUser } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
-import toast from 'react-hot-toast';
+//import toast from 'react-hot-toast';
 import './ContactUs.scss';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';

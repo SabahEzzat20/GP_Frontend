@@ -23,7 +23,7 @@ function Services(){
               Accurate Diagnostics, Swift Results: Experience top-notch Laboratory
               Testing at our facility.
             </p>
-            <a href="#/">Learn More</a>
+           
           </div>
           <div className="service__card">
             <span><RiMentalHealthLine /></span>
@@ -32,7 +32,7 @@ function Services(){
               Our thorough assessments and expert evaluations help you stay
               proactive about your health.
             </p>
-            <a href="#/">Learn More</a>
+            
           </div>
           <div className="service__card">
             <span><FaHospitalAlt /></span>
@@ -41,7 +41,7 @@ function Services(){
               Experience comprehensive oral care with Dentistry. Trust us to keep
               your smile healthy and bright.
             </p>
-            <a href="#/">Learn More</a>
+            
           </div>
         </div>
       </section>

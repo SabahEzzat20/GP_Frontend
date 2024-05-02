@@ -2,6 +2,7 @@ import React from "react";
 import './HomePage.css';
 import { FaCheck } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 const doctor = require('../../../images/header-bg.png');
 
 function HomePage(){
@@ -18,7 +19,8 @@ function HomePage(){
             receive quick medical services can significantly impact the outcome
             of a situation.
           </p>
-          <button className="getServices">Get Services</button>
+          {/* <button className="getServices">Get Services</button> */}
+          <Link className="getServices" to={'/patient/services'}>Get Services</Link>
         </div>
         <div className="image">
           <span className="image__bg"></span>
