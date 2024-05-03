@@ -1,6 +1,6 @@
 import {React, useState ,useCallback} from 'react';
 import saboha2 from '../../../images/saboha2.jpg'
-import './LeftSideProfile.scss'
+// import './LeftSideProfile.scss'
 import Stack from '@mui/material/Stack';
 // import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { FiCamera } from "react-icons/fi";

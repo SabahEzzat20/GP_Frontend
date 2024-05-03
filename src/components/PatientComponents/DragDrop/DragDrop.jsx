@@ -10,11 +10,9 @@ import Alert from '@mui/material/Alert';
 
 const DragDrop = () => {
     const [image, setImage] = useState(null);
-
     const onDrop = useCallback((acceptedFiles) => {
     // Assuming you only want to handle one file
     const file = acceptedFiles[0];
-    
     // Use FileReader to read the file as a data URL
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -22,9 +20,7 @@ const DragDrop = () => {
     };
     reader.readAsDataURL(file);
     }, []);
-
     const { getRootProps, getInputProps , isDragActive } = useDropzone({ onDrop });
-
     return (
         <>
             <div className="dropzone-container">
