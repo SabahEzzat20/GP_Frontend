@@ -8,16 +8,18 @@
 .user-photo{
     width: 100px;
     margin-top: 40px;
+    position:absolute;
+    z-index: 100;
     img{
         border-radius: 50%;
         object-fit: contain;
         background-color: rgb(255, 255, 255);
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     .camera{
         margin-top: -25px;
-        margin-left: 65px;
+        margin-left: 77px;
         color: rgb(109, 109, 109);
         border-radius: 50%;
         display: flex;
@@ -32,16 +34,16 @@
         height: 32px;
     }
 }
-.logout{
-    font-size: 20px;
-    color: red;
-    bottom: 0;
-    width: inherit;
-    
-}
+// .logOUtBtn:hover{
+//     background-color: gray;
+// }
 .logout-link{
-    text-decoration: none;
+    color: rgb(243, 24, 24);
+    &:hover{
+        color: rgb(226, 34, 34);
+    }
 }
+
 .profile-sidebar{
     // min-height: 100vh;
     // padding-top: 5px;
@@ -59,7 +61,7 @@
     margin-left: 10px;
     color: rgb(49, 49, 49);
     &:hover{
-        color: $second_basic-color;
+        color: rgb(61, 61, 61);
     }
 }
 .user-name{
@@ -84,6 +86,10 @@
     color: rgb(83, 83, 83);
     background-color: white;
     padding: 10px;
+    border: none;
+    &:hover{
+        color: $second_basic-color;
+    }
 }
 
 .routes-stack{
