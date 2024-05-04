@@ -68,26 +68,24 @@ const PatientProfile = () => {
     return (
         <Grid container sx={{display: 'flex'}} xs={12} sm={12} md={12} lg={12} xl={12}>
             <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
-                <Box className='profile-sidebar' sx={{ backgroundColor: { xs: '#C54B43', sm: '#C54B43', md: 'rgb(241, 241, 241)', lg: 'rgb(241, 241, 241)', xl: 'rgb(241, 241, 241)' }, height: { xs: '140px', sm: '140px', md: '100vh', lg: '100vh', xl: '100vh' } }}> 
-                <Link className="home-icon" to={'/patient/homepage'} style={{paddingTop:'20px'}}>
-                    <FaHome />
-                </Link>
-                <Stack spacing={43} direction='column'>
-                    <Stack spacing={4} direction='column'>
-                        <div className="update-photo">
-                                <div {...getRootProps()} className='profile-photo-dropzone'>
-                                    <input {...getInputProps()} />
-                                    <div className='user-photo'>
-                                        <img src={image} alt="userPhoto" />
-                                        <div className="camera">
-                                            {camera}
-                                        </div>
-                                    </div>
+                <Box sx={{ backgroundColor: { xs: '#C54B43', sm: '#C54B43', md: 'rgb(241, 241, 241)', lg: 'rgb(241, 241, 241)', xl: 'rgb(241, 241, 241)' }, height: { xs: '145px', sm: '145px', md: '100vh', lg: '100vh', xl: '100vh' } }}> 
+                    <Link className="home-icon" to={'/patient/homepage'} style={{paddingTop:'20px'}}>
+                        <FaHome />
+                    </Link>
+                    <Stack spacing={3} direction='column' sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                        <Box {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <div className='user-photo'>
+                                <img src={image} alt="userPhoto" />
+                                <div className="camera">
+                                    {camera}
                                 </div>
-                        </div>
-                        {/* <div className="user-name">
-                            <p>Fatma hassan</p>
-                        </div> */}
+                            </div>
+                        </Box>
+                        <Stack direction='column' spacing={1} className="user-name" >
+                            <p>Sabah Hassan</p>
+                            <p>sabahhassan@gmail.com</p>
+                        </Stack>
                     </Stack>
                     <Grid item className='logOUtBtn' md={3} lg={2} xl={2} sx={{position:"fixed", bottom:'0',fontSize:'20px',width: '100%',display:{xs:'none',lg:'flex',xl:'flex',sm:'none',justifyContent:'center',alignItems:'end',paddingTop:'auto',height:'70px'}}} >
                         <Link className='logout-link'style={{textDecoration: 'none'}} to={'/register'}>
@@ -101,19 +99,17 @@ const PatientProfile = () => {
                             </Stack>
                         </Link>
                     </Grid>
-                </Stack>
                 </Box>
             </Grid>
-            <Grid item xs={12} sm={12} md={9} lg={10} xl={10} sx={{paddingTop: {xs:'50px',sm:'50px'}}}>
-                <div>
-                    <Grid container sx={{display:{xs:'none',sm:'none'}}} className="breadcrumbs">
+            <Grid item xs={12} sm={12} md={9} lg={10} xl={10} sx={{marginTop:{xs:'130px',sm:'130px',md:'0',lg:'0',xl:'0'}}}>
+                    <Grid item sx={{display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}} className="breadcrumbs">
                         <Breadcrumbs aria-label="breadcrumb">
                             <Link to={'/patient/homepage'}>Home</Link>
                             <Typography color="text.primary">Profile</Typography>
                             <Typography color="text.primary">{currentRoute }</Typography>
                         </Breadcrumbs>
                     </Grid>
-                    <Stack direction='row' spacing={2} className="routes-stack">
+                    <Stack direction='row' spacing={2} className="routes-stack" sx={{fontSize:{xs:'13px',sm:'13px',md:'16px',lg:'17px',xl:'17px'},display:'flex',justifyContent:'center',alignItems:'center'}}>
                         {
                             profileRoutes.map((subpage) => (
                                 <div className="subpage">
@@ -124,9 +120,7 @@ const PatientProfile = () => {
                             ))
                         }
                     </Stack>
-                    <Divider />
-                </div>
-                    
+                    <Divider />                    
                     {
                         openRoute===1 && 
                             <div>
