@@ -166,7 +166,7 @@ const PatientProfile = () => {
                             <div>
                                 {
                                     data === 1 ? 
-                                        <div className="history-bar">
+                                        <Box className="history-bar">
                                             <Stack spacing={3} direction='column'>
                                                 <Stack direction='row' spacing={70}>
                                                     <Stack spacing={3} direction='row'>
@@ -188,11 +188,11 @@ const PatientProfile = () => {
                                                 <Divider />
                                                 
                                             </Stack>
-                                        </div>      
-                                        : 
-                                        <div className="empty-page">
-                                            <Empty/>
-                                        </div>
+                                        </Box>      
+                                    : 
+                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
+                                        <Empty/>
+                                    </Box>
                                 }
                             </div>
                     }

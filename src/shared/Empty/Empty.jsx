@@ -1,11 +1,12 @@
 import React from 'react';
 import Lottie from 'lottie-react';
 import empty from '../../images/Animation - 1714507273712.json';
+import Box from '@mui/material/Box'
 function Empty () {
     return (
-        <div style={{display: 'flex' , alignItems: 'center' ,justifyContent: 'center'}}>
-            <Lottie animationData={empty} style={{ width: '400px', height: '400px' }}></Lottie>
-        </div>
+        <Box sx={{}}>
+            <Lottie animationData={empty} style={{ width: '250px', height: '250px' }}></Lottie>
+        </Box>
     );
 };
 
