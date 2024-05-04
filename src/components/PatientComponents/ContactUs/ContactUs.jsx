@@ -1,11 +1,8 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";  
 import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from '@mui/material';
 import contactImage from '../../../images/Sent Message-bro.png'
 import Form from "react-bootstrap/Form";
 import Input from '@mui/joy/Input';
@@ -109,7 +106,7 @@ const ContactUs = () => {
               </Stack>
               <Stack spacing={0.2} direction='column'>
                 <label className="contact-label">Email</label>
-                  <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email"/>
+                <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email"/>
               </Stack>
               <Stack spacing={0.2} direction='column'>
                 <label className="contact-label">Message</label>
