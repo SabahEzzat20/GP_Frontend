@@ -190,7 +190,7 @@ const PatientProfile = () => {
                                             </Stack>
                                         </Box>      
                                     : 
-                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%',padding:"15px"}}>
+                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px"}}>
                                         <Empty/>
                                     </Box>
                                 }

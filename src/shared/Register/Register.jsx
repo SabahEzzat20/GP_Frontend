@@ -33,7 +33,7 @@ const Register = () => {
         console.error('response error : ',error)
         setSignup({ ...signup, loading: false, err: 'failed to signup' })
     })
-    console.log(signup);
+    // console.log(signup);
   } 
   return (
     <div className="register-bg">
@@ -44,7 +44,7 @@ const Register = () => {
             <FaUser />
           </span>
           <div className="input__group">
-            <input type="text" placeholder=" "  value={signup.name} onChange={(e)=> setSignup({...signup,name:e.target.value})} required/>
+            <input type="text" placeholder=" "  value={signup.name} onChange={(e)=>setSignup({...signup,name:e.target.value})} required/>
             <label htmlFor="name" >Name</label>
           </div>
         </div>

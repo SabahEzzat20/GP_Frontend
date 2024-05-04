@@ -28,7 +28,7 @@ export const getAuthenticatedUser = () => {
     const refreshToken = localStorage.getItem("refreshToken");
     return { accessToken, refreshToken };
 };
-
+//logout
 export const removeAuthenticatedUser = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");

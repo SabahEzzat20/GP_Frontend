@@ -40,19 +40,20 @@ const BigForm = () => {
     setPatientData({ ...patientData, gender: value });
   };
   const userToken = getAuthenticatedUser();
-  const accessToken = userToken.accessToken;
+  const refreshToken = userToken.refreshToken;
+  // console.log(refreshToken);
   useEffect(() => {
     axios
-          .get(`http://localhost:8070/user/getUserByToken/${accessToken}`)
-            .then((response) => {
-                setPatientData({...patientData,userId:response.data.userId,userName:response.data.userName,userEmail:response.data.userEmail});
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+        .then((response) => {
+            setPatientData({...patientData,userId:response.data.id,userName:response.data.name,userEmail:response.data.email});
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }, []);
   const addPatient = (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       setPatientData({ ...patientData, loading: true, err: [] })
       axios
         .post("http://localhost:8070/patient/addPatientData", {
@@ -62,6 +63,10 @@ const BigForm = () => {
               weight: patientData.weight,
               birthDate: patientData.birthDate,
               gender: patientData.gender,
+          },{
+            headers: {
+              'Authorization': `Bearer ${refreshToken}`
+            }
           })
           .then((response) => {
               setPatientData({ ...patientData, loading: false, err: [] });
@@ -69,6 +74,7 @@ const BigForm = () => {
           })
           .catch((error) => {
               setPatientData({ ...patientData, loading: false, err: error.response.data.errors })
+            console.log(error);
           })
       // console.log(login);
   }
@@ -123,14 +129,22 @@ const BigForm = () => {
               startDecorator={<HiPhone />} 
               variant="plain" 
               color="neutral" 
-              type="phone number" 
+              type="number" 
               required
               value={patientData.phoneNumber}
               onChange={(e)=>setPatientData({...patientData,phoneNumber:e.target.value})}
             />
           </Stack>
           <Stack spacing={0.2} direction='column'>
-            <Input placeholder="birthdate" startDecorator={<FaChild />} variant="plain" color="neutral" type='number'/>
+            <Input 
+            placeholder="birthdate" 
+            startDecorator={<FaChild />} 
+            variant="plain" 
+            color="neutral" 
+            type='text'
+            value={patientData.birthDate}
+            onChange={(e)=>setPatientData({...patientData,birthDate:e.target.value})}
+            />
           </Stack>
         </Stack>
         <Stack direction='row' spacing={3}>
@@ -193,3 +207,7 @@ const BigForm = () => {
 };
 
 export default BigForm;
+
+
+
+
