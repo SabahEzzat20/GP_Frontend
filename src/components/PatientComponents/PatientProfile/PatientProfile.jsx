@@ -146,21 +146,21 @@ const PatientProfile = () => {
                                         </Box>
                                         :
                                             <Stack direction='column' spacing={2} className="profile-options-stack" sx={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center',width:'100%',padding:{xs:'50px',sm:'50px',md:'40px',lg:'50px',xl:'50px'},paddingTop:{xs:'50px',sm:'50px'}}}>
-                                                <Stack spacing={0.2} direction='column' sx={{width:{xs:'500px',sm:'500px',md:'600px',lg:'700px',xl:'700px'}}}>
+                                                <Stack spacing={0.2} direction='column' sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <label className="contact-label">Name</label>
                                                     <Input disabled={!openEditProfile} placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name" value='Sabah Hassan' />
                                                 </Stack>
-                                                <Stack spacing={0.2} direction='column' sx={{width:{xs:'500px',sm:'500px',md:'600px',lg:'700px',xl:'700px'}}}>
+                                                <Stack spacing={0.2} direction='column' sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <label className="contact-label">Email</label>
                                                     <Input disabled={!openEditProfile} placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email" value='sabahhassan@gmail.com'/>
                                                 </Stack>
-                                                <Box sx={{width:{xs:'500px',sm:'500px',md:'600px',lg:'700px',xl:'700px'}}}>
+                                                <Box sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <button onClick={handleOpenEditProfile} style={{width:'inherit'}}>Edit profile</button>
                                                 </Box>
-                                                <Box sx={{width:{xs:'500px',sm:'500px',md:'600px',lg:'700px',xl:'700px'}}}>
+                                                <Box sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <button className='change-pass' style={{width:'inherit'}}><ResetPassword /></button>
                                                 </Box>
-                                                <Box sx={{display:{xl:'none',lg:'none',md:'none',xs:'block',sm:'block'},width:{xs:'500px',sm:'500px',md:'600px',lg:'700px',xl:'700px'}}}>
+                                                <Box sx={{display:{xl:'none',lg:'none',md:'none',xs:'block',sm:'block'},width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <button className='change-pass' style={{width:'inherit'}}>logout</button>
                                                 </Box>
                                             </Stack>
