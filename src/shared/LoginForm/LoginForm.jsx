@@ -27,7 +27,7 @@ const LoginForm = () => {
         console.log('response data : ', resp.data)
         setLogin({ ...login, loading: false })
         setAuthenticatedUser(resp.data)
-        navigate('/patient/homepage')
+        navigate('/admin')
       })
       .catch(error => {
         console.error('response error : ',error)
