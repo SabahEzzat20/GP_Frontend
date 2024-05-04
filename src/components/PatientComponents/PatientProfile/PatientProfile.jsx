@@ -22,6 +22,7 @@ import Box from '@mui/material/Box';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import Input from '@mui/joy/Input';
 import { FaUser } from 'react-icons/fa';
+import Empty from '../../../shared/Empty/Empty';
 const PatientProfile = () => {
     const [openRoute, setOpenRoute] = useState(1);
     const [image, setImage] = useState(saboha2);
@@ -62,7 +63,7 @@ const PatientProfile = () => {
     const handleOpenEditProfile = () => {
         setOpenEditProfile(!openEditProfile)
     }
-    const data = 1;
+    const data = 0;
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };
@@ -185,124 +186,12 @@ const PatientProfile = () => {
                                                     </Stack>
                                                 </Stack>
                                                 <Divider />
-                                                <Stack direction='row' spacing={70}>
-                                                    <Stack spacing={3} direction='row'>
-                                                        <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                            Attached X-Rays
-                                                        </Button>
-                                                        <div className="history-result">
-                                                            <Stack spacing={1} direction='row'>
-                                                                <p> Result :</p>
-                                                                <p className='fractured'> fractured</p>
-                                                            </Stack>
-                                                        </div>
-                                                    </Stack>
-                                                    <Stack direction='row' spacing={2} className='history-time'>
-                                                        <p>1/7/2024</p>
-                                                        <p>[10:00 AM]</p>
-                                                    </Stack>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='nonfractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='nonfractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='nonfractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='fractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='fractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='nonfractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='fractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
-                                                <Divider />
-                                                <Stack spacing={3} direction='row'>
-                                                    <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                        Attached X-Rays
-                                                    </Button>
-                                                    <div className="history-result">
-                                                        <Stack spacing={1} direction='row'>
-                                                            <p> Result :</p>
-                                                            <p className='fractured'> fractured</p>
-                                                        </Stack>
-                                                    </div>
-                                                </Stack>
+                                                
                                             </Stack>
                                         </div>      
                                         : 
                                         <div className="empty-page">
-                                            <img src={emptyPage} alt="no data"/>
+                                            <Empty/>
                                         </div>
                                 }
                             </div>
