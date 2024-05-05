@@ -184,7 +184,7 @@ const BigForm = () => {
             placeholder="birthdate" 
             startDecorator={<FaChild />} 
             variant="plain" 
-            color="neutral" 
+            color="default" 
             type='date'
             value={patientData.birthDate}
             onChange={(e)=>setPatientData({...patientData,birthDate:e.target.value})}
