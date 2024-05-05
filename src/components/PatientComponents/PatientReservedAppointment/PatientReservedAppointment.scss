@@ -1,10 +1,11 @@
 .reserved-app{
     padding: 10px;
+    // background-color: red;
 }
 .reserved-apps{
-    padding: 30px;
+    // padding: 30px;
     overflow-y: scroll;
-    max-height: 500px;
+    // max-height: 500px;
     &::-webkit-scrollbar {
         width: 5px;
     }

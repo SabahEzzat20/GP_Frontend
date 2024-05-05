@@ -15,6 +15,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import ResetPassword from '../../../shared/ResetPassword/ResetPassword';
 import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
+import CancelIcon from '@mui/icons-material/Cancel';
 import xray from '../../../images/hand-255x300.jpg'
 import emptyPage from '../../../images/No data-cuate.png';
 import Grid from '@mui/material/Grid';
@@ -304,88 +305,226 @@ const PatientProfile = () => {
                         openRoute===3 &&
                             <div>
                                 {
-                                    data === 1 ? 
-                                        <div className='reserved-apps'>
-                                            <Stack spacing={90} direction='row' >
-                                                <Stack spacing={2} direction='column' className='reserved-app' >
-                                                    <div className="doctor-name">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Doctor : </p>
-                                                            <p>Tamer hani</p>
-                                                        </Stack>
-                                                    </div>
-                                                    <div className="appointment">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Appointment : </p>
-                                                            <Button variant='text' className='hour'>03:00 AM</Button>
-                                                        </Stack>
-                                                        <Button variant="text" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                            Attached X-Rays
-                                                        </Button>
-                                                    </div>
-                                                </Stack>
-                                                <Stack direction='row'>
-                                                    <div className='cancel-reservation-btn-cont'>
-                                                        <button className='cancel-reservation-btn'>cancel</button>
-                                                    </div>
-                                                </Stack>
+                                data === 1 ? 
+                                    <Grid container xs={12} sm={12} md={12} lg={12} xl={12}>
+                                        <Box className='reserved-apps' sx={{width:'100%'}}>
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
                                             </Stack>
                                             <Divider />
-                                            <Stack spacing={90} direction='row' >
-                                                <Stack spacing={2} direction='column' className='reserved-app' >
-                                                    <div className="doctor-name">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Doctor : </p>
-                                                            <p>Tamer hani</p>
-                                                        </Stack>
-                                                    </div>
-                                                    <div className="appointment">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Appointment : </p>
-                                                            <Button variant='text' className='hour'>03:00 AM</Button>
-                                                        </Stack>
-                                                        <Button variant="text" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                            Attached X-Rays
-                                                        </Button>
-                                                    </div>
-                                                </Stack>
-                                                <Stack direction='row'>
-                                                    <div className='cancel-reservation-btn-cont'>
-                                                        <button className='cancel-reservation-btn'>cancel</button>
-                                                    </div>
-                                                </Stack>
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
                                             </Stack>
                                             <Divider />
-                                            <Stack spacing={90} direction='row' >
-                                                <Stack spacing={2} direction='column' className='reserved-app' >
-                                                    <div className="doctor-name">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Doctor : </p>
-                                                            <p>Tamer hani</p>
-                                                        </Stack>
-                                                    </div>
-                                                    <div className="appointment">
-                                                        <Stack spacing={2} direction='row'>
-                                                            <p>Appointment : </p>
-                                                            <Button variant='text' className='hour'>03:00 AM</Button>
-                                                        </Stack>
-                                                        <Button variant="text" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                            Attached X-Rays
-                                                        </Button>
-                                                    </div>
-                                                </Stack>
-                                                <Stack direction='row'>
-                                                    <div className='cancel-reservation-btn-cont'>
-                                                        <button className='cancel-reservation-btn'>cancel</button>
-                                                    </div>
-                                                </Stack>
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
                                             </Stack>
                                             <Divider />
-                                        </div> 
-                                        :
-                                        <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px",marginTop:'40px'}}>
-                                            <Empty/>
-                                        </Box>
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
+                                            </Stack>
+                                            <Divider />
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
+                                            </Stack>
+                                            <Divider />
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
+                                            </Stack>
+                                            <Divider />
+                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                                                        <Box>Doctor : Amany sayed</Box>
+                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
+                                                    </Stack>
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
+                                                        <Box>
+                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                <FolderIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px'}}>
+                                                                    attached xray
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                        <Box>
+                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                <CancelIcon /> 
+                                                                <Box sx={{ paddingLeft: '5px' }}>
+                                                                    cancel date
+                                                                </Box>
+                                                            </Button>
+                                                        </Box>
+                                                    </Stack>
+                                                </Grid>
+
+                                            </Stack>
+                                            <Divider />
+
+                                        </Box> 
+                                    </Grid>
+                                    :
+                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px",marginTop:'40px'}}>
+                                        <Empty/>
+                                    </Box>
                                 }
                             </div>
                     }
