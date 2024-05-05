@@ -68,7 +68,9 @@ const PatientProfile = () => {
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };
-
+    const LogoutFunction = () => {
+        
+    }
     return (
         <Grid container sx={{display: 'flex'}} xs={12} sm={12} md={12} lg={12} xl={12}>
             <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -92,7 +94,7 @@ const PatientProfile = () => {
                         </Stack>
                     </Stack>
                     <Grid item className='logOUtBtn' md={3} lg={2} xl={2} sx={{position:"fixed", bottom:'0',fontSize:'20px',width: '100%',display:{xs:'none',lg:'flex',xl:'flex',sm:'none',justifyContent:'center',alignItems:'end',paddingTop:'auto',height:'70px'}}} >
-                        <Link className='logout-link'style={{textDecoration: 'none'}} to={'/register'}>
+                        <Link className='logout-link'style={{textDecoration: 'none'}} onClick={()=>LogoutFunction()} >
                             <Stack direction='row' spacing={1} className='logout'>
                                 <div >
                                     <TbLogout2 /> 

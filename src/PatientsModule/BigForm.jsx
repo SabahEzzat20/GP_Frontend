@@ -23,6 +23,8 @@ import {getAuthenticatedUser} from '../Helper/Storage';
 import { useParams } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Box  from "@mui/material/Box";
+import { IoIosArrowBack } from "react-icons/io";
 
 const BigForm = () => {
   // const userToken = useParams();
@@ -96,10 +98,10 @@ const BigForm = () => {
   }
 
   return (
-    <div className="reservation-form">
+    <Box className="reservation-form" sx={{width:{xl:'750px',lg:'750px',md:'750px',sm:'600px',xs:'350px'}}}>
       <Stack direction='column' spacing={4}>
         <div className="go-back-arrow">
-          <Link to={'/patient/doctors-preview'}><IoIosArrowRoundBack /></Link>
+          <Link to={'/patient/doctors-preview'}><IoIosArrowBack /></Link>
         </div>
         <Stack direction='row' spacing={2}>
           <div>
@@ -107,13 +109,13 @@ const BigForm = () => {
           </div>
           <Stack direction='column' spacing={0.1} className="doctor-details">
             <p className="doctor-name">Dr.sabah hassan</p>
-            <Stack direction='row' spacing={3}>
-              <p className="expertise">Consultant orthopedic and joint surgeon</p>
-              <p className="expertise">Duration : 15min</p>
+            <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={{xs:'1',sm:'1',md:'3',lg:'3',xl:'3'}}>
+              <Box className="expertise">Consultant orthopedic and joint surgeon , </Box>
+              <Box className="expertise">Duration : 15min</Box>
             </Stack>
           </Stack>
         </Stack>
-        <Stack direction='row' spacing={2}>
+        <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={2}>
           <Stack direction='column' spacing={0.2}>
             <Input 
               placeholder="name" 
@@ -126,7 +128,6 @@ const BigForm = () => {
               onChange={(e)=>setPatientData({...patientData,userName:e.target.value})}/>
           </Stack>
           <Stack spacing={0.2} direction='column'>
-            {/* <input className='' type="email" name="user_email" /> */}
             <Input
               placeholder="email"
               startDecorator={<MdOutlineAlternateEmail />}
@@ -139,33 +140,8 @@ const BigForm = () => {
             />
           </Stack>
         </Stack>
-        <Stack direction='row' spacing={2}>
+        <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={3}>
           <Stack direction='column' spacing={0.2}>
-            <Input
-              placeholder="phone number" 
-              startDecorator={<HiPhone />} 
-              variant="plain" 
-              color="neutral" 
-              type="number" 
-              required
-              value={patientData.phoneNumber}
-              onChange={(e)=>setPatientData({...patientData,phoneNumber:e.target.value})}
-            />
-          </Stack>
-          <Stack spacing={0.2} direction='column'>
-            <Input 
-            placeholder="birthdate" 
-            startDecorator={<FaChild />} 
-            variant="plain" 
-            color="neutral" 
-            type='text'
-            value={patientData.birthDate}
-            onChange={(e)=>setPatientData({...patientData,birthDate:e.target.value})}
-            />
-          </Stack>
-        </Stack>
-        <Stack direction='row' spacing={3}>
-          <Stack direction='row' spacing={0.2}>
             <Input 
               placeholder="weight" 
               startDecorator={<FaWeightScale />} 
@@ -177,7 +153,7 @@ const BigForm = () => {
               onChange={(e)=>setPatientData({...patientData,weight:e.target.value})}
             />
           </Stack>
-          <Stack spacing={0.2} direction='row'>
+          <Stack spacing={0.2} direction='column'>
             <Input 
               placeholder="height" 
               startDecorator={<GiBodyHeight />} 
@@ -190,8 +166,33 @@ const BigForm = () => {
             />
           </Stack>
         </Stack>
-        <Stack direction='column'>
-          <p className="gender">Gender</p>
+        <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={2}>
+          <Stack direction='column' spacing={0.2}>
+            <Input
+              placeholder="phone number" 
+              startDecorator={<HiPhone />} 
+              variant="plain" 
+              color="neutral" 
+              type="number" 
+              required
+              value={patientData.phoneNumber}
+              onChange={(e)=>setPatientData({...patientData,phoneNumber:e.target.value})}
+            />
+          </Stack>
+          <Stack  direction='column' spacing={0.2}>
+            <Input 
+            placeholder="birthdate" 
+            startDecorator={<FaChild />} 
+            variant="plain" 
+            color="neutral" 
+            type='date'
+            value={patientData.birthDate}
+            onChange={(e)=>setPatientData({...patientData,birthDate:e.target.value})}
+            />
+          </Stack>
+        </Stack>
+        <Stack direction='row' spacing={2} sx={{display:'flex',alignItems:'center',justifyContent:'flex-start'}}>
+          <Box className="gender">Gender</Box>
           <Stack spacing={2} direction='row'>
             <Input
               endDecorator={<IoWoman />}
@@ -229,7 +230,7 @@ const BigForm = () => {
           Appointment reserved successfully!
         </Alert>
       </Snackbar>
-    </div>
+    </Box>
   );
 };
 

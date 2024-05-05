@@ -7,6 +7,7 @@ import { BiSolidCloudUpload } from "react-icons/bi";
 import { BiCloudUpload } from "react-icons/bi";
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 
 const DragDrop = () => {
     const [image, setImage] = useState(null);
@@ -23,7 +24,7 @@ const DragDrop = () => {
     const { getRootProps, getInputProps , isDragActive } = useDropzone({ onDrop });
     return (
         <>
-            <div className="dropzone-container">
+            <Box className="dropzone-container">
                 <div {...getRootProps()} className='dropzone'>
                         <input {...getInputProps()} />
                         {
@@ -48,7 +49,7 @@ const DragDrop = () => {
                         </Stack>
                     </button>
                 </div>
-            </div>
+            </Box>
             <div className="scan-result">
                 <Alert severity='success'>none fractured</Alert>
             </div>

@@ -60,19 +60,21 @@
     }
 }
 .doctor-details{
-    color: gray;
     // font-size: 15px;
     .expertise{
+        color: gray;
         font-size: 13px;
+        // padding:2px;
     }
     .doctor-name{
-        font-size: 15px;
+        color: rgb(73, 73, 73);
+        font-size: 20px;
     }
 }
 .reservation-form{
     border: 1px solid rgb(233, 233, 233);
     margin: auto;
-    width: 700px;
+    // width: 700px;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 1px 1px 6px rgb(190, 190, 190, 0.3);
