@@ -63,7 +63,7 @@ const PatientProfile = () => {
     const handleOpenEditProfile = () => {
         setOpenEditProfile(!openEditProfile)
     }
-    const data = 0;
+    const data = 1;
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };
@@ -170,15 +170,15 @@ const PatientProfile = () => {
                                             <Stack spacing={3} direction='column'>
                                                 <Stack direction='row' spacing={70}>
                                                     <Stack spacing={3} direction='row'>
-                                                        <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
-                                                            Attached X-Rays
-                                                        </Button>
                                                         <div className="history-result">
                                                             <Stack spacing={1} direction='row'>
                                                                 <p> Result :</p>
                                                                 <p className='fractured'> fractured</p>
                                                             </Stack>
                                                         </div>
+                                                        <Button variant="outlined" startIcon={<FolderIcon />} onClick={() => openImageInNewTab(xray)}>
+                                                            {/* Attached X-Rays */}
+                                                        </Button>
                                                     </Stack>
                                                     <Stack direction='row' spacing={2} className='history-time'>
                                                         <p>25/3/2024</p>
@@ -190,7 +190,7 @@ const PatientProfile = () => {
                                             </Stack>
                                         </Box>      
                                     : 
-                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px"}}>
+                                    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px",marginTop:'40px'}}>
                                         <Empty/>
                                     </Box>
                                 }
@@ -280,9 +280,9 @@ const PatientProfile = () => {
                                             <Divider />
                                         </div> 
                                         :
-                                        <div className="empty-page">
-                                            <img src={emptyPage} alt="no data"/>
-                                        </div>
+                                        <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'50vh',padding:"15px",marginTop:'30px'}}>
+                                            <Empty/>
+                                        </Box>
                                 }
                             </div>
                     }

@@ -27,7 +27,8 @@ const Register = () => {
         console.log('response data : ', resp.data)
         setSignup({ ...signup, loading: false, err: [] })
         setAuthenticatedUser(resp.data);
-        navigate('/patient/homepage');
+        // navigate('/patient/homepage');
+        navigate('/admin/viewDoctors');
       })
       .catch(error => {
         console.error('response error : ',error)

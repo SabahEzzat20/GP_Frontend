@@ -24,10 +24,11 @@ const LoginForm = () => {
     })
       .then(resp => {
         // console.log('logged in successfully!')
-        console.log('response data : ', resp.data)
+        // console.log('response data : ', resp.data)
         setLogin({ ...login, loading: false })
         setAuthenticatedUser(resp.data)
-        navigate('/patient/homepage')
+        // navigate('/patient/homepage')
+        navigate('/admin/viewDoctors')
       })
       .catch(error => {
         console.error('response error : ',error)

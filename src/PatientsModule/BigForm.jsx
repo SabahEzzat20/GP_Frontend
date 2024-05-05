@@ -21,6 +21,8 @@ import Avatar from '@mui/joy/Avatar';
 import sabah from '../images/saboha.jpeg';
 import {getAuthenticatedUser} from '../Helper/Storage';
 import { useParams } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const BigForm = () => {
   // const userToken = useParams();
@@ -38,6 +40,19 @@ const BigForm = () => {
   })
   const handleGenderSelection = (value) => {
     setPatientData({ ...patientData, gender: value });
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const showMessage = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
   const userToken = getAuthenticatedUser();
   const refreshToken = userToken.refreshToken;
@@ -71,6 +86,7 @@ const BigForm = () => {
           .then((response) => {
               setPatientData({ ...patientData, loading: false, err: [] });
               // navigate("/");
+              showMessage();
           })
           .catch((error) => {
               setPatientData({ ...patientData, loading: false, err: error.response.data.errors })
@@ -78,6 +94,7 @@ const BigForm = () => {
           })
       // console.log(login);
   }
+
   return (
     <div className="reservation-form">
       <Stack direction='column' spacing={4}>
@@ -202,6 +219,16 @@ const BigForm = () => {
         </Stack>
         <button className="submit-reservation" onClick={(e)=>addPatient()}>submit</button>
       </Stack>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Appointment reserved successfully!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
