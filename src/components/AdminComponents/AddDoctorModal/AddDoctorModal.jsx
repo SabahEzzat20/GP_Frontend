@@ -40,7 +40,6 @@ export const AddDoctorModal = () => {
       })
       // console.log('Doctor added successfully:', response.data);
       setDoctorData(initialDoctorData);
-   
       setShow(false);
     } catch (error) {
       setDoctorData({ ...doctorData, loading: false, err: error.response.data.errors });
@@ -100,7 +99,6 @@ export const AddDoctorModal = () => {
               />
             </Form.Group>
           </Form>
-         
         </Modal.Body>
         <Modal.Footer className="modalFooter">
           <button className='add-doc-btn' onClick={addDoctor}> add doctor</button>
