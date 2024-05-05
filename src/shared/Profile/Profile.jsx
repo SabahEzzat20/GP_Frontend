@@ -18,8 +18,10 @@ import { FiCamera } from "react-icons/fi";
 import Input from '@mui/joy/Input';
 import { FaUser } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
-
+import { removeAuthenticatedUser } from "../../Helper/Storage";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
+    const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const handleVisibility = () => {
         setIsVisible(!isVisible);
@@ -39,6 +41,11 @@ const Profile = () => {
         setGender(event.target.value);
     };
     const camera = <FiCamera />;
+    const LogoutFunction = () => {
+        removeAuthenticatedUser();
+        navigate('/login');
+        console.log('loged out successfully!')
+    }
     return (
         <>  
             <button className='profile-menu-btn' onClick={handleVisibility}>
@@ -51,7 +58,7 @@ const Profile = () => {
                         <div className="close-btn" onClick={handleVisibility}>
                             <VscClose />
                         </div>
-                        <Link className="profile-logout-container" to={'/login'}>
+                        <Link className="profile-logout-container" onClick={()=>LogoutFunction()}>
                             <HiOutlineLogout />
                         </Link>
                     </div>

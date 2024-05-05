@@ -1,16 +1,37 @@
-import React, { useState } from "react";
+import React, { useState ,useParams , useEffect} from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getAuthenticatedUser } from "../../../Helper/Storage";
+import axios from 'axios';
 const sabah = require('../../../images/saboha.jpeg');
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [patientId, getPatientId] = useState(false);
+  // const patientId = useParams();
+  const navigate = useNavigate();
+  const userToken = getAuthenticatedUser();
+  const refreshToken = userToken.refreshToken;
+  // console.log(refreshToken);
+  useEffect(() => {
+    axios
+    .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+    .then((response) => {
+      getPatientId({patientId:response.data.id});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+  const RouteProfile = () => {
+    navigate('/patientProfile/'+ patientId)
+  }
   return (
     <nav>
-     <h1 className="web-header">orthopedista</h1>
+      <h1 className="web-header">orthopedista</h1>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
       <span class="navbar-toggler-icon"></span>
       <span class="navbar-toggler-icon"></span>
@@ -18,7 +39,7 @@ const Navbar = () => {
       
       </div>
       <ul className={menuOpen ? "open" : ""}>
-         <li>
+        <li>
           <Link to='/patient/homepage'>Home</Link>
         </li>
         <li>
@@ -31,10 +52,10 @@ const Navbar = () => {
           <NavLink to="/login">login</NavLink>
         </li>
       <div>
-                <Link className='profile-menu-btn' to="/patientprofile/Editprofile">
-                    <Avatar alt="Sabah hassan" src={sabah} />
-                </Link>
-              </div>
+        <Link className='profile-menu-btn' onClick={()=>RouteProfile()}>
+            <Avatar alt="Sabah hassan" src={sabah} />
+        </Link>
+      </div>
       </ul>
     </nav>
   );

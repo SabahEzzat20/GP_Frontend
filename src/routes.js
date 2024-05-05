@@ -50,7 +50,7 @@ export const routes = createBrowserRouter([{
         path: "/doctor",
         element: < Doctor / > ,
         children: [{
-                path: "/doctor/viewDoctorAppointments",
+                path: "viewDoctorAppointments/doctor/",
                 element: < ViewDoctorAppointments / >
             },
             {
@@ -109,24 +109,24 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/patientprofile",
-        element: < PatientProfile / > ,
+        element: <PatientProfile/> ,
         children: [{
-                path: "/patientprofile/Editprofile",
-                element: < EditPatientProfile / > ,
+                path: "/patientprofile/Editprofile/:patientId",
+                element: <EditPatientProfile/> ,
             },
             {
                 path: "/patientprofile/patient-history",
-                element: < PatientHistory / > ,
+                element: <PatientHistory/> ,
             },
             {
                 path: "/patientprofile/patient-reserved-appointment",
-                element: < PatientReservedAppointment / > ,
+                element: <PatientReservedAppointment/> ,
             },
         ]
     },
     {
         path: "/contact",
-        element: < > < ContactUs / > < Footer / > < /> ,
+        element: <> <ContactUs/> <Footer/> </> ,
     },
     {
         path: "*",

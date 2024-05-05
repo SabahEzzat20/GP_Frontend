@@ -8,8 +8,13 @@ import { IoIosArrowForward } from "react-icons/io";
 import Patients from "../../../DummyData/Patients.json"
 import axios from 'axios';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
-
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const ViewPatients = () => {
+  const [open, setOpen] = React.useState(false);
+  const showMessage = () => {
+    setOpen(true);
+  };
   const [patients,setPatients] = useState({
     loading: true,
     result: [
@@ -22,6 +27,13 @@ const ViewPatients = () => {
     err: '',
     reload: 0
   });
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const userToken = getAuthenticatedUser();
   const refreshToken = userToken.refreshToken;
   useEffect(() => {
@@ -39,7 +51,7 @@ const ViewPatients = () => {
       .catch((err) => {
         setPatients({ ...patients, loading: false, err: 'there is something wrong' });
       });
-  }, []);
+  }, [patients.reload+1]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
@@ -85,7 +97,7 @@ const ViewPatients = () => {
   const DeletePatient = (patientId) => {
       console.log('patient id '+patientId);
       axios
-        .delete(`http://localhost:8070/admin/deleteUser/${patientId}`,
+        .delete(`http://localhost:8070/admin/${patientId}`,
           {
             headers: {
               'Authorization': `Bearer ${refreshToken}`
@@ -93,12 +105,13 @@ const ViewPatients = () => {
           }
         )
         .then((response) => {
-          console.log('response'+response);
-          setPatients({ ...patients,reload: patients.reload + 1});
+          setPatients({ ...patients, reload: patients.reload + 1 });
+          showMessage();
+          console.log('deleted successfully!');
         })
         .catch((err) => {
-          console.log('error of delete function: ' + err);
           setPatients({ ...patients, loading: false, err: 'there is something wrong' });
+          console.log('error of delete function: ' + err);
         });
 
   }
@@ -144,7 +157,7 @@ const ViewPatients = () => {
                 <td>{patient.patientName}</td>
                 <td>{patient.patientEmail}</td>
                 <td>
-                  <button className="table-options-button" title='block user' onClick={()=>DeletePatient(patient.userId)}>
+                  <button className="table-options-button" title='block user' onClick={(e)=>DeletePatient(patient.userId)}>
                     <MdDelete />
                   </button>
                 </td>
@@ -174,6 +187,16 @@ const ViewPatients = () => {
           </ul>
         </nav>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Patient deleted successfully!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

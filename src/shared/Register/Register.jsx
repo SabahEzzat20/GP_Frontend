@@ -5,7 +5,7 @@ import { FaUser, FaLock, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { setAuthenticatedUser } from "../../Helper/Storage";
+import { getAuthenticatedUser, setAuthenticatedUser } from "../../Helper/Storage";
 const Register = () => {
   const navigate = useNavigate();
   const [signup, setSignup] = useState({
@@ -27,8 +27,7 @@ const Register = () => {
         console.log('response data : ', resp.data)
         setSignup({ ...signup, loading: false, err: [] })
         setAuthenticatedUser(resp.data);
-        // navigate('/patient/homepage');
-        navigate('/admin/viewDoctors');
+        navigate('/patient/homepage');        
       })
       .catch(error => {
         console.error('response error : ',error)
