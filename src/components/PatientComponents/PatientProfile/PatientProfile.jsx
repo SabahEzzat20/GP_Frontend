@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState , useEffect ,useParams} from 'react';
 import './PatientProfile.scss';
 import saboha2 from '../../../images/saboha2.jpg'
 import { useDropzone } from 'react-dropzone';
@@ -24,9 +24,18 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import Input from '@mui/joy/Input';
 import { FaUser } from 'react-icons/fa';
 import Empty from '../../../shared/Empty/Empty';
+import { removeAuthenticatedUser } from '../../../Helper/Storage';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 const PatientProfile = () => {
+    const patientId = useParams();
+    const navigate = useNavigate();
     const [openRoute, setOpenRoute] = useState(1);
+    const [openEditProfile, setOpenEditProfile] = useState(false);
+    const { getRootProps, getInputProps } = useDropzone({ onDrop }); 
     const [image, setImage] = useState(saboha2);
+    const [currentRoute, setCurrentRoute] = useState('Edit Profile');
+    const camera = <FiCamera />;
     const onDrop = useCallback((acceptedFiles) => {
         const file = acceptedFiles[0];
         const reader = new FileReader();
@@ -35,10 +44,6 @@ const PatientProfile = () => {
         };
         reader.readAsDataURL(file);
     }, []);
-    // const {  isDragActive } = useDropzone({ onDrop });
-    const { getRootProps, getInputProps } = useDropzone({ onDrop }); 
-    const camera = <FiCamera />;
-    const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const profileRoutes = [
         {
             id: 1,
@@ -60,7 +65,6 @@ const PatientProfile = () => {
         setCurrentRoute(route);
         setOpenRoute(id);
     }
-    const [openEditProfile, setOpenEditProfile] = useState(false);
     const handleOpenEditProfile = () => {
         setOpenEditProfile(!openEditProfile)
     }
@@ -69,8 +73,32 @@ const PatientProfile = () => {
         window.open(imageUrl, '_blank');
     };
     const LogoutFunction = () => {
-        
+        removeAuthenticatedUser();
+        navigate('/login');
+        console.log('loged out successfully!')
     }
+    const [profile, setProfile] = useState({
+        id: '',
+        name: '',
+        userPhoto: null,
+        email: '',
+        role: '',
+        loading: true,
+        err: []
+    })
+    useEffect(() => {
+        setProfile({...profile,loading:true})
+        axios
+            .get(`http://localhost:8070/user/viewUserProfile/${patientId}`)
+            .then((response) => {
+                console.log(response.data)
+                setProfile({...profile,id:response.data.id,name:response.data.name,email:response.data.email,userPhoto:response.data.userPhoto,role:response.data.role,loading: false});
+            })
+            .catch((error) => {
+                console.log(error);
+                setProfile({...profile,loading:false,err:[error]})
+            });
+        }, [profile.loading]);
     return (
         <Grid container sx={{display: 'flex'}} xs={12} sm={12} md={12} lg={12} xl={12}>
             <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -82,15 +110,15 @@ const PatientProfile = () => {
                         <Box {...getRootProps()}>
                             <input {...getInputProps()} />
                             <div className='user-photo'>
-                                <img src={image} alt="userPhoto" />
+                                <img src={profile.userPhoto} alt="userPhoto" />
                                 <div className="camera">
                                     {camera}
                                 </div>
                             </div>
                         </Box>
                         <Stack direction='column' spacing={1} className="user-name" >
-                            <p>Sabah Hassan</p>
-                            <p>sabahhassan@gmail.com</p>
+                            <p>{profile.name}</p>
+                            <p>{profile.email}</p>
                         </Stack>
                     </Stack>
                     <Grid item className='logOUtBtn' md={3} lg={2} xl={2} sx={{position:"fixed", bottom:'0',fontSize:'20px',width: '100%',display:{xs:'none',lg:'flex',xl:'flex',sm:'none',justifyContent:'center',alignItems:'end',paddingTop:'auto',height:'70px'}}} >
@@ -133,11 +161,11 @@ const PatientProfile = () => {
                                             <Stack direction='column' spacing={2} className="profile-options-stack" sx={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center',width:'100%',padding:{xs:'50px',sm:'50px',md:'40px',lg:'50px',xl:'50px'},paddingTop:{xs:'50px',sm:'50px'}}}>
                                                 <Stack spacing={0.2} direction='column' sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <label className="contact-label">Name</label>
-                                                    <Input disabled={!openEditProfile} placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name"  />
+                                                    <Input value={profile.name} disabled={!openEditProfile} placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name"  />
                                                 </Stack>
                                                 <Stack spacing={0.2} direction='column' sx={{width:{xs:'300px',sm:'300px',md:'600px',lg:'700px',xl:'700px'}}}>
                                                     <label className="contact-label">Email</label>
-                                                    <Input disabled={!openEditProfile} placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email"/>
+                                                    <Input value={profile.email} disabled={!openEditProfile} placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email"/>
                                                 </Stack>
                                                 {
                                                     openEditProfile &&

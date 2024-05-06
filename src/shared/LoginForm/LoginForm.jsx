@@ -4,11 +4,12 @@ import { FaUser, FaLock, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ResetPassword from "../ResetPassword/ResetPassword";
 import axios from 'axios';
-import {setAuthenticatedUser} from '../../Helper/Storage';
 import { useNavigate } from 'react-router-dom';
+import { getAuthenticatedUser, setAuthenticatedUser } from "../../Helper/Storage";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [role, setRole] = useState('');
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -27,8 +28,7 @@ const LoginForm = () => {
         // console.log('response data : ', resp.data)
         setLogin({ ...login, loading: false })
         setAuthenticatedUser(resp.data)
-        // navigate('/patient/homepage')
-        navigate('/admin/viewDoctors')
+        Routing();
       })
       .catch(error => {
         console.error('response error : ',error)
@@ -36,6 +36,35 @@ const LoginForm = () => {
     })
     console.log(login);
   }
+  console.log(role);
+  const token = getAuthenticatedUser();
+  const refreshToken = token.refreshToken;
+  const Routing = () => {
+    getRole().then(() => {
+      if (role === 'admin')
+        navigate('/admin/viewDoctors');
+      else if (role === 'doctor')
+        navigate('/doctor/viewDoctorAppointments');
+      else if (role === 'patient')
+        navigate('/patient/homepage');
+    });
+  };
+  
+  const getRole = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+        .then((response) => {
+          setRole(response.data.role);
+          resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
+  };
+  
   return (
       <div className="login-bg">
         <form action="/" className="login__form" onSubmit={LoginFunction}>
