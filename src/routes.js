@@ -110,19 +110,6 @@ export const routes = createBrowserRouter([{
     {
         path: "/patientprofile",
         element: <PatientProfile/> ,
-        children: [{
-                path: "/patientprofile/Editprofile/:patientId",
-                element: <EditPatientProfile/> ,
-            },
-            {
-                path: "/patientprofile/patient-history",
-                element: <PatientHistory/> ,
-            },
-            {
-                path: "/patientprofile/patient-reserved-appointment",
-                element: <PatientReservedAppointment/> ,
-            },
-        ]
     },
     {
         path: "/contact",

@@ -40,7 +40,7 @@ const DoctorPreview = ({ doctor }) => {
                 </Stack>
             </div>
             <div className="App-cont">
-                <Box sx={{ maxWidth: { xs: 320, sm: 480 }}} className="appointments-box">
+                <Box sx={{ maxWidth: { xs: '320px', sm: '480px' ,md:'500px',lg:'480px',xl:'480px'},height:'150px'}} className="appointments-box">
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto">
@@ -59,9 +59,13 @@ const DoctorPreview = ({ doctor }) => {
                     </TabContext>
                 </Box>
             </div>
-            <Link to="/patient/BigForm">
-                <Button variant="contained" disabled={continueDisabled} className='continue-btn'>continue</Button>
-            </Link>
+            <Box sx={{display:'flex',alignItems:'center',justifyContent:'end',marginTop:'10px'}}>
+                <Button variant="contained" disabled={continueDisabled}>
+                    <Link to="/patient/BigForm" style={{textDecoration:'none',color:'white'}}>
+                        continue
+                    </Link>
+                </Button>
+            </Box>
         </div>
     );
 };
