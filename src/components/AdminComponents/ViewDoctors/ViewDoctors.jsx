@@ -5,38 +5,54 @@ import { AddDoctorModal } from "../AddDoctorModal/AddDoctorModal";
 import { SlOptions } from "react-icons/sl";
 import { FaPen } from "react-icons/fa";
 import AssignAppointmentToDoctor from "../AssignAppointmentToDoctor/AssignAppointmentToDoctor";
-import Doctors from "../../../DummyData/Doctors.json"
+// import Doctors from "../../../DummyData/Doctors.json"
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
 const ViewDoctors = () => {
   const [doctors, setDoctors] = useState({
     loading: true,
-    results: [],
+    result: [
+      {
+        userId:'',
+        doctorName: '',
+        doctorEmail: '',
+        description: ''
+      }
+    ],
     err: null,
     reload: 0,
   })
-
+  const userToken = getAuthenticatedUser();
+  const refreshToken = userToken.refreshToken;
   useEffect(() => {
     setDoctors({...doctors,loading: true})
     axios
-    .get('localhost:8070/admin/getAllDoctors')
-    .then((resp) => {
-        console.log(resp.headers.getAuthor);
-        setDoctors({...doctors, results:resp.data , loading: false , err: null})
+      .get('http://localhost:8070/admin/getAllDoctors', {
+        headers: {
+          'Authorization': `Bearer ${refreshToken}`
+        },
       })
-      .catch((err) => {
-        setDoctors({...doctors, err:'something went wrong' , loading: false})
-      })
-  }, []);
+      .then((resp) => {
+          console.log(resp.data);
+          setDoctors({...doctors, result: resp.data , loading: false , err: ''})
+          
+        })
+        .catch((err) => {
+          setDoctors({...doctors, err:'something went wrong' , loading: false})
+        })
+  }, [doctors.loading]); 
+
+
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const records = Doctors.slice(firstIndex, lastIndex)
-  const nPage = Math.ceil(Doctors.length / recordsPerPage)
+  const records = doctors.result.slice(firstIndex, lastIndex)
+  const nPage = Math.ceil(doctors.result.length / recordsPerPage)
   const numbers = [...Array(nPage + 1).keys()].slice(1)
   const prePage = () => {
     if (currentPage !== firstIndex) {
@@ -70,8 +86,30 @@ const ViewDoctors = () => {
     setSearchTerm(event.target.value);
   };
 
+  const DeleteDoctor = (doctorId) => {
+    console.log('doctor id '+ doctorId);
+    axios
+      .delete(`http://localhost:8070/admin/deleteDoctor/${doctorId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${refreshToken}`
+          }
+        }
+      )
+      .then((response) => {
+        console.log('response'+response);
+        setDoctors({ ...doctors,reload: doctors.reload + 1});
+      })
+      .catch((err) => {
+        console.log('error of delete function: ' + err);
+        setDoctors({ ...doctors, loading: false, err: 'there is something wrong' });
+      });
+
+}
+
   const filteredDoctors = records.filter((doctor) => {
-    const nameWithoutDr = doctor.name.replace("Dr. ", "");
+
+    const nameWithoutDr = doctor && doctor.name ? doctor.name.replace("Dr. ", "") : "";
     return nameWithoutDr.toLowerCase().startsWith(searchTerm.toLowerCase());
   });
 
@@ -82,7 +120,7 @@ const ViewDoctors = () => {
         <div className="doctor-icon">
           <FaPen />
         </div>
-        <div className="no-of-doctors">{Doctors.length} doctors</div>
+        <div className="no-of-doctors">{doctors.length} doctors</div>
       </div>
       <div className="actions-container">
         <AddDoctorModal />
@@ -104,19 +142,19 @@ const ViewDoctors = () => {
               {/* <th>id</th> */}
               <th>doctor name</th>
               <th>e-mail</th>
-              <th>speciality</th>
+              <th>qualification</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {filteredDoctors.map((doctor,i) => (
+            {records.map((doctor,i) => (
               <tr key={i}>
                 {/* <td>{doctor.id}</td> */}
-                <td>{doctor.name}</td>
-                <td>{doctor.email}</td>
-                <td>{doctor.qualification}</td>
+                <td>{doctor.doctorName}</td>
+                <td>{doctor.doctorEmail}</td>
+                <td>{doctor.description}</td>
                 <td>
-                  <button className="table-options-button" onClick={() => toggleMenu(i)}>
+                  <button className="table-options-button" onClick={() => DeleteDoctor(doctor.userId)}>
                     <SlOptions />
                         <div className="options" style={{ display: optionsVisibility[doctor.id] ? 'block' : 'none' }} key={i}>
                           <button>view</button>
