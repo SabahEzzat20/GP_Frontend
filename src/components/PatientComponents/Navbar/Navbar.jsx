@@ -10,25 +10,8 @@ const sabah = require('../../../images/saboha.jpeg');
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [patientId, getPatientId] = useState(false);
   // const patientId = useParams();
-  const navigate = useNavigate();
-  const userToken = getAuthenticatedUser();
-  const refreshToken = userToken.refreshToken;
-  // console.log(refreshToken);
-  useEffect(() => {
-    axios
-    .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-    .then((response) => {
-      getPatientId({patientId:response.data.id});
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
-  const RouteProfile = () => {
-    navigate('/patientProfile/'+ patientId)
-  }
+  
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
@@ -52,7 +35,7 @@ const Navbar = () => {
           <NavLink to="/login">login</NavLink>
         </li>
       <div>
-        <Link className='profile-menu-btn' onClick={()=>RouteProfile()}>
+        <Link className='profile-menu-btn' to='/patientProfile'>
             <Avatar alt="Sabah hassan" src={sabah} />
         </Link>
       </div>

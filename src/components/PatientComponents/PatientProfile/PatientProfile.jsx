@@ -24,15 +24,14 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import Input from '@mui/joy/Input';
 import { FaUser } from 'react-icons/fa';
 import Empty from '../../../shared/Empty/Empty';
-import { removeAuthenticatedUser } from '../../../Helper/Storage';
+import { removeAuthenticatedUser ,getAuthenticatedUser} from '../../../Helper/Storage';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 const PatientProfile = () => {
-    const patientId = useParams();
     const navigate = useNavigate();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
-    const { getRootProps, getInputProps } = useDropzone({ onDrop }); 
+    const { getRootProps, getInputProps } = useDropzone({  }); 
     const [image, setImage] = useState(saboha2);
     const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const camera = <FiCamera />;
@@ -77,6 +76,7 @@ const PatientProfile = () => {
         navigate('/login');
         console.log('loged out successfully!')
     }
+    const [patientId, getPatientId] = useState(0);
     const [profile, setProfile] = useState({
         id: '',
         name: '',
@@ -86,6 +86,20 @@ const PatientProfile = () => {
         loading: true,
         err: []
     })
+    const userToken = getAuthenticatedUser();
+    const refreshToken = userToken.refreshToken;
+    // console.log(refreshToken);
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+        .then((response) => {
+            getPatientId(response.data.id);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+    
     useEffect(() => {
         setProfile({...profile,loading:true})
         axios
@@ -110,7 +124,7 @@ const PatientProfile = () => {
                         <Box {...getRootProps()}>
                             <input {...getInputProps()} />
                             <div className='user-photo'>
-                                <img src={profile.userPhoto} alt="userPhoto" />
+                                <img src={saboha2} alt="userPhoto" />
                                 <div className="camera">
                                     {camera}
                                 </div>
@@ -191,7 +205,6 @@ const PatientProfile = () => {
                                 
                             </Box>
                     }
-
                     {
                         openRoute===2 && 
                             <div>
@@ -215,111 +228,6 @@ const PatientProfile = () => {
                                                         </Stack>
                                                     </Stack>
                                                     <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='nonfractured'>non fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='nonfractured'>non fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='fractured'>fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='nonfractured'>non fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='fractured'>fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='fractured'>fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
-                                                    <Stack direction='column' >
-                                                        <Box sx={{display:'flex',justifyContent:"flex-end",fontSize:'13px',color:'gray'}}>25/3/2024 [10:00 AM]</Box>
-                                                        <Stack spacing={3} direction='row' sx={{display:"flex",justifyContent:{xs:'space-between',sm:'space-between',md:'flex-start',lg:'flex-start',xl:'flex-start'},alignItems:'baseline'}}>
-                                                            <Box className="history-result">
-                                                                <p> Result : <span className='nonfractured'>non fractured</span></p>
-                                                            </Box>
-                                                            <Box>
-                                                                <Button  onClick={() => openImageInNewTab(xray)}>
-                                                                    <FolderIcon /> 
-                                                                    <Box sx={{paddingLeft:'5px',display:{xs:'none',sm:'none',md:'block',lg:'block',xl:'block'}}}>attached xray</Box>
-                                                                </Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Stack>
-                                                    <Divider />
                                                 </Stack>
                                             </Box>      
                                         </Grid>
@@ -330,7 +238,6 @@ const PatientProfile = () => {
                                 }
                             </div>
                     }
-
                     {
                         openRoute===3 &&
                             <div>
@@ -365,190 +272,8 @@ const PatientProfile = () => {
                                                         </Box>
                                                     </Stack>
                                                 </Grid>
-
                                             </Stack>
                                             <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-                                            <Stack spacing={2} direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} className='reserved-app' sx={{ display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{display:'flex', justifyContent:'space-evenly',width:'100%'}}>
-                                                        <Box>
-                                                            <Button  size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px'}}>
-                                                                    attached xray
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button  size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon /> 
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
-                                                                </Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Grid>
-
-                                            </Stack>
-                                            <Divider />
-
                                         </Box> 
                                     </Grid>
                                     :
@@ -558,10 +283,8 @@ const PatientProfile = () => {
                                 }
                             </div>
                     }
-
             </Grid>
         </Grid>
     );
 };
-
 export default PatientProfile;
