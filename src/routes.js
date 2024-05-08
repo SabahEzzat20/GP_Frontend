@@ -31,18 +31,18 @@ import Footer from "./shared/Footer/Footer.jsx"
 
 export const routes = createBrowserRouter([{
         path: "/admin",
-        element: < Admin / > ,
+        element: <Admin /> ,
         children: [{
                 path: "/admin/viewPatients",
-                element: < ViewPatients / > ,
+                element: <ViewPatients /> ,
             },
             {
                 path: "/admin/viewDoctors",
-                element: < ViewDoctors / > ,
+                element: <ViewDoctors /> ,
             },
             {
                 path: "/admin/calendar",
-                element: < FullCalender / > ,
+                element: <FullCalender /> ,
             }
         ],
     },
@@ -61,54 +61,54 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/patient",
-        element: < Patient / > ,
+        element: <Patient /> ,
         children: [{
                 path: "/patient/doctors-preview",
-                element: < DoctorsPreview / >
+                element: <DoctorsPreview />
             },
             {
                 path: "/patient/homepage",
-                element: < HomePage / >
+                element: <HomePage />
             },
             {
                 path: "/patient/services",
-                element: < Services / > ,
+                element: <Services /> ,
             }, {
                 path: "/patient/about",
-                element: < About / > ,
+                element: <About /> ,
             },
             {
                 path: "/patient/ExperienceDoctors",
-                element: < ExperienceDoctors / > ,
+                element: <ExperienceDoctors /> ,
             },
             {
                 path: "/patient/guarantee",
-                element: < Guarantee / > ,
+                element: <Guarantee /> ,
             },
             {
                 path: "/patient/uploadXRay",
-                element: < DragDrop / > ,
+                element: <DragDrop /> ,
             },
             {
                 path: "/patient/bigForm",
-                element: < BigForm / > ,
+                element: <BigForm /> ,
             }
         ],
     },
     {
         path: "/login",
-        element: < LoginForm / > ,
+        element: <LoginForm /> ,
     },
     {
         path: "/resetpassword",
-        element: < ResetPassword / > ,
+        element: <ResetPassword /> ,
     },
     {
         path: "/register",
-        element: < Register / > ,
+        element: <Register /> ,
     },
     {
-        path: "/patientprofile",
+        path: "/patientprofile/:patientId",
         element: <PatientProfile/> ,
     },
     {
@@ -117,7 +117,7 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "*",
-        element: < NotFoundPage / >
+        element: <NotFoundPage />
     }
 
 ]);

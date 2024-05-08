@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "./BigForm.scss";
 import Stack from '@mui/material/Stack'
-import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Input from '@mui/joy/Input';
 import { MdOutlineAlternateEmail } from "react-icons/md";
@@ -11,24 +10,18 @@ import { HiPhone } from "react-icons/hi2";
 import { FaChild } from "react-icons/fa6";
 import { FaWeightScale } from "react-icons/fa6";
 import { GiBodyHeight } from "react-icons/gi";
-import { IoWomanSharp } from "react-icons/io5";
 import { IoManSharp } from "react-icons/io5";
 import Checkbox from '@mui/joy/Checkbox';
-import { IoWomanOutline } from "react-icons/io5";
 import { IoWoman } from "react-icons/io5";
-import { IoMdMan } from "react-icons/io";
 import Avatar from '@mui/joy/Avatar';
 import sabah from '../images/saboha.jpeg';
 import {getAuthenticatedUser} from '../Helper/Storage';
-import { useParams } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Box  from "@mui/material/Box";
 import { IoIosArrowBack } from "react-icons/io";
 
 const BigForm = () => {
-  // const userToken = useParams();
-  
   const [patientData, setPatientData] = useState({
     userId: '',
     userName: '',
@@ -57,8 +50,7 @@ const BigForm = () => {
 
     setOpen(false);
   };
-  const userToken = getAuthenticatedUser();
-  const refreshToken = userToken.refreshToken;
+  const refreshToken = getAuthenticatedUser().refreshToken
   // console.log(refreshToken);
   useEffect(() => {
     axios
@@ -70,6 +62,7 @@ const BigForm = () => {
             console.log(error);
         });
     }, []);
+    console.log(patientData)
   const addPatient = (e) => {
       // e.preventDefault();
       setPatientData({ ...patientData, loading: true, err: [] })
@@ -186,7 +179,7 @@ const BigForm = () => {
             startDecorator={<FaChild />} 
             variant="plain" 
             color="default" 
-            type='date'
+            type='text'
             value={patientData.birthDate}
             onChange={(e)=>setPatientData({...patientData,birthDate:e.target.value})}
             />

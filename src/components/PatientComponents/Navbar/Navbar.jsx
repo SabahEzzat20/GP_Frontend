@@ -11,6 +11,20 @@ const sabah = require('../../../images/saboha.jpeg');
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   // const patientId = useParams();
+  const userToken = getAuthenticatedUser();
+    const refreshToken = userToken.refreshToken;
+  // console.log(refreshToken);
+  const [patientId, getPatientId] = useState(0);
+  useEffect(() => {
+      axios
+      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+      .then((response) => {
+          getPatientId(response.data.id);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }, []);
   
   return (
     <nav>
@@ -35,7 +49,7 @@ const Navbar = () => {
           <NavLink to="/login">login</NavLink>
         </li>
       <div>
-        <Link className='profile-menu-btn' to='/patientProfile'>
+        <Link className='profile-menu-btn' to={`/patientProfile/${patientId}`}>
             <Avatar alt="Sabah hassan" src={sabah} />
         </Link>
       </div>

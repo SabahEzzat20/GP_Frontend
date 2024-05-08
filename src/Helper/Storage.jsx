@@ -1,23 +1,5 @@
-// export const setAuthenticatedUser = (data) => {
-//     // save object to the local storage
-//     // Stringify OBJECT TO TEXT
-//     localStorage.setItem("user", JSON.stringify(data));
-// };
-
-// export const getAuthenticatedUser = (data) => {
-//     if (localStorage.getItem("user")) {
-//     return JSON.parse(localStorage.getItem("user"));
-//     }
-// };
-
-// export const removeAuthenticatedUser = () => {
-//     if (localStorage.getItem("user"))
-//         localStorage.removeItem("user");
-// };
-
-
 export const setAuthenticatedUser = (data) => {
-    if (data.accessToken && data.refreshToken) {
+    if (data.accessToken && data.refreshToken ) {
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
     }
@@ -33,3 +15,13 @@ export const removeAuthenticatedUser = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
 };
+
+
+
+
+export const userData = (data) => {
+    if (data.role && data.id  ) {
+        localStorage.setItem("accessToken", data.role);
+        localStorage.setItem("refreshToken", data.id);
+    }
+}
