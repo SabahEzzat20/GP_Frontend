@@ -1,0 +1,46 @@
+@import '../../../Sass/colors';
+.modal-button {
+    background-color: $second_basic-color;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    // width: 114px;
+    // height: 40px;
+    font-size: 15px;
+}
+
+.modalHeader {
+    border: none;
+    outline: none;
+}
+
+.modalFooter {
+    border: none;
+    outline: none;
+    .add-doc-btn,
+    .cancel-btn {
+        border: none;
+        padding: 10px;
+        width: 120px;
+        border-radius: 5px;
+        color: white;
+    }
+    .cancel-btn {
+        background-color: $text-dark-color;
+    }
+    .add-doc-btn {
+        background-color: $second_basic-color;
+    }
+}
+
+.mb-3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.mb-3 .textField {
+    width: 70%
+}

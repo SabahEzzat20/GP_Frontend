@@ -28,6 +28,7 @@ import About from "./components/PatientComponents/About/About.jsx";
 import ExperienceDoctors from "./components/PatientComponents/ExperienceDoctors/ExperienceDoctors.jsx";
 
 import Footer from "./shared/Footer/Footer.jsx"
+import ViewDetails from "./components/AdminComponents/ViewDoctors/ViewDetails.jsx";
 
 export const routes = createBrowserRouter([{
         path: "/admin",
@@ -74,10 +75,11 @@ export const routes = createBrowserRouter([{
                 path: "/patient/services",
                 element: <Services /> ,
             }, {
-                path: "/patient/about",
-                element: <About /> ,
-            },
-            {
+                element: < About / > ,
+            }, {
+                path: "/patient/details",
+                element: < ViewDetails / > ,
+            }, {
                 path: "/patient/ExperienceDoctors",
                 element: <ExperienceDoctors /> ,
             },
@@ -113,7 +115,7 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/contact",
-        element: <> <ContactUs/> <Footer/> </> ,
+        element: <>< ContactUs / > < Footer / > </> ,
     },
     {
         path: "*",

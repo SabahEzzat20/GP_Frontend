@@ -2,14 +2,14 @@ import React, { useState,useEffect } from "react";
 import './ViewDoctors.scss'
 import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "../AddDoctorModal/AddDoctorModal";
-import { SlOptions } from "react-icons/sl";
 import { FaPen } from "react-icons/fa";
 import AssignAppointmentToDoctor from "../AssignAppointmentToDoctor/AssignAppointmentToDoctor";
-// import Doctors from "../../../DummyData/Doctors.json"
+import { MdDelete } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
+import ViewDetails from "./ViewDetails";
 const ViewDoctors = () => {
   const [doctors, setDoctors] = useState({
     loading: true,
@@ -44,6 +44,15 @@ const ViewDoctors = () => {
         })
   }, [doctors.reload+1]); 
 
+  const [viewDoctorId, setViewDoctorId] = useState(null);
+
+  const openViewDetails = (doctorId) => {
+    setViewDoctorId(doctorId);
+  };
+
+  const closeViewDetails = () => {
+    setViewDoctorId(null);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
@@ -143,25 +152,32 @@ const ViewDoctors = () => {
               <th>doctor name</th>
               <th>e-mail</th>
               <th>qualification</th>
-              <th></th>
+              <th>Delete</th>
+            
             </tr>
           </thead>
+          {/* {viewDoctorId && (
+        <ViewDetails doctorId={viewDoctorId} closeViewDetails={closeViewDetails} />
+      )} */}
           <tbody>
             {records.map((doctor,i) => (
               <tr key={i}>
-                {/* <td>{doctor.id}</td> */}
                 <td>{doctor.doctorName}</td>
                 <td>{doctor.doctorEmail}</td>
                 <td>{doctor.description}</td>
-                <td>
-                  <button className="table-options-button" onClick={() => DeleteDoctor(doctor.userId)}>
-                    <SlOptions />
-                        <div className="options" style={{ display: optionsVisibility[doctor.id] ? 'block' : 'none' }} key={i}>
-                          <button>view</button>
-                          <button>delete</button>
-                        </div>
-                  </button>
+                    <td>
+                    <div className="actions">
+                    <div className="icon" onClick={() => DeleteDoctor(doctor.userId)}>
+                    <MdDelete />
+
+                    </div>
+                  </div>
                 </td>
+                <td>
+                  <div className="actions">
+                    <ViewDetails name={doctor.doctorName} email={doctor.doctorEmail} description={doctor.description}/>
+                    </div>
+                    </td>
               </tr>
             ))}
           </tbody>
@@ -188,6 +204,7 @@ const ViewDoctors = () => {
           </ul>
         </nav>
       </div>
+    
     </div>
   );
 };
