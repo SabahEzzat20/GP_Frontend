@@ -53,7 +53,7 @@ const ViewPatients = () => {
   }, [patients.reload+1]);
 
   // const [searchTerm, setSearchTerm] = useState("");
-  // const [optionsVisibility, setOptionsVisibility] = useState({});
+   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
