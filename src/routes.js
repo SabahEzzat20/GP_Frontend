@@ -24,7 +24,7 @@ import PatientReservedAppointment from "./components/PatientComponents/PatientRe
 import NotFoundPage from "./shared/NotFoundPage/NotFoundPage.jsx";
 
 import Guarantee from "./components/PatientComponents/Guarantee/Guarantee.jsx";
-import About from "./components/PatientComponents/About/About.jsx";
+
 import ExperienceDoctors from "./components/PatientComponents/ExperienceDoctors/ExperienceDoctors.jsx";
 
 import Footer from "./shared/Footer/Footer.jsx"
@@ -49,10 +49,10 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/doctor",
-        element: < Doctor / > ,
+        element: <Doctor /> ,
         children: [{
                 path: "viewDoctorAppointments/doctor/",
-                element: < ViewDoctorAppointments / >
+                element: <ViewDoctorAppointments />
             },
             {
                 path: "/doctor/viewDoctorSchedule",
@@ -63,51 +63,50 @@ export const routes = createBrowserRouter([{
     {
         path: "/patient",
         element: <Patient /> ,
-        children: [{
+        children: [
+            {
                 path: "/patient/doctors-preview",
-                element: <DoctorsPreview />
+                element: < DoctorsPreview / >
             },
             {
                 path: "/patient/homepage",
-                element: <HomePage />
+                element: < HomePage / >
             },
             {
                 path: "/patient/services",
-                element: <Services /> ,
-            }, {
-                element: < About / > ,
-            }, {
+                element: < Services / > ,
+            },{
                 path: "/patient/details",
                 element: < ViewDetails / > ,
             }, {
                 path: "/patient/ExperienceDoctors",
-                element: <ExperienceDoctors /> ,
+                element: < ExperienceDoctors / > ,
             },
             {
                 path: "/patient/guarantee",
-                element: <Guarantee /> ,
+                element: < Guarantee / > ,
             },
             {
                 path: "/patient/uploadXRay",
-                element: <DragDrop /> ,
+                element: < DragDrop / > ,
             },
             {
                 path: "/patient/bigForm",
-                element: <BigForm /> ,
+                element: < BigForm / > ,
             }
         ],
     },
     {
         path: "/login",
-        element: <LoginForm /> ,
+        element: < LoginForm / > ,
     },
     {
         path: "/resetpassword",
-        element: <ResetPassword /> ,
+        element: < ResetPassword / > ,
     },
     {
         path: "/register",
-        element: <Register /> ,
+        element: < Register / > ,
     },
     {
         path: "/patientprofile",
@@ -115,11 +114,11 @@ export const routes = createBrowserRouter([{
     },
     {
         path: "/contact",
-        element: <>< ContactUs / > < Footer / > </> ,
+        element: <> < ContactUs / > < Footer / > </> ,
     },
     {
         path: "*",
-        element: <NotFoundPage />
+        element: < NotFoundPage / >
     }
 
 ]);

@@ -51,30 +51,22 @@ nav ul li a {
 nav .menu {
     display: none;
     position: absolute;
-    top: 0.75rem;
+    top: 0.40rem;
     right: 0.5rem;
-    flex-direction: column;
-    background-color: #C54B43;
-    justify-content: space-around;
     width: 2.25rem;
     height: 2rem;
+    font-size: 50px;
 }
 
-nav .menu span {
-    height: 0.4rem;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 0.2rem;
-}
 
-.profile-menu-btn {
+/* .profile-menu-btn {
     border: none;
     display: flex;
     position: relative;
     right: 0.1rem;
     background-color: transparent;
     align-items: center;
-}
+} */
 
 @media (max-width: 800px) {
     nav .menu {
@@ -92,7 +84,8 @@ nav .menu span {
         display: none;
         flex-direction: column;
         width: 100%;
-        margin-bottom: 0.7rem;
+        margin-bottom: 1rem;
+        height: 800px;
     }
     nav ul.open {
         display: flex;
@@ -106,6 +99,6 @@ nav .menu span {
         justify-content: center;
     }
     nav ul li a {
-        margin: 0.7rem 0.5rem;
+        margin: 2.9rem 0.5rem;
     }
 }

@@ -11,17 +11,21 @@ import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
 import ViewDetails from "./ViewDetails";
 const ViewDoctors = () => {
+  const [open, setOpen] = React.useState(false);
+  const showMessage = () => {
+    setOpen(true);
+  };
   const [doctors, setDoctors] = useState({
     loading: true,
     result: [
       {
-        userId:'',
+        id:'',
         doctorName: '',
         doctorEmail: '',
         description: ''
       }
     ],
-    err: null,
+    err: '',
     reload: 0,
   })
   const userToken = getAuthenticatedUser();
@@ -35,7 +39,7 @@ const ViewDoctors = () => {
         },
       })
       .then((resp) => {
-          console.log(resp.data);
+         
           setDoctors({...doctors, result: resp.data , loading: false , err: ''})
           
         })
@@ -44,15 +48,15 @@ const ViewDoctors = () => {
         })
   }, [doctors.reload+1]); 
 
-  const [viewDoctorId, setViewDoctorId] = useState(null);
+  // const [viewDoctorId, setViewDoctorId] = useState(null);
 
-  const openViewDetails = (doctorId) => {
-    setViewDoctorId(doctorId);
-  };
+  // const openViewDetails = (doctorId) => {
+  //   setViewDoctorId(doctorId);
+  // };
 
-  const closeViewDetails = () => {
-    setViewDoctorId(null);
-  };
+  // const closeViewDetails = () => {
+  //   setViewDoctorId(null);
+  // };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
@@ -95,10 +99,9 @@ const ViewDoctors = () => {
     setSearchTerm(event.target.value);
   };
 
-  const DeleteDoctor = (doctorId) => {
-    console.log('doctor id '+ doctorId);
-    axios
-      .delete(`http://localhost:8070/admin/deleteDoctor/${doctorId}`,
+  const DeleteDoctor =  (doctorId) => {
+    
+   axios.delete(`http://localhost:8070/admin/deleteDoctor/${doctorId}`,
         {
           headers: {
             'Authorization': `Bearer ${refreshToken}`
@@ -106,21 +109,22 @@ const ViewDoctors = () => {
         }
       )
       .then((response) => {
-        console.log('response'+response);
         setDoctors({ ...doctors,reload: doctors.reload + 1});
+        showMessage();
+       
       })
       .catch((err) => {
-        console.log('error of delete function: ' + err);
         setDoctors({ ...doctors, loading: false, err: 'there is something wrong' });
+   
       });
 
 }
 
-  const filteredDoctors = records.filter((doctor) => {
+  // const filteredDoctors = records.filter((doctor) => {
 
-    const nameWithoutDr = doctor && doctor.name ? doctor.name.replace("Dr. ", "") : "";
-    return nameWithoutDr.toLowerCase().startsWith(searchTerm.toLowerCase());
-  });
+  //   const nameWithoutDr = doctor && doctor.name ? doctor.name.replace("Dr. ", "") : "";
+  //   return nameWithoutDr.toLowerCase().startsWith(searchTerm.toLowerCase());
+  // });
 
   return (
     <div className="view-doctors">
@@ -129,7 +133,7 @@ const ViewDoctors = () => {
         <div className="doctor-icon">
           <FaPen />
         </div>
-        <div className="no-of-doctors">{doctors.length} doctors</div>
+        <div className="no-of-doctors">{doctors.result.length}  doctors</div>
       </div>
       <div className="actions-container">
         <AddDoctorModal />
@@ -156,9 +160,6 @@ const ViewDoctors = () => {
             
             </tr>
           </thead>
-          {/* {viewDoctorId && (
-        <ViewDetails doctorId={viewDoctorId} closeViewDetails={closeViewDetails} />
-      )} */}
           <tbody>
             {records.map((doctor,i) => (
               <tr key={i}>
@@ -167,9 +168,8 @@ const ViewDoctors = () => {
                 <td>{doctor.description}</td>
                     <td>
                     <div className="actions">
-                    <div className="icon" onClick={() => DeleteDoctor(doctor.userId)}>
+                    <div className="icon" onClick={(e) => DeleteDoctor(doctor.id)}>
                     <MdDelete />
-
                     </div>
                   </div>
                 </td>
