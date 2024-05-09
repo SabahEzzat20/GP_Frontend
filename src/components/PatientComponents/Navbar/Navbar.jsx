@@ -4,13 +4,50 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
+import axios from "axios";
+import {getAuthenticatedUser} from '../../../Helper/Storage'
 
 const sabah = require('../../../images/saboha.jpeg');
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+
   // const patientId = useParams();
-  
+  const userToken = getAuthenticatedUser();
+    const refreshToken = userToken.refreshToken;
+  // console.log(refreshToken);
+  const [patientId, getPatientId] = useState(0);
+  useEffect(() => {
+      axios
+      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+      .then((response) => {
+          getPatientId(response.data.id);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }, []);
+
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
@@ -30,11 +67,16 @@ const Navbar = () => {
         <li>
           <NavLink to="/login">login</NavLink>
         </li>
-      <div>
-        <Link className='profile-menu-btn' to='/patientProfile'>
-            <Avatar alt="Sabah hassan" src={sabah} />
-        </Link>
-      </div>
+
+        <li>
+          <NavLink to='/patientProfile'>
+            {isSmallScreen ? (
+              <span>Profile</span>
+            ) : (
+              <Avatar alt="Sabah hassan" src={sabah} />
+            )}
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

@@ -75,9 +75,6 @@ export const routes = createBrowserRouter([{
                 path: "/patient/services",
                 element: < Services / > ,
             }, {
-                path: "/patient/about",
-                element: < About / > ,
-            }, , {
                 path: "/patient/details",
                 element: < ViewDetails / > ,
             }, {
