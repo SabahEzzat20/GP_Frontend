@@ -48,9 +48,10 @@ const ResetPassword = () => {
                         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                             {
                                 provideEmail !== 1 ?
-                                    ( <button className="back-arrow" onClick={handleBacking}>
+                                    (
+                                        <button className="back-arrow" onClick={handleBacking}>
                                         <IoIosArrowBack />
-                                    </button>
+                                        </button>
                                     ):''
                             }
                         </Grid>
