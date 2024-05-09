@@ -1,11 +1,10 @@
 import React, { useState , useEffect} from "react";
 import './ViewPatients.scss'
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import Patients from "../../../DummyData/Patients.json"
 import axios from 'axios';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import Snackbar from '@mui/material/Snackbar';
@@ -53,8 +52,8 @@ const ViewPatients = () => {
       });
   }, [patients.reload+1]);
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [optionsVisibility, setOptionsVisibility] = useState({});
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
@@ -91,9 +90,9 @@ const ViewPatients = () => {
       return newVisibility;
     });
   };
-  const handleSearchInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  // const handleSearchInputChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  // };
   const DeletePatient = (patientId) => {
       console.log('patient id '+patientId);
       axios
@@ -115,10 +114,6 @@ const ViewPatients = () => {
         });
 
   }
-  // const filteredPatients = records.filter((patient) => {
-  //   // const nameWithoutDr = patient.name.replace("Dr. ", "");
-  //   return patient.name.toLowerCase().startsWith(searchTerm.toLowerCase());
-  // });
   console.log('records'+records);
   return (
     <div className="view-doctors">
@@ -129,22 +124,10 @@ const ViewPatients = () => {
         </div>
         <div className="no-of-doctors">{patients.result.length} patients</div>
       </div>
-      {/* <div className="actions-container">
-        <div className="search-bar">
-          <FaSearch />
-          <input
-            type="text"
-            placeholder="Search patient..."
-            value={searchTerm}
-            onChange={handleSearchInputChange}
-          />
-        </div>
-      </div> */}
       <div className="table-container">
         <table className="doctor-table">
           <thead>
             <tr>
-              {/* <th>id</th> */}
               <th>patient name</th>
               <th>e-mail</th>
               <th></th>

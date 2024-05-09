@@ -1,5 +1,5 @@
 import React from 'react';
-import './Guarantee.scss'; // Import the corresponding SASS file
+import './Guarantee.scss';
 
 const Guarantee = () => {
     return (

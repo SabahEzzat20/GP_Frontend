@@ -3,6 +3,8 @@ import './HomePage.css';
 import { FaCheck } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import ExperienceDoctors from "../ExperienceDoctors/ExperienceDoctors";
+import Guarantee from "../Guarantee/Guarantee";
 const doctor = require('../../../images/header-bg.png');
 
 function HomePage(){
@@ -19,7 +21,6 @@ function HomePage(){
             receive quick medical services can significantly impact the outcome
             of a situation.
           </p>
-          {/* <button className="getServices">Get Services</button> */}
           <Link className="getServices" to={'/patient/services'}>Get Services</Link>
         </div>
         <div className="image">
@@ -47,6 +48,8 @@ function HomePage(){
         </div>
       </header>
         </div>
+        <ExperienceDoctors />
+        <Guarantee />
         </>
     )
 
