@@ -75,6 +75,9 @@ export const routes = createBrowserRouter([{
                 path: "/patient/services",
                 element: < Services / > ,
             }, {
+                path: "/patient/about",
+                element: < About / > ,
+            }, , {
                 path: "/patient/details",
                 element: < ViewDetails / > ,
             }, {
@@ -108,21 +111,8 @@ export const routes = createBrowserRouter([{
         element: < Register / > ,
     },
     {
-        path: "/patientprofile",
+        path: "/patientprofile/:patientId",
         element: < PatientProfile / > ,
-        children: [{
-                path: "/patientprofile/Editprofile/:patientId",
-                element: < EditPatientProfile / > ,
-            },
-            {
-                path: "/patientprofile/patient-history",
-                element: < PatientHistory / > ,
-            },
-            {
-                path: "/patientprofile/patient-reserved-appointment",
-                element: < PatientReservedAppointment / > ,
-            },
-        ]
     },
     {
         path: "/contact",

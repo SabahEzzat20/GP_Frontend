@@ -5,7 +5,8 @@ import './AddDoctorModal.scss';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import { RiUserAddFill } from "react-icons/ri";
 import axios from 'axios';
-
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 export const AddDoctorModal = () => {
   const initialDoctorData = {
     doctorName: '',
@@ -15,7 +16,19 @@ export const AddDoctorModal = () => {
     loading: true,
     err: [],
   };
+  const [open, setOpen] = React.useState(false);
 
+  const showMessage = () => {
+    setOpen(true);
+  };
+
+  const handleMsgClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const [doctorData, setDoctorData] = useState(initialDoctorData);
   const [show, setShow] = useState(false);
 
@@ -38,6 +51,13 @@ export const AddDoctorModal = () => {
           'Authorization': `Bearer ${refreshToken}`
         }
       })
+      .then((response) => {
+        showMessage();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+      
       // console.log('Doctor added successfully:', response.data);
       setDoctorData(initialDoctorData);
       setShow(false);
@@ -105,6 +125,16 @@ export const AddDoctorModal = () => {
           <button onClick={handleClose} className='cancel-btn'> cancel </button>
         </Modal.Footer>
       </Modal>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleMsgClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Doctor added successfully!
+        </Alert>
+      </Snackbar>
     </>
   );
 };

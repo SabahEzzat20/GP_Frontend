@@ -6,16 +6,30 @@ import ResetPassword from "../ResetPassword/ResetPassword";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getAuthenticatedUser, setAuthenticatedUser } from "../../Helper/Storage";
-
+import Snackbar from '@mui/material/Snackbar';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 const LoginForm = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState('');
   const [login, setLogin] = useState({
     email: '',
     password: '',
-    err: [],
     loading: false,
   })
+  const [open, setOpen] = React.useState(false);
+
+  const showMessage = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const LoginFunction = (e) => {
     e.preventDefault();
     setLogin({ ...login, loading: true})
@@ -24,15 +38,14 @@ const LoginForm = () => {
       password: login.password
     })
       .then(resp => {
-        // console.log('logged in successfully!')
-        // console.log('response data : ', resp.data)
         setLogin({ ...login, loading: false })
         setAuthenticatedUser(resp.data)
         Routing();
       })
       .catch(error => {
         console.error('response error : ',error)
-        setLogin({ ...login, loading: false, err: 'email or password incorrect' })
+        setLogin({ ...login, loading: false})
+        showMessage();
     })
     console.log(login);
   }
@@ -90,19 +103,29 @@ const LoginForm = () => {
               <FaEyeSlash />
             </span>
           </div>
-          <div>{login.err}</div>
+          {/* <div>{login.err}</div> */}
           <div className="action__btn">
-            <div className="remember__me">
+            {/* <div className="remember__me">
               <input type="checkbox" id="check" />
               <label htmlFor="check">Remember me</label>
-            </div>
+            </div> */}
             <ResetPassword />
           </div>
-          <button className="login__btn" type="submit">Login</button>
+          <button className="login__btn" type="submit">{login.loading ? <CircularProgress size={40} /> : 'login'}</button>
           <div className="register">
             Don't have an account? <Link to="/register">Register</Link>
           </div>
         </form>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Email or Password incorrect!
+        </Alert>
+      </Snackbar>
       </div>
   );
 };

@@ -8,7 +8,6 @@ const Patient = () => {
         <div className='patient'>
             <Navbar />
             <Outlet />
-            {/* <DragDrop /> */}
             <Footer />
         </div>
     );

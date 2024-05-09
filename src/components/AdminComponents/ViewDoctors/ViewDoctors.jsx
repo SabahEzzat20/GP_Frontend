@@ -46,7 +46,7 @@ const ViewDoctors = () => {
         .catch((err) => {
           setDoctors({...doctors, err:'something went wrong' , loading: false})
         })
-  }, [doctors.loading]); 
+  }, [doctors.reload+1]); 
 
   // const [viewDoctorId, setViewDoctorId] = useState(null);
 
