@@ -13,18 +13,18 @@ const Navbar = () => {
   // const patientId = useParams();
   const userToken = getAuthenticatedUser();
     const refreshToken = userToken.refreshToken;
-  // console.log(refreshToken);
-  const [patientId, getPatientId] = useState(0);
-  useEffect(() => {
-      axios
-      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-      .then((response) => {
-          getPatientId(response.data.id);
-      })
-      .catch((error) => {
-          console.log(error);
-      });
-  }, []);
+  // // console.log(refreshToken);
+  // const [patientId, getPatientId] = useState(0);
+  // useEffect(() => {
+  //     axios
+  //     .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+  //     .then((response) => {
+  //         getPatientId(response.data.id);
+  //     })
+  //     .catch((error) => {
+  //         console.log(error);
+  //     });
+  // }, []);
   
   return (
     <nav>
@@ -42,17 +42,23 @@ const Navbar = () => {
         <li>
           <NavLink to="/patient/uploadXRay">Upload X-ray</NavLink>
         </li>
-        <li>
-          <NavLink to="/register">SignUp</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">login</NavLink>
-        </li>
-      <div>
-        <Link className='profile-menu-btn' to={`/patientProfile/${patientId}`}>
-            <Avatar alt="Sabah hassan" src={sabah} />
-        </Link>
-      </div>
+        {
+          userToken ?
+            <div>
+              <Link className='profile-menu-btn' to={`/patientProfile`}>
+                  <Avatar alt="Sabah hassan" src={sabah} />
+              </Link>
+            </div>
+            :
+            <>
+              <li>
+                <NavLink to="/register">signup</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">login</NavLink>
+              </li>
+            </>
+        }
       </ul>
     </nav>
   );

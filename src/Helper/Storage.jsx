@@ -19,9 +19,9 @@ export const removeAuthenticatedUser = () => {
 
 
 
-export const userData = (data) => {
-    if (data.role && data.id  ) {
-        localStorage.setItem("accessToken", data.role);
-        localStorage.setItem("refreshToken", data.id);
-    }
-}
+// export const userData = (data) => {
+//     if (data.role && data.id  ) {
+//         localStorage.setItem("accessToken", data.role);
+//         localStorage.setItem("refreshToken", data.id);
+//     }
+// }

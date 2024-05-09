@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import './VerifyingCode.scss'
 const VerifyingCode = () => {
     return (
-        <div>
+    <div>
         <div className="provide-pass-form">
                 <div className='verify-code'>
                 <p className='forgot-pass'>Forgot <br /> your password?</p>

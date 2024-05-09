@@ -110,7 +110,7 @@ export const routes = createBrowserRouter([{
         element: <Register /> ,
     },
     {
-        path: "/patientprofile/:patientId",
+        path: "/patientprofile",
         element: <PatientProfile/> ,
     },
     {

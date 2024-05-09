@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, setAuthenticatedUser } from "../../Helper/Storage";
+import CircularProgress from '@mui/material/CircularProgress';
+
 const Register = () => {
   const navigate = useNavigate();
   const [signup, setSignup] = useState({
@@ -69,14 +71,13 @@ const Register = () => {
             <FaEyeSlash />
           </span>
         </div>
-        <div className="remember-forgot">
+        {/* <div className="remember-forgot">
           <label>
             <input type="checkbox" />    I read and agree to Terms & Conditions
           </label>
-          
-        </div>
+        </div> */}
         <div>{signup.err}</div>
-        <button className="register__btn">Register</button>
+        <button className="register__btn">{signup.loading ? <CircularProgress size={40} /> : 'register'}</button>
         <div className="register">
           <p>
             Already have an account? <Link to="/login">Sign in</Link>

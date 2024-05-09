@@ -28,15 +28,32 @@ import { removeAuthenticatedUser ,getAuthenticatedUser} from '../../../Helper/St
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
 const PatientProfile = () => {
     const navigate = useNavigate();
-    const patientId = useParams();
+    // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const { getRootProps, getInputProps } = useDropzone({  }); 
     const [image, setImage] = useState(saboha2);
     const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const camera = <FiCamera />;
+    const [open, setOpen] = React.useState(false);
+
+    const showMessage = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen(false);
+    };
     const onDrop = useCallback((acceptedFiles) => {
         const file = acceptedFiles[0];
         const reader = new FileReader();
@@ -78,42 +95,55 @@ const PatientProfile = () => {
         navigate('/login');
         console.log('loged out successfully!')
     }
+    // const [patientId, setPatientId] = useState('');
     const [profile, setProfile] = useState({
         id: '',
         name: '',
         userPhoto: null,
         email: '',
-        role: '',
         loading: true,
         err: []
     })
-    // const userToken = getAuthenticatedUser();
-    // const refreshToken = userToken.refreshToken;
-    // // console.log(refreshToken);
-    // useEffect(() => {
-    //     axios
-    //     .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-    //     .then((response) => {
-    //         getPatientId(response.data.id);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     });
-    // }, []);
-    
-    useEffect(() => {
+    const [userDataPreview, setUserDataPreview] = useState({
+        name: '',
+        email: ''
+    });
+    const token = getAuthenticatedUser();
+    const refreshToken = token.refreshToken;
+    const UpdateProfile = () => {
         setProfile({ ...profile, loading: true })
         axios
-            .get(`http://localhost:8070/user/viewUserProfile/${patientId}`)
+            .put('http://localhost:8070/user/updateUserProfile', {
+                id: profile.id,
+                name: profile.name,
+                email: profile.email
+        })
+        .then((response) => {
+            setProfile({ ...profile,loading: false });
+            setUserDataPreview({name:profile.name,email:profile.email});
+            showMessage();
+            setOpenEditProfile(false);
+            console.log('updated successfully!');
+        })
+        .catch((error) => {
+            console.log('update profile error: '+error);
+            setProfile({ ...profile, loading: false, err: [error] })
+        });
+    }
+    useEffect(() => {
+        // setProfile({ ...profile, loading: true })
+        axios
+            .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
             .then((response) => {
-                console.log(response.data)
-                setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email, userPhoto: response.data.userPhoto, role: response.data.role, loading: false });
+                setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
+                setUserDataPreview({name:profile.name,email:profile.email});
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log('view profile error: '+error);
-                setProfile({ ...profile, loading: false, err: [error] })
+                setProfile({ ...profile, loading: false, err: [error] });
             });
-        }, []);
+        }, [profile.loading]);
         return (
             <Grid container sx={{ display: 'flex' }} xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -132,8 +162,8 @@ const PatientProfile = () => {
                                 </div>
                             </Box>
                             <Stack direction='column' spacing={1} className="user-name" >
-                                <p>{profile.name}</p>
-                                <p>{profile.email}</p>
+                                <p>{userDataPreview.name}</p>
+                                <p>{userDataPreview.email}</p>
                             </Stack>
                         </Stack>
                         <Grid item className='logOUtBtn' md={3} lg={2} xl={2} sx={{ position: "fixed", bottom: '0', fontSize: '20px', width: '100%', display: { xs: 'none', lg: 'flex', xl: 'flex', sm: 'none', justifyContent: 'center', alignItems: 'end', paddingTop: 'auto', height: '70px' } }} >
@@ -176,29 +206,29 @@ const PatientProfile = () => {
                             <Stack direction='column' spacing={2} className="profile-options-stack" sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', padding: { xs: '50px', sm: '50px', md: '40px', lg: '50px', xl: '50px' }, paddingTop: { xs: '50px', sm: '50px' } }}>
                                 <Stack spacing={0.2} direction='column' sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
                                     <label className="contact-label">Name</label>
-                                    <Input value={profile.name} disabled={!openEditProfile} placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name" />
+                                    <Input value={profile.name} disabled={!openEditProfile} placeholder="Name" startDecorator={<FaUser />} variant="plain" color="neutral" type="text" name="user_name" onChange={(e)=>setProfile({...profile,name:e.target.value})}/>
                                 </Stack>
                                 <Stack spacing={0.2} direction='column' sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
                                     <label className="contact-label">Email</label>
-                                    <Input value={profile.email} disabled={!openEditProfile} placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email" />
+                                    <Input value={profile.email} disabled={!openEditProfile} placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" type="email" name="user_email" onChange={(e)=>setProfile({...profile,email:e.target.value})}/>
                                 </Stack>
                                 {
                                     openEditProfile &&
                                     <Box sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
-                                        <button onClick={handleOpenEditProfile} style={{ width: 'inherit' }}>Submit</button>
+                                        <button onClick={()=>UpdateProfile()} style={{ width: 'inherit' }}>{profile.loading ? <CircularProgress size={40} /> : 'confirm'}</button>
                                     </Box>
                                 }
                                 {
                                     !openEditProfile &&
                                     <>
                                         <Box sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
-                                            <button onClick={handleOpenEditProfile} style={{ width: 'inherit' }}>Edit profile</button>
+                                            <button onClick={handleOpenEditProfile} style={{ width: 'inherit' }}>edit profile</button>
                                         </Box>
                                         <Box sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
                                             <button className='change-pass' style={{ width: 'inherit' }}><ResetPassword /></button>
                                         </Box>
                                         <Box sx={{ display: { xl: 'none', lg: 'none', md: 'none', xs: 'block', sm: 'block' }, width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
-                                            <button className='change-pass' style={{ width: 'inherit' }}>logout</button>
+                                            <button className='change-pass' style={{ width: 'inherit' }} onClick={()=>LogoutFunction()}>logout</button>
                                         </Box>
                                     </>
                                 }
@@ -285,6 +315,16 @@ const PatientProfile = () => {
                         </div>
                     }
                 </Grid>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                    >
+                        Profile updated successfully!
+                    </Alert>
+                </Snackbar>
             </Grid>
         );
     };
