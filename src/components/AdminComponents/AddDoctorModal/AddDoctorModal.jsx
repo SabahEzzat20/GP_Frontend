@@ -91,7 +91,7 @@ export const AddDoctorModal = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 className="textField"
                 type="email"
@@ -110,7 +110,7 @@ export const AddDoctorModal = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-              <Form.Label>Qualification</Form.Label>
+              <Form.Label>Speciality</Form.Label>
               <Form.Control
                 className="textField"
                 type="text"

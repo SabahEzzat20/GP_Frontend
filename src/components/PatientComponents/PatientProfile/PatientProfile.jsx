@@ -8,16 +8,13 @@ import { TbLogout2 } from "react-icons/tb";
 import { FaHome } from "react-icons/fa";
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
-import Form from "react-bootstrap/Form";
-import { IoIosArrowRoundBack } from "react-icons/io";
 import ResetPassword from '../../../shared/ResetPassword/ResetPassword';
 import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
 import CancelIcon from '@mui/icons-material/Cancel';
 import xray from '../../../images/hand-255x300.jpg'
-import emptyPage from '../../../images/No data-cuate.png';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { MdOutlineAlternateEmail } from "react-icons/md";
@@ -27,14 +24,12 @@ import Empty from '../../../shared/Empty/Empty';
 import { removeAuthenticatedUser ,getAuthenticatedUser} from '../../../Helper/Storage';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 const PatientProfile = () => {
     const navigate = useNavigate();
-    // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const { getRootProps, getInputProps } = useDropzone({  }); 
@@ -95,7 +90,6 @@ const PatientProfile = () => {
         navigate('/login');
         console.log('loged out successfully!')
     }
-    // const [patientId, setPatientId] = useState('');
     const [profile, setProfile] = useState({
         id: '',
         name: '',
@@ -131,7 +125,6 @@ const PatientProfile = () => {
         });
     }
     useEffect(() => {
-        // setProfile({ ...profile, loading: true })
         axios
             .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
             .then((response) => {
@@ -181,8 +174,8 @@ const PatientProfile = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={12} md={9} lg={10} xl={10} sx={{ marginTop: { xs: '130px', sm: '130px', md: '0', lg: '0', xl: '0' } }}>
-                    <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' } }} className="breadcrumbs">
-                        <Breadcrumbs aria-label="breadcrumb">
+                    <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' }}} className="breadcrumbs">
+                        <Breadcrumbs aria-label="breadcrumb" sx={{paddingLeft:'20px'}}>
                             <Link to={'/patient/homepage'}>Home</Link>
                             <Typography color="text.primary">Profile</Typography>
                             <Typography color="text.primary">{currentRoute}</Typography>
@@ -322,7 +315,7 @@ const PatientProfile = () => {
                     variant="filled"
                     sx={{ width: '100%' }}
                     >
-                        Profile updated successfully!
+                        Your profile updated successfully!
                     </Alert>
                 </Snackbar>
             </Grid>

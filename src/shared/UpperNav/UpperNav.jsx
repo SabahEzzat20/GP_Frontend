@@ -63,9 +63,9 @@ const UpperNav = () => {
                     control={<MaterialUISwitch sx={{ m: 0 }} defaultChecked />}
                     // label="MUI switch"
                 /> */}
-                <div className='notification-icon'>
+                {/* <div className='notification-icon'>
                   <ReservationNotification />
-                </div>
+                </div> */}
                 <div className="doctor-profile">
                     <Profile />
                 </div>

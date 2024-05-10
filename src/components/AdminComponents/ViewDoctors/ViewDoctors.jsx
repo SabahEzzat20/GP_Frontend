@@ -39,7 +39,6 @@ const ViewDoctors = () => {
         },
       })
       .then((resp) => {
-         
           setDoctors({...doctors, result: resp.data , loading: false , err: ''})
           
         })
@@ -153,9 +152,9 @@ const ViewDoctors = () => {
           <thead>
             <tr>
               {/* <th>id</th> */}
-              <th>doctor name</th>
-              <th>e-mail</th>
-              <th>qualification</th>
+              <th>Doctor name</th>
+              <th>Email</th>
+              <th>Speciality</th>
               <th>Delete</th>
             
             </tr>

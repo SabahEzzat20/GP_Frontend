@@ -44,7 +44,7 @@ const ResetPassword = () => {
                 size='lg'
             >
                 <Modal.Body className="modalBody">
-                    <Grid container className="reset-container" xs={12} sm={12} md={12} lg={12} xl={12} sx={{height:'450px'}}>
+                    <Grid container className="reset-container" xs={12} sm={12} md={12} lg={12} xl={12} sx={{minHeight:'450px'}}>
                         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                             {
                                 provideEmail !== 1 ?

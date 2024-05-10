@@ -51,7 +51,7 @@ export const routes = createBrowserRouter([{
         path: "/doctor",
         element: <Doctor /> ,
         children: [{
-                path: "viewDoctorAppointments/doctor/",
+                path: "/doctor/viewDoctorAppointments",
                 element: <ViewDoctorAppointments />
             },
             {

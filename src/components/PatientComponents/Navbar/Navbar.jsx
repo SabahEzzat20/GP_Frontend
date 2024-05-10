@@ -37,13 +37,15 @@ const Navbar = () => {
 
   const [patientId, getPatientId] = useState(0);
   useEffect(() => {
+
       axios
       .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
       .then((response) => {
-          getPatientId(response.data.id);
+        getPatientId(response.data.id);
+        console.log(response)
       })
       .catch((error) => {
-          console.log(error);
+          console.log('you need to login or signup');
       });
   }, []);
 
@@ -61,15 +63,12 @@ const Navbar = () => {
           <NavLink to="/patient/uploadXRay">Upload X-ray</NavLink>
         </li>
         {
-          userToken ?
+          patientId !== 0 ?
             <div>
-            <NavLink to='/patientProfile'>
-              {isSmallScreen ? (
-                <span>Profile</span>
-              ) : (
-                <Avatar alt="Sabah hassan" src={sabah} />
-              )}
-          </NavLink>
+              <NavLink to='/patientProfile'>
+                
+                  <Avatar alt="Sabah hassan" src={sabah} />
+              </NavLink>
             </div>
             :
             <>

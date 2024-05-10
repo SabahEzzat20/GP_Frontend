@@ -18,7 +18,7 @@ const ViewPatients = () => {
     loading: true,
     result: [
       {
-        userId:'',
+        id:'',
         patientName: '',
         patientEmail: ''
       }
@@ -53,7 +53,7 @@ const ViewPatients = () => {
   }, [patients.reload+1]);
 
   // const [searchTerm, setSearchTerm] = useState("");
-   const [optionsVisibility, setOptionsVisibility] = useState({});
+  const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
@@ -93,10 +93,10 @@ const ViewPatients = () => {
   // const handleSearchInputChange = (event) => {
   //   setSearchTerm(event.target.value);
   // };
-  const DeletePatient = (patientId) => {
-      console.log('patient id '+patientId);
+  const DeletePatient = (id) => {
+      console.log('patient id '+ id);
       axios
-        .delete(`http://localhost:8070/admin/${patientId}`,
+        .delete(`http://localhost:8070/admin/${id}`,
           {
             headers: {
               'Authorization': `Bearer ${refreshToken}`
@@ -140,7 +140,7 @@ const ViewPatients = () => {
                 <td>{patient.patientName}</td>
                 <td>{patient.patientEmail}</td>
                 <td>
-                  <button className="table-options-button" title='block user' onClick={(e)=>DeletePatient(patient.userId)}>
+                  <button className="table-options-button" title='block user' onClick={()=>DeletePatient(patient.id)}>
                     <MdDelete />
                   </button>
                 </td>

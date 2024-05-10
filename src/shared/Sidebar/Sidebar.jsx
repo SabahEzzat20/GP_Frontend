@@ -17,12 +17,12 @@ const Sidebar = (props) => {
                 <motion.div animate={{ width: isOpen? '220px' : '55px'}} className='sidebar'>
                     <section className='routes'>
                         <div className="top_section">
-                            <AnimatePresence>
-                                {isOpen &&  <motion.h1 className="logo">orthopedista</motion.h1>}
-                            </AnimatePresence>
                             <div className="bars">
                                 <FaBars onClick={toggle}/>
                             </div>
+                            <AnimatePresence>
+                                {isOpen &&  <motion.h1 className="logo">orthopedista</motion.h1>}
+                            </AnimatePresence>
                         </div>
                         {role === 1?
                             <>
