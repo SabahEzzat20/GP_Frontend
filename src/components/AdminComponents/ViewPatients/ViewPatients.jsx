@@ -1,6 +1,5 @@
 import React, { useState , useEffect} from "react";
 import './ViewPatients.scss'
-// import { FaSearch } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
