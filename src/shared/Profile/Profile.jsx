@@ -22,6 +22,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
 
 const Profile = () => {
+    const auth = getAuthenticatedUser();
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const [profile, setProfile] = useState({
         id: '',
@@ -48,8 +49,6 @@ const Profile = () => {
         name: '',
         email: ''
     });
-    const token = getAuthenticatedUser();
-    const refreshToken = token.refreshToken;
     const UpdateProfile = (e) => {
         e.preventDefault();
         setProfile({ ...profile, loading: true })
@@ -73,11 +72,11 @@ const Profile = () => {
     }
     useEffect(() => {
         axios
-            .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+            .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
             .then((response) => {
                 setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
                 setUserDataPreview({name:profile.name,email:profile.email});
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log('view profile error: '+error);

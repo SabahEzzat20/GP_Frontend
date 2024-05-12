@@ -4,16 +4,13 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
-
-import axios from "axios";
 import {getAuthenticatedUser} from '../../../Helper/Storage'
 
 const sabah = require('../../../images/saboha.jpeg');
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const userToken = getAuthenticatedUser();
-  const refreshToken = userToken.refreshToken;
+  const auth = getAuthenticatedUser();
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -34,21 +31,6 @@ const Navbar = () => {
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
   };
-
-  const [patientId, getPatientId] = useState(0);
-  useEffect(() => {
-
-      axios
-      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-      .then((response) => {
-        getPatientId(response.data.id);
-        console.log(response)
-      })
-      .catch((error) => {
-          console.log('you need to login or signup');
-      });
-  }, []);
-
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
@@ -63,7 +45,7 @@ const Navbar = () => {
           <NavLink to="/patient/uploadXRay">Upload X-ray</NavLink>
         </li>
         {
-          patientId !== 0 ?
+          auth ?
             <div>
               <NavLink to='/patientProfile'>
                 

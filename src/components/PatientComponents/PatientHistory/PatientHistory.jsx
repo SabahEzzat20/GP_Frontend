@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
 import xray from '../../../images/hand-255x300.jpg'
@@ -6,11 +6,34 @@ import Stack from '@mui/material/Stack';
 import './PatientHistory.scss';
 import Divider from '@mui/material/Divider';
 import emptyPage from '../../../images/No data-cuate.png'
+import { getAuthenticatedUser } from '../../../Helper/Storage';
+import axios from 'axios';
 const PatientHistory = () => {
     const data = 1;
+    const [appointments, setAppointments] = useState({
+        loading: false,
+        result: [],
+        err: '',
+    });
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };
+    const userToken = getAuthenticatedUser();
+    const refreshToken = userToken.refreshToken;
+    useEffect(() => {
+        // setAppointments({...appointments,loading: true})
+        axios
+        .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+        .then((response) => {
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+       
+
+    }, []); 
+
+    
     return (
         <div>
                 {
