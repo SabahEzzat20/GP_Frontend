@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import './DoctorPreview.scss';
 import { Link } from 'react-router-dom';
 const DoctorPreview = ({ doctor }) => {
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(doctor.Appointments.length > 0 ? doctor.Appointments[0].day : '');
     const [buttonClick, setButtonClick] = useState({});
     const [continueDisabled, setContinueDisabled] = useState(true);
 
@@ -18,23 +18,23 @@ const DoctorPreview = ({ doctor }) => {
         setValue(newValue);
     };
     
-    const handleClick = (appointmentId, timeId) => {
-        setButtonClick(prevState => ({
-            [appointmentId]: {
-                [timeId]: !prevState[appointmentId]?.[timeId] || prevState[appointmentId][timeId] === 'outlined' ? 'contained' : 'outlined'
-            }
-        }));
-        setContinueDisabled(false); // Enable the continue button when  "hour" button is clicked
-    };
+    // const handleClick = (appointmentId, timeId) => {
+    //     setButtonClick(prevState => ({
+    //         [appointmentId]: {
+    //             [timeId]: !prevState[appointmentId]?.[timeId] || prevState[appointmentId][timeId] === 'outlined' ? 'contained' : 'outlined'
+    //         }
+    //     }));
+    //     setContinueDisabled(false); // Enable the continue button when  "hour" button is clicked
+    // };
     return (
         <div className='doctor-preview-container'>
             <div className="doctor-identification">
                 <Stack direction="row" spacing={2}>
-                    <Avatar alt={doctor.name} src={doctor.profilePhoto} />
+                    <Avatar alt={doctor.doctorName} />
                     <div className="doctor-info">
                         <Stack direction="column" spacing={0.5}>
-                            <p className='doctor-name'>Dr.{doctor.name}</p>
-                            <p className="expertise">consultant orthopedic and joint surgeon</p>
+                            <p className='doctor-name'>Dr.{doctor.doctorName}</p>
+                            <p className="expertise">{doctor.doctorDescription}</p>
                         </Stack>
                     </div>
                 </Stack>
@@ -44,16 +44,16 @@ const DoctorPreview = ({ doctor }) => {
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto">
-                                {doctor.Appointments.map(appointment => (
-                                    <Tab key={appointment.id} label={appointment.date} value={appointment.id} />
+                                {doctor.Appointments.map((appointment) => (
+                                    <Tab key={appointment.day} label={appointment.day} value={appointment.day} />
                                 ))}
                             </TabList>
                         </Box>
-                        {doctor.Appointments.map(appointment => (
-                            <TabPanel key={appointment.id} value={appointment.id}>
-                                {appointment.time.map(time => (
-                                    <Button key={time.id} variant={buttonClick[appointment.id]?.[time.id] || 'outlined'} className='hour' onClick={() => handleClick(appointment.id, time.id)}>{time.exactTime}</Button>
-                                ))}
+                        {doctor.Appointments.map((appointment,index) => (
+                            <TabPanel key={index} value={value}>
+                            {appointment.startTimes.map((time) => (
+                                <Button  variant='outlined' className='hour'>{time}</Button>
+                            ))}
                             </TabPanel>
                         ))}
                     </TabContext>

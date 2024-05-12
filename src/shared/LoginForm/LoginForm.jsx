@@ -11,7 +11,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState('');
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -39,8 +38,13 @@ const LoginForm = () => {
     })
       .then(resp => {
         setLogin({ ...login, loading: false })
-        setAuthenticatedUser(resp.data)
-        Routing();
+        setAuthenticatedUser(resp.data);
+        if (resp.data.role === 'admin')
+          navigate('/admin/viewDoctors');
+        else if (resp.data.role === 'doctor')
+          navigate('/doctor/viewDoctorAppointments');
+        else if (resp.data.role === 'patient')
+          navigate('/patient/homepage');
       })
       .catch(error => {
         console.error('response error : ',error)
@@ -49,35 +53,6 @@ const LoginForm = () => {
     })
     console.log(login);
   }
-  console.log(role);
-  const token = getAuthenticatedUser();
-  const refreshToken = token.refreshToken;
-  const Routing = () => {
-    getRole().then(() => {
-      if (role === 'admin')
-        navigate('/admin/viewDoctors');
-      else if (role === 'doctor')
-        navigate('/doctor/viewDoctorAppointments');
-      else if (role === 'patient')
-        navigate('/patient/homepage');
-    });
-  };
-  
-  const getRole = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-        .then((response) => {
-          setRole(response.data.role);
-          resolve();
-        })
-        .catch((error) => {
-          console.log(error);
-          reject(error);
-        });
-    });
-  };
-  
   return (
       <div className="login-bg">
         <form action="/" className="login__form" onSubmit={LoginFunction}>

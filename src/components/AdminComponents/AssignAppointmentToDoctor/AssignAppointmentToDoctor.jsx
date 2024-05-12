@@ -10,19 +10,16 @@ import Select from '@mui/material/Select';
 import Doctors from '../../../DummyData/Doctors.json';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { AiOutlineDelete } from 'react-icons/ai';
 import { getAuthenticatedUser } from '../../../Helper/Storage';
 import axios from 'axios';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
 import Input from '@mui/joy/Input';
-import { FaUser } from 'react-icons/fa';
 const AssignAppointmentToDoctor = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [doctors, setDoctors] = useState({
-        loading: true,
+        loading: false,
         result: [],
         selectedDoctor: '',
         err: null,

@@ -22,6 +22,7 @@ import Box  from "@mui/material/Box";
 import { IoIosArrowBack } from "react-icons/io";
 
 const BigForm = () => {
+  const auth = getAuthenticatedUser();
   const [patientData, setPatientData] = useState({
     userId: '',
     userName: '',
@@ -50,11 +51,11 @@ const BigForm = () => {
 
     setOpen(false);
   };
-  const refreshToken = getAuthenticatedUser().refreshToken
+  // const refreshToken = getAuthenticatedUser().refreshToken
   // console.log(refreshToken);
   useEffect(() => {
     axios
-      .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
+      .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
         .then((response) => {
             setPatientData({...patientData,userId:response.data.id,userName:response.data.name,userEmail:response.data.email});
         })
@@ -62,7 +63,7 @@ const BigForm = () => {
             console.log(error);
         });
     }, []);
-    console.log(patientData)
+    // console.log(patientData)
   const addPatient = (e) => {
       // e.preventDefault();
       setPatientData({ ...patientData, loading: true, err: [] })
@@ -76,17 +77,16 @@ const BigForm = () => {
               gender: patientData.gender,
           },{
             headers: {
-              'Authorization': `Bearer ${refreshToken}`
+              'Authorization': `Bearer ${auth.refreshToken}`
             }
           })
           .then((response) => {
               setPatientData({ ...patientData, loading: false, err: [] });
-              // navigate("/");
               showMessage();
           })
           .catch((error) => {
               setPatientData({ ...patientData, loading: false, err: error.response.data.errors })
-            console.log(error);
+            // console.log(error);
           })
       // console.log(login);
   }

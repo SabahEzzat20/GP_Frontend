@@ -8,13 +8,16 @@ import { TbLogout2 } from "react-icons/tb";
 import { FaHome } from "react-icons/fa";
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
+import Form from "react-bootstrap/Form";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import ResetPassword from '../../../shared/ResetPassword/ResetPassword';
 import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
 import CancelIcon from '@mui/icons-material/Cancel';
 import xray from '../../../images/hand-255x300.jpg'
+import emptyPage from '../../../images/No data-cuate.png';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { MdOutlineAlternateEmail } from "react-icons/md";
@@ -24,12 +27,14 @@ import Empty from '../../../shared/Empty/Empty';
 import { removeAuthenticatedUser ,getAuthenticatedUser} from '../../../Helper/Storage';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 const PatientProfile = () => {
     const navigate = useNavigate();
+    // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const { getRootProps, getInputProps } = useDropzone({  }); 
@@ -90,6 +95,7 @@ const PatientProfile = () => {
         navigate('/login');
         console.log('loged out successfully!')
     }
+    // const [patientId, setPatientId] = useState('');
     const [profile, setProfile] = useState({
         id: '',
         name: '',
@@ -98,12 +104,35 @@ const PatientProfile = () => {
         loading: true,
         err: []
     })
+    const [reservedAppointments,setReservedAppointments] = useState({
+        loading: false,
+        result: [],
+        err: ''
+    })
+
     const [userDataPreview, setUserDataPreview] = useState({
         name: '',
         email: ''
     });
     const token = getAuthenticatedUser();
     const refreshToken = token.refreshToken;
+    const getMyReservations = () => {
+        setReservedAppointments({ ...reservedAppointments, loading: true })
+        axios
+            .get(`http://localhost:8070/patient/myReservation/${profile.id}`, {
+                headers: {
+                    'Authorization': `Bearer ${refreshToken}`
+                }
+        })
+        .then((response) => {
+            setReservedAppointments({...reservedAppointments,result: response.data,loading: false})
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log('update profile error: '+error);
+            setReservedAppointments({...reservedAppointments,loading: false,err: 'can not retrieve reserved appointments'})
+        });
+    }
     const UpdateProfile = () => {
         setProfile({ ...profile, loading: true })
         axios
@@ -125,6 +154,7 @@ const PatientProfile = () => {
         });
     }
     useEffect(() => {
+        // setProfile({ ...profile, loading: true })
         axios
             .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
             .then((response) => {
@@ -136,7 +166,13 @@ const PatientProfile = () => {
                 console.log('view profile error: '+error);
                 setProfile({ ...profile, loading: false, err: [error] });
             });
-        }, [profile.loading]);
+    }, [profile.loading]);
+    useEffect(() => {
+        // Call getMyReservations when openRoute becomes 3
+        if (openRoute === 3) {
+            getMyReservations();
+        }
+    }, [openRoute]);
         return (
             <Grid container sx={{ display: 'flex' }} xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -266,37 +302,44 @@ const PatientProfile = () => {
                         openRoute === 3 &&
                         <div>
                             {
-                                data === 1 ?
+                                reservedAppointments.result.length > 0 ?
                                     <Grid container xs={12} sm={12} md={12} lg={12} xl={12}>
                                         <Box className='reserved-apps' sx={{ width: '100%' }}>
-                                            <Stack spacing={2} direction={{ xs: 'column', sm: 'column', md: 'row', lg: 'row', xl: 'row' }} className='reserved-app' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='column' spacing={1} sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                        <Box>Doctor : Amany sayed</Box>
-                                                        <Box>Appointment : 2/6/2024 [10:00 am]</Box>
-                                                    </Stack>
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                    <Stack direction='row' sx={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
-                                                        <Box>
-                                                            <Button size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon />
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    attached xray
+                                        {
+                                            reservedAppointments.result.map((appointment) => {
+                                                return (
+                                                    <Stack key={appointment.id} spacing={2} direction={{ xs: 'column', sm: 'column', md: 'row', lg: 'row', xl: 'row' }} className='reserved-app' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                            <Stack direction='column' spacing={1} sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                                <Box>Doctor : {appointment.doctorName}</Box>
+                                                                <Box>Appointment : {appointment.date} [{appointment.startTime}]</Box>
+                                                            </Stack>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                            <Stack direction='row' sx={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
+                                                                <Box>
+                                                                    <Button size='small' onClick={() => openImageInNewTab(xray)}>
+                                                                        <FolderIcon />
+                                                                        <Box sx={{ paddingLeft: '5px' }}>
+                                                                            attached xray
+                                                                        </Box>
+                                                                    </Button>
                                                                 </Box>
-                                                            </Button>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button size='small' color='error' onClick={() => openImageInNewTab(xray)}>
-                                                                <CancelIcon />
-                                                                <Box sx={{ paddingLeft: '5px' }}>
-                                                                    cancel date
+                                                                <Box>
+                                                                    <Button size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                        <CancelIcon />
+                                                                        <Box sx={{ paddingLeft: '5px' }}>
+                                                                            cancel date
+                                                                        </Box>
+                                                                    </Button>
                                                                 </Box>
-                                                            </Button>
-                                                        </Box>
+                                                            </Stack>
+                                                        </Grid>
                                                     </Stack>
-                                                </Grid>
-                                            </Stack>
+                                                );
+                                            })
+                                        }
+
                                             <Divider />
                                         </Box>
                                     </Grid>
@@ -315,7 +358,7 @@ const PatientProfile = () => {
                     variant="filled"
                     sx={{ width: '100%' }}
                     >
-                        Your profile updated successfully!
+                        Profile updated successfully!
                     </Alert>
                 </Snackbar>
             </Grid>
