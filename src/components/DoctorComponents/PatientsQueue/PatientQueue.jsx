@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Stack from '@mui/material/Stack';
 import axios from "axios";
 import { getAuthenticatedUser } from "../../../Helper/Storage";
-
 import PatientDetailsForDoctor from '../PatientDetailsForDoctor/PatientDetailsForDoctor';
 import './PatientsQueue.scss';
 
 const PatientQueue = () => {
+    const auth = getAuthenticatedUser();
+
   const [doctorAppointments, setDoctorAppointments] = useState({
     loading: true,
     result: [],
@@ -14,16 +15,17 @@ const PatientQueue = () => {
     reload: 0,
   });
   
-  const userToken = getAuthenticatedUser();
-  const refreshToken = userToken.refreshToken;
-  const userId = userToken.userId; 
+//   const userToken = getAuthenticatedUser();
+//   const refreshToken = userToken.refreshToken;
+//   const userId = userToken.id; 
+ console.log(auth.id);
 
   useEffect(() => {
     setDoctorAppointments({ ...doctorAppointments, loading: true });
     axios
-      .get(`http://localhost:8070/doctor/allMyReservations/${userId}`, {
+      .get(`http://localhost:8070/doctor/allMyReservations/${auth.id}`, {
         headers: {
-          "Authorization": `Bearer ${refreshToken}`,
+          Authorization: `Bearer ${auth.refreshToken}`,
         },
       })
       .then((response) => {
