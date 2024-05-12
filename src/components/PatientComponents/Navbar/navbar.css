@@ -13,7 +13,6 @@ nav {
     display: flex;
     z-index: 2;
     justify-content: space-between;
-    /* border-bottom: 1px solid rgb(219, 219, 219); */
     box-shadow: 1px 1px 8px rgba(223, 223, 223, 0.5);
     align-items: center;
     color: #C54B43;
@@ -57,16 +56,6 @@ nav .menu {
     height: 2rem;
     font-size: 50px;
 }
-
-
-/* .profile-menu-btn {
-    border: none;
-    display: flex;
-    position: relative;
-    right: 0.1rem;
-    background-color: transparent;
-    align-items: center;
-} */
 
 @media (max-width: 800px) {
     nav .menu {

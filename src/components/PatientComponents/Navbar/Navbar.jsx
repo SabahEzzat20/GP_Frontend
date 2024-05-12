@@ -11,16 +11,13 @@ const sabah = require('../../../images/saboha.jpeg');
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const auth = getAuthenticatedUser();
-  
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -34,7 +31,7 @@ const Navbar = () => {
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
-      <div className="menu" >
+      <div className="menu" onClick={handleMenuClick}>
         <FiMenu />   
       </div>
       <ul className={menuOpen ? "open" : ""}>
@@ -46,12 +43,15 @@ const Navbar = () => {
         </li>
         {
           auth ?
-            <div>
-              <NavLink to='/patientProfile'>
-                
-                  <Avatar alt="Sabah hassan" src={sabah} />
-              </NavLink>
-            </div>
+          <li>
+            <NavLink to='/patientProfile'>
+              {isSmallScreen ? (
+                <span>Profile</span>
+              ) : (
+                <Avatar alt="Sabah hassan" src={sabah} />
+              )}
+            </NavLink>
+          </li>
             :
             <>
               <li>
@@ -63,6 +63,7 @@ const Navbar = () => {
             </>
         }
 
+        
       </ul>
     </nav>
   );
