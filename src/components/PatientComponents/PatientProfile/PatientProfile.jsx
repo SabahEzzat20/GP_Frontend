@@ -109,6 +109,11 @@ const PatientProfile = () => {
         result: [],
         err: ''
     })
+    const [History,setHistory] = useState({
+        loading: false,
+        result: [],
+        err: ''
+    })
 
     const [userDataPreview, setUserDataPreview] = useState({
         name: '',
@@ -119,7 +124,7 @@ const PatientProfile = () => {
     const getMyReservations = () => {
         setReservedAppointments({ ...reservedAppointments, loading: true })
         axios
-            .get(`http://localhost:8070/patient/myReservation/${profile.id}`, {
+            .get(`http://localhost:8070/patient/myReservation/${token.id}`, {
                 headers: {
                     'Authorization': `Bearer ${refreshToken}`
                 }
@@ -155,6 +160,7 @@ const PatientProfile = () => {
     }
     useEffect(() => {
         // setProfile({ ...profile, loading: true })
+        getMyReservations();
         axios
             .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
             .then((response) => {
@@ -166,13 +172,40 @@ const PatientProfile = () => {
                 console.log('view profile error: '+error);
                 setProfile({ ...profile, loading: false, err: [error] });
             });
-    }, [profile.loading]);
-    useEffect(() => {
-        // Call getMyReservations when openRoute becomes 3
-        if (openRoute === 3) {
-            getMyReservations();
+        axios
+            .get(`http://localhost:8070/patient/getAllMyXRays/${token.id}`,{
+                headers: {
+                    "Authorization": `Bearer ${refreshToken}`
+                }
+            })
+            .then((response) => {
+                setHistory({ ...History,result: response.data, loading: false });
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log('failed to get history : '+error);
+                setProfile({ ...profile, loading: false, err: [error] });
+            });
+    }, []);
+    const DeleteReservation = (id) => {
+        console.log('patient id '+ id);
+        axios
+            .delete(`http://localhost:8070/patient/cancelReservation/${id}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${refreshToken}`
+                    }
+                }
+            )
+            .then((response) => {
+                // showMessage();
+                console.log('deleted successfully!');
+            })
+            .catch((err) => {
+                console.log('error of delete function: ' + err);
+            });
+    
         }
-    }, [openRoute]);
         return (
             <Grid container sx={{ display: 'flex' }} xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -273,20 +306,24 @@ const PatientProfile = () => {
                                     <Grid container xs={12} sm={12} md={12} lg={12} xl={12}>
                                         <Box className="history-bar" sx={{ width: '100%' }}>
                                             <Stack spacing={3} direction='column'>
-                                                <Stack direction='column' >
-                                                    <Box sx={{ display: 'flex', justifyContent: "flex-end", fontSize: '13px', color: 'gray' }}>25/3/2024 [10:00 AM]</Box>
-                                                    <Stack spacing={3} direction='row' sx={{ display: "flex", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-start', lg: 'flex-start', xl: 'flex-start' }, alignItems: 'baseline' }}>
-                                                        <Box className="history-result">
-                                                            <p> Result : <span className='fractured'>fractured</span></p>
-                                                        </Box>
-                                                        <Box>
-                                                            <Button onClick={() => openImageInNewTab(xray)}>
-                                                                <FolderIcon />
-                                                                <Box sx={{ paddingLeft: '5px', display: { xs: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' } }}>attached xray</Box>
-                                                            </Button>
-                                                        </Box>
-                                                    </Stack>
-                                                </Stack>
+                                                    {
+                                                        History.result.map((history) => (
+                                                            <Stack direction='column' >
+                                                                <Box sx={{ display: 'flex', justifyContent: "flex-end", fontSize: '13px', color: 'gray' }}>{history.uploadingDate}</Box>
+                                                                <Stack spacing={3} direction='row' sx={{ display: "flex", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-start', lg: 'flex-start', xl: 'flex-start' }, alignItems: 'baseline' }}>
+                                                                    <Box className="history-result">
+                                                                        <p> Result : <span className='fractured'>{history.result}</span></p>
+                                                                    </Box>
+                                                                    <Box>
+                                                                        <Button onClick={() => openImageInNewTab(history.photo)}>
+                                                                            <FolderIcon />
+                                                                            <Box sx={{ paddingLeft: '5px', display: { xs: 'none', sm: 'none', md: 'block', lg: 'block', xl: 'block' } }}>attached xray</Box>
+                                                                        </Button>
+                                                                    </Box>
+                                                                </Stack>
+                                                            </Stack>
+                                                        )
+                                                    )}
                                                 <Divider />
                                             </Stack>
                                         </Box>
@@ -326,7 +363,7 @@ const PatientProfile = () => {
                                                                     </Button>
                                                                 </Box>
                                                                 <Box>
-                                                                    <Button size='small' color='error' onClick={() => openImageInNewTab(xray)}>
+                                                                    <Button size='small' color='error' onClick={() => DeleteReservation(appointment.id)}>
                                                                         <CancelIcon />
                                                                         <Box sx={{ paddingLeft: '5px' }}>
                                                                             cancel date

@@ -14,12 +14,12 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    err: [],
+    err: '',
     loading: false,
   })
   const SignupFunction = (e) => {
     e.preventDefault();
-    setSignup({ ...signup, loading: true, err: [] })
+    setSignup({ ...signup, loading: true, err: '' })
     axios.post('http://localhost:8070/patient/register',{
       name: signup.name,
       email: signup.email,

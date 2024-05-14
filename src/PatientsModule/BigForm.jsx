@@ -24,9 +24,9 @@ import { IoIosArrowBack } from "react-icons/io";
 const BigForm = () => {
   const auth = getAuthenticatedUser();
   const [patientData, setPatientData] = useState({
-    userId: '',
-    userName: '',
-    userEmail: '',
+    // userId: '',
+    // userName: '',
+    // userEmail: '',
     phoneNumber : '',
     gender: 0,
     height : '',
@@ -51,25 +51,13 @@ const BigForm = () => {
 
     setOpen(false);
   };
-  // const refreshToken = getAuthenticatedUser().refreshToken
-  // console.log(refreshToken);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
-        .then((response) => {
-            setPatientData({...patientData,userId:response.data.id,userName:response.data.name,userEmail:response.data.email});
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }, []);
-    // console.log(patientData)
+
   const addPatient = (e) => {
       // e.preventDefault();
       setPatientData({ ...patientData, loading: true, err: [] })
       axios
         .post("http://localhost:8070/patient/addPatientData", {
-              userId: patientData.userId,
+              userId: auth.id,
               phoneNumber: patientData.phoneNumber,
               height: patientData.height,
               weight: patientData.weight,
@@ -102,7 +90,7 @@ const BigForm = () => {
             <Avatar alt="Sabah hassan" src={sabah} size='lg'/>
           </div>
           <Stack direction='column' spacing={0.1} className="doctor-details">
-            <p className="doctor-name">Dr.sabah hassan</p>
+            <p className="doctor-name">Dr.Sabah Hassan</p>
             <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={{xs:'1',sm:'1',md:'3',lg:'3',xl:'3'}}>
               <Box className="expertise">Consultant orthopedic and joint surgeon , </Box>
               <Box className="expertise">Duration : 15min</Box>
@@ -118,8 +106,8 @@ const BigForm = () => {
               color="neutral" 
               type="text"
               required
-              value={patientData.userName}
-              onChange={(e)=>setPatientData({...patientData,userName:e.target.value})}/>
+              value={auth.name}
+            />
           </Stack>
           <Stack spacing={0.2} direction='column'>
             <Input
@@ -129,8 +117,8 @@ const BigForm = () => {
               color="neutral"
               required
               type="email"
-              value={patientData.userEmail}
-              onChange={(e)=>setPatientData({...patientData,userEmail:e.target.value})}
+              value={auth.email}
+              // onChange={(e)=>setPatientData({...patientData,userEmail:e.target.value})}
             />
           </Stack>
         </Stack>

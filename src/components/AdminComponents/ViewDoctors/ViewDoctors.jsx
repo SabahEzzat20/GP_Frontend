@@ -46,17 +46,6 @@ const ViewDoctors = () => {
           setDoctors({...doctors, err:'something went wrong' , loading: false})
         })
   }, [doctors.reload+1]); 
-
-  // const [viewDoctorId, setViewDoctorId] = useState(null);
-
-  // const openViewDetails = (doctorId) => {
-  //   setViewDoctorId(doctorId);
-  // };
-
-  // const closeViewDetails = () => {
-  //   setViewDoctorId(null);
-  // };
-
   const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);

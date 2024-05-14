@@ -28,6 +28,7 @@ const Navbar = () => {
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
   };
+  console.log('local storage ^_^ : '+  Object.keys(auth).length === 0)
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
@@ -42,7 +43,16 @@ const Navbar = () => {
           <NavLink to="/patient/uploadXRay">Upload X-ray</NavLink>
         </li>
         {
-          auth ?
+          Object.keys(auth).length === 0?
+            <>
+              <li>
+                <NavLink to="/register">signup</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">login</NavLink>
+              </li>
+            </>
+            :
           <li>
             <NavLink to='/patientProfile'>
               {isSmallScreen ? (
@@ -52,15 +62,6 @@ const Navbar = () => {
               )}
             </NavLink>
           </li>
-            :
-            <>
-              <li>
-                <NavLink to="/register">signup</NavLink>
-              </li>
-              <li>
-                <NavLink to="/login">login</NavLink>
-              </li>
-            </>
         }
 
         

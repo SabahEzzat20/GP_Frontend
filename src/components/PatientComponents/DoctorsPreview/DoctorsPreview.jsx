@@ -63,13 +63,11 @@ const DoctorsPreview = () => {
                 });
             }
         });
-
         // Convert mergedReservations object to an array
         const mergedReservationsArray = Object.values(mergedReservations);
-
         return mergedReservationsArray;
     };
-
+    console.log(reservations)
     
     return (
         <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',paddingLeft:'250px',paddingRight:'250px',paddingTop:'10px'}}>

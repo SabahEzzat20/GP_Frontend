@@ -18,15 +18,9 @@ import DragDrop from "./components/PatientComponents/DragDrop/DragDrop.jsx";
 import DoctorsPreview from "./components/PatientComponents/DoctorsPreview/DoctorsPreview.jsx";
 import ResetPassword from "./shared/ResetPassword/ResetPassword.jsx";
 import PatientProfile from "./components/PatientComponents/PatientProfile/PatientProfile.jsx";
-import EditPatientProfile from "./components/PatientComponents/EditPatientProfile/EditPatientProfile.jsx";
-import PatientHistory from "./components/PatientComponents/PatientHistory/PatientHistory.jsx";
-import PatientReservedAppointment from "./components/PatientComponents/PatientReservedAppointment/PatientReservedAppointment.jsx";
 import NotFoundPage from "./shared/NotFoundPage/NotFoundPage.jsx";
-
 import Guarantee from "./components/PatientComponents/Guarantee/Guarantee.jsx";
-
 import ExperienceDoctors from "./components/PatientComponents/ExperienceDoctors/ExperienceDoctors.jsx";
-
 import Footer from "./shared/Footer/Footer.jsx"
 import ViewDetails from "./components/AdminComponents/ViewDoctors/ViewDetails.jsx";
 

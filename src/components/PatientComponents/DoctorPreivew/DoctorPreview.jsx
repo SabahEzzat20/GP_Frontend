@@ -26,6 +26,22 @@ const DoctorPreview = ({ doctor }) => {
     //     }));
     //     setContinueDisabled(false); // Enable the continue button when  "hour" button is clicked
     // };
+    const printNext10Dates = () =>{
+        const today = new Date();
+        const dates = [];
+    
+        // Loop to get next 10 dates
+        for (let i = 0; i < 10; i++) {
+            const nextDate = new Date(today);
+            nextDate.setDate(today.getDate() + i);
+            dates.push(nextDate.toDateString());
+        }
+    
+        // Print the dates
+        console.log("Next 10 dates:");
+        dates.forEach(date => console.log(date));
+    }
+    // printNext10Dates();
     return (
         <div className='doctor-preview-container'>
             <div className="doctor-identification">
@@ -40,25 +56,26 @@ const DoctorPreview = ({ doctor }) => {
                 </Stack>
             </div>
             <div className="App-cont">
-                <Box sx={{ maxWidth: { xs: '320px', sm: '480px' ,md:'500px',lg:'480px',xl:'480px'},height:'150px'}} className="appointments-box">
+                <Box sx={{ maxWidth: { xs: '320px', sm: '480px' ,md:'500px',lg:'480px',xl:'480px'}, height:'150px'}} className="appointments-box">
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                            <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto">
+                        <TabList variant="scrollable" scrollButtons="auto" value={value} onChange={handleChange}>
                                 {doctor.Appointments.map((appointment) => (
                                     <Tab key={appointment.day} label={appointment.day} value={appointment.day} />
                                 ))}
                             </TabList>
                         </Box>
-                        {doctor.Appointments.map((appointment,index) => (
-                            <TabPanel key={index} value={value}>
-                            {appointment.startTimes.map((time) => (
-                                <Button  variant='outlined' className='hour'>{time}</Button>
-                            ))}
+                        {doctor.Appointments.map((appointment, index) => (
+                            <TabPanel key={index} value={appointment.day}>
+                                {appointment.startTimes.map((time, timeIndex) => (
+                                    <Button key={timeIndex} variant='outlined' className='hour'>{time}</Button>
+                                ))}
                             </TabPanel>
                         ))}
                     </TabContext>
                 </Box>
             </div>
+
             <Box sx={{display:'flex',alignItems:'center',justifyContent:'end',marginTop:'10px'}}>
                 <Button variant="contained" disabled={continueDisabled}>
                     <Link to="/patient/BigForm" style={{textDecoration:'none',color:'white'}}>
@@ -71,3 +88,9 @@ const DoctorPreview = ({ doctor }) => {
 };
 
 export default DoctorPreview;
+
+
+    // Appointments: {
+    //     day: monday,
+    //     startTimes:['08:00 AM' , '09:00 PM']
+    // }
