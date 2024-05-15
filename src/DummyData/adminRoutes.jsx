@@ -14,9 +14,9 @@ export const adminRoutes= [
         name: "patients",
         icon: <FaUserFriends/>
     },
-    {
-        path: "/admin/calendar",
-        name: "appointments",
-        icon: <GrSchedule/>
-    },
+    // {
+    //     path: "/admin/calendar",
+    //     name: "appointments",
+    //     icon: <GrSchedule/>
+    // },
 ];

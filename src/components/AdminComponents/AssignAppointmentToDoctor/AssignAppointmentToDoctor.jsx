@@ -14,6 +14,8 @@ import { getAuthenticatedUser } from '../../../Helper/Storage';
 import axios from 'axios';
 import Stack from '@mui/material/Stack';
 import Input from '@mui/joy/Input';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const AssignAppointmentToDoctor = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -58,6 +60,19 @@ const AssignAppointmentToDoctor = () => {
         err: ''
     })
     // console.log(Appointment);
+    const [open, setOpen] = React.useState(false);
+
+    const showMessage = () => {
+        setOpen(true);
+    };
+
+    const handleMsgClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpen(false);
+    };
     const AssignAppointment = () => {
         setAppointment({...Appointment,loading: true})
         axios
@@ -73,8 +88,8 @@ const AssignAppointmentToDoctor = () => {
                 },
             })
             .then((resp) => {
+                showMessage();
                 console.log('success');
-
                 
             })
             .catch((err) => {
@@ -171,6 +186,7 @@ const AssignAppointmentToDoctor = () => {
                                 </Select>
                             </FormControl>
                         </Form.Group>
+                        <br />
                     <Stack direction='column' spacing={3}>
                     <Stack direction='row' spacing={2} sx={{display:'flex'}}>
                     <Form.Label> Day </Form.Label>
@@ -191,10 +207,12 @@ const AssignAppointmentToDoctor = () => {
                             </Select>
                         </FormControl>
                     </Stack>
+                    <br />
                     <Stack direction='row' spacing={2} sx={{display:'flex'}}>
                             <InputLabel id="demo-select-small-label">Start time</InputLabel>
                             <Input variant="plain" color="neutral" required type='text' value={Appointment.startTime} onChange={(e)=>setAppointment({...Appointment,startTime:e.target.value})} />
                     </Stack>
+                    <br />
                     <Stack direction='row' spacing={2} sx={{display:'flex'}}>
                         <InputLabel id="demo-select-small-label">End time</InputLabel>
                         <Input  variant="plain" color="neutral" required type='text' value={Appointment.endTime} onChange={(e)=>setAppointment({...Appointment,endTime:e.target.value})}/>
@@ -209,6 +227,16 @@ const AssignAppointmentToDoctor = () => {
                     </button>
                 </Modal.Footer>
             </Modal>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert
+                onClose={handleMsgClose}
+                severity="success"
+                variant="filled"
+                sx={{ width: '100%' }}
+                >
+                    Appointment assigned successfully!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
