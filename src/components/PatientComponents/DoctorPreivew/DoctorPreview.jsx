@@ -41,7 +41,7 @@ const DoctorPreview = ({ doctor }) => {
         console.log("Next 10 dates:");
         dates.forEach(date => console.log(date));
     }
-    // printNext10Dates();
+    printNext10Dates();
     return (
         <div className='doctor-preview-container'>
             <div className="doctor-identification">
@@ -88,9 +88,3 @@ const DoctorPreview = ({ doctor }) => {
 };
 
 export default DoctorPreview;
-
-
-    // Appointments: {
-    //     day: monday,
-    //     startTimes:['08:00 AM' , '09:00 PM']
-    // }

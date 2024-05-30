@@ -40,7 +40,10 @@ const Navbar = () => {
           <Link to='/patient/homepage'>Home</Link>
         </li>
         <li>
-          <NavLink to="/patient/uploadXRay">Upload X-ray</NavLink>
+          <NavLink to="/patient/uploadXRay">upload X-ray</NavLink>
+        </li>
+        <li>
+          <NavLink to="/patient/bigForm">online diagnosis</NavLink>
         </li>
         {
           Object.keys(auth).length === 0?

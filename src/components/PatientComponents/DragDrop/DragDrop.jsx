@@ -11,6 +11,7 @@ import { getAuthenticatedUser } from '../../../Helper/Storage';
 const DragDrop = () => {
     const auth = getAuthenticatedUser();
     const [file, setFile] = useState(null);
+    const [result, setResult] = useState('');
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -42,6 +43,7 @@ const DragDrop = () => {
         })
         .then(response => {
             console.log('xray result besm Allah : '+response.data.result);
+            setResult(response.data.result);
         })
         .catch(error => {
             console.error('Error uploading image: ', error);
@@ -51,10 +53,31 @@ const DragDrop = () => {
 
     return (
         <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+            {
+                result === 'fractured' &&
+                <Box className="scan-result" sx={{ width: { xs: '90%', sm: '90%', md: '80%', lg: '70%', xl: '70%' } }}>
+                    <Alert severity='error'>Bone exists in XRay is fractured</Alert>
+                </Box>
+            }
+            {
+                result === 'not fractured' && 
+                <Box className="scan-result" sx={{ width: { xs: '90%', sm: '90%', md: '80%', lg: '70%', xl: '70%' } }}>
+                    <Alert severity='success'>Bone exists in XRay is not fractured</Alert>
+                </Box>
+            }
             <Box className="dropzone-container" sx={{ width: { xs: '90%', sm: '90%', md: '80%', lg: '70%', xl: '70%' } }}>
-                <form encType="multipart/form-data" onSubmit={handleUpload}>
-                    <input type="file" name="file" onChange={handleFileChange} />
-                    <button type="submit">Upload</button>
+                <form encType="multipart/form-data" className='dragForm' onSubmit={handleUpload}>
+                    <label htmlFor="xray-image">Upload XRay</label> <br />
+                    <input type="file" name="file" id='xray-image' className='imageUpload' onChange={handleFileChange} />
+                    {/* <button type="submit">Upload</button> */}
+                    <button className="upload-btn" type='submit'>
+                        <Stack spacing={0.5} direction='row' sx={{ fontSize: { xs: '20px', sm: '20px', md: '23px', lg: '23px', xl: '23px' }, width: { xs: '100px', sm: '100px', md: '130px', lg: '130px', xl: '130px' }, paddingLeft: "5px" }}>
+                            <div className="upload-icon">
+                                <BiCloudUpload />
+                            </div>
+                            <p>upload</p>
+                        </Stack>
+                    </button>
                 </form>
                 <div className="img-btn">
                     {preview && (
@@ -62,18 +85,7 @@ const DragDrop = () => {
                             <img src={preview} alt="Preview" style={{ width: '60px', height: '60px', objectFit: 'cover' }} />
                         </div>
                     )}
-                    {/* <button className="upload-btn" onClick={handleUpload}>
-                        <Stack spacing={0.5} direction='row' sx={{ fontSize: { xs: '20px', sm: '20px', md: '23px', lg: '23px', xl: '23px' }, width: { xs: '100px', sm: '100px', md: '130px', lg: '130px', xl: '130px' }, paddingLeft: "5px" }}>
-                            <div className="upload-icon">
-                                <BiCloudUpload />
-                            </div>
-                            <p>upload</p>
-                        </Stack>
-                    </button> */}
                 </div>
-            </Box>
-            <Box className="scan-result" sx={{ width: { xs: '90%', sm: '90%', md: '80%', lg: '70%', xl: '70%' } }}>
-                <Alert severity='success'>none fractured</Alert>
             </Box>
         </Grid>
     );
