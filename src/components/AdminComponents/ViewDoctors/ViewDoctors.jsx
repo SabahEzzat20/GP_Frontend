@@ -126,15 +126,6 @@ const ViewDoctors = () => {
       <div className="actions-container">
         <AddDoctorModal />
         <AssignAppointmentToDoctor />
-        <div className="search-bar">
-          <FaSearch />
-          <input
-            type="text"
-            placeholder="Search doctor..."
-            value={searchTerm}
-            onChange={handleSearchInputChange}
-          />
-        </div>
       </div>
       <div className="table-container">
         <table className="doctor-table">
