@@ -22,7 +22,8 @@ const ViewDoctors = () => {
         id:'',
         doctorName: '',
         doctorEmail: '',
-        description: ''
+        description: '',
+        location: '',
       }
     ],
     err: '',
@@ -107,13 +108,6 @@ const ViewDoctors = () => {
       });
 
 }
-
-  // const filteredDoctors = records.filter((doctor) => {
-
-  //   const nameWithoutDr = doctor && doctor.name ? doctor.name.replace("Dr. ", "") : "";
-  //   return nameWithoutDr.toLowerCase().startsWith(searchTerm.toLowerCase());
-  // });
-
   return (
     <div className="view-doctors">
       <div className="title-container">
@@ -154,7 +148,7 @@ const ViewDoctors = () => {
                 </td>
                 <td>
                   <div className="actions">
-                    <ViewDetails name={doctor.doctorName} email={doctor.doctorEmail} description={doctor.description}/>
+                    <ViewDetails name={doctor.doctorName} email={doctor.doctorEmail} description={doctor.description} location={doctor.location}/>
                     </div>
                     </td>
               </tr>

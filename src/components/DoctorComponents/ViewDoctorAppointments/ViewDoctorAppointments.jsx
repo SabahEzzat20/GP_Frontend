@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import './ViewDoctorAppointments.scss'
 import PatientQueue from '../PatientsQueue/PatientQueue.jsx';
 import NextPatientDetails from '../NextPatientDetails/NextPatientDetails.jsx';
+import RainfallChart from '../Charts/RainfallChart.jsx';
 const ViewDoctorAppointments = () => {
     const [isMobile, setIsMobile] = React.useState(false);
 
@@ -39,6 +40,10 @@ const ViewDoctorAppointments = () => {
                 <div className="patients-preview">
                     <div className="patients-details-title">Next Patient Details</div>
                     <NextPatientDetails />
+                </div>
+                <div className="patients-preview">
+                    <div className="patients-details-title">RainfallChart</div>
+                    <RainfallChart />
                 </div>
             </Stack>
             
