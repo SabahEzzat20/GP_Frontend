@@ -12,3 +12,48 @@
     font-size: 17px;
     font-weight: 450;
 }
+.DocotrAppointments{
+    width: 520px;
+    box-shadow: 1px 1px 5px rgba(175, 175, 175, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: transparent; 
+    }
+
+}
+.rotate{
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+.arrow{
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
+.app-div{
+    width: 100%;
+    box-shadow: 1px 1px 5px rgba(214, 214, 214, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: gray;
+}
+.app-contnr{
+    max-height:0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+.app-contnr-visible{
+    height: auto;
+    max-height: 999;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}

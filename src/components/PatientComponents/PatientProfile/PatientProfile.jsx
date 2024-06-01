@@ -17,7 +17,6 @@ import Button from '@mui/material/Button';
 import FolderIcon from '@mui/icons-material/Folder';
 import CancelIcon from '@mui/icons-material/Cancel';
 import xray from '../../../images/hand-255x300.jpg'
-import emptyPage from '../../../images/No data-cuate.png';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { MdOutlineAlternateEmail } from "react-icons/md";
@@ -27,13 +26,13 @@ import Empty from '../../../shared/Empty/Empty';
 import { removeAuthenticatedUser ,getAuthenticatedUser} from '../../../Helper/Storage';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 const PatientProfile = () => {
     const navigate = useNavigate();
+    const auth = getAuthenticatedUser();
     // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
@@ -119,14 +118,12 @@ const PatientProfile = () => {
         name: '',
         email: ''
     });
-    const token = getAuthenticatedUser();
-    const refreshToken = token.refreshToken;
     const getMyReservations = () => {
         setReservedAppointments({ ...reservedAppointments, loading: true })
         axios
-            .get(`http://localhost:8070/patient/myReservation/${token.id}`, {
+            .get(`http://localhost:8070/patient/myReservation/${auth.id}`, {
                 headers: {
-                    'Authorization': `Bearer ${refreshToken}`
+                    'Authorization': `Bearer ${auth.refreshToken}`
                 }
         })
         .then((response) => {
@@ -159,23 +156,12 @@ const PatientProfile = () => {
         });
     }
     useEffect(() => {
-        // setProfile({ ...profile, loading: true })
+        setProfile({ ...profile, loading: true , name: auth.name,email:auth.email,id: auth.id})
         getMyReservations();
         axios
-            .get(`http://localhost:8070/user/getUserByToken/${refreshToken}`)
-            .then((response) => {
-                setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
-                setUserDataPreview({name:profile.name,email:profile.email});
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log('view profile error: '+error);
-                setProfile({ ...profile, loading: false, err: [error] });
-            });
-        axios
-            .get(`http://localhost:8070/patient/getAllMyXRays/${token.id}`,{
+            .get(`http://localhost:8070/patient/getAllMyXRays/${auth.id}`,{
                 headers: {
-                    "Authorization": `Bearer ${refreshToken}`
+                    "Authorization": `Bearer ${auth.refreshToken}`
                 }
             })
             .then((response) => {
@@ -193,7 +179,7 @@ const PatientProfile = () => {
             .delete(`http://localhost:8070/patient/cancelReservation/${id}`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${refreshToken}`
+                        'Authorization': `Bearer ${auth.refreshToken}`
                     }
                 }
             )
@@ -302,12 +288,13 @@ const PatientProfile = () => {
                         openRoute === 2 &&
                         <div>
                             {
-                                data === 1 ?
+                                History.result.length !== 0 ?
                                     <Grid container xs={12} sm={12} md={12} lg={12} xl={12}>
                                         <Box className="history-bar" sx={{ width: '100%' }}>
                                             <Stack spacing={3} direction='column'>
                                                     {
                                                         History.result.map((history) => (
+                                                            <>
                                                             <Stack direction='column' >
                                                                 <Box sx={{ display: 'flex', justifyContent: "flex-end", fontSize: '13px', color: 'gray' }}>{history.uploadingDate}</Box>
                                                                 <Stack spacing={3} direction='row' sx={{ display: "flex", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-start', lg: 'flex-start', xl: 'flex-start' }, alignItems: 'baseline' }}>
@@ -322,9 +309,10 @@ const PatientProfile = () => {
                                                                     </Box>
                                                                 </Stack>
                                                             </Stack>
+                                                            <Divider />
+                                                            </>
                                                         )
                                                     )}
-                                                <Divider />
                                             </Stack>
                                         </Box>
                                     </Grid>

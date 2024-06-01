@@ -6,24 +6,92 @@ import resetpassword from '../../images/Key-pana.png';
 import Form from "react-bootstrap/Form";
 import  Box from '@mui/material/Box';
 import  Grid from '@mui/material/Grid';
-import { IoIosArrowRoundBack } from "react-icons/io";
 import Input from '@mui/joy/Input';
 import Stack from '@mui/material/Stack';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
-import { VscVerifiedFilled } from "react-icons/vsc";
 import { MdVerifiedUser } from "react-icons/md";
-import { IoMdKey } from "react-icons/io";
-import { IoKey } from "react-icons/io5";
 import { GoPasskeyFill } from "react-icons/go";
-
+import { getAuthenticatedUser } from '../../Helper/Storage';
+import axios from 'axios';
 const ResetPassword = () => {
+    const auth = getAuthenticatedUser()
+    const [verificationData, setVerificationData] = useState([{
+        email: '',
+        verificationCode: '',
+        password:'',
+        loading: false,
+        err: ''
+    }]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [provideEmail, setProvideEmail] = useState(1);
-    const handleProvide = () => setProvideEmail(2);
-    const handleVerification = () => setProvideEmail(3);
+    const handleProvide = () => {
+        // e.preventDefault();
+        setVerificationData({ ...verificationData, loading: true, err: []})
+        axios
+        .post("http://localhost:8070/forgotPassword/sendRandomNumber", {
+            email: verificationData.email
+        },{
+        headers: {
+            'Authorization': `Bearer ${auth.refreshToken}`
+        }
+        })
+        .then((response) => {
+            console.log(response.data);
+            setVerificationData({ ...verificationData, loading: false, err: [] });
+        //   showMessage();
+            setProvideEmail(2)
+        })
+        .catch((error) => {
+            setVerificationData({ ...verificationData, loading: false, err: error.response.data.errors })
+            console.log(error);
+        })
+    };
+    const handleVerification = () => {
+        setVerificationData({ ...verificationData, loading: true, err: [] })
+        axios
+        .post("http://localhost:8070/forgotPassword/verifyRandomNumber", {
+            email: verificationData.email,
+            verificationCode: verificationData.verificationCode
+        },{
+        headers: {
+            'Authorization': `Bearer ${auth.refreshToken}`
+        }
+        })
+        .then((response) => {
+            console.log(response.data);
+            setVerificationData({ ...verificationData, loading: false, err: [] });
+        //   showMessage();
+            setProvideEmail(3)
+        })
+        .catch((error) => {
+            setVerificationData({ ...verificationData, loading: false, err: error.response.data.errors })
+            console.log(error);
+        })
+    };
+    const changePassword = () => {
+        setVerificationData({ ...verificationData, loading: true, err: [] })
+        axios
+        .put(`http://localhost:8070/user/changePassword/${auth.id}`, {
+            password:verificationData.password
+        },{
+        headers: {
+            'Authorization': `Bearer ${auth.refreshToken}`
+        }
+        })
+        .then((response) => {
+            console.log(response.data);
+            setVerificationData({ ...verificationData, loading: false, err: [] });
+        //   showMessage();
+            setProvideEmail(3)
+        })
+        .catch((error) => {
+            setVerificationData({ ...verificationData, loading: false, err: error.response.data.errors })
+            console.log(error);
+        })
+    }
     const handleBacking = () => {
         if (provideEmail===3) {
             setProvideEmail(2)
@@ -74,7 +142,10 @@ const ResetPassword = () => {
                                                     <Form>
                                                         <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
                                                             {/* <Form.Label>Email</Form.Label> */}
-                                                            <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" required type='email'/>
+                                                            <Input placeholder="Email" startDecorator={<MdOutlineAlternateEmail />} variant="plain" color="neutral" required type='email' 
+                                                                value={verificationData.email}
+                                                                onChange={(e)=>setVerificationData({...verificationData,email:e.target.value})}
+                                                            />
                                                         </Form.Group>
                                                     </Form>
                                                 </Stack>
@@ -87,7 +158,10 @@ const ResetPassword = () => {
                                                 <Form>
                                                     <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
                                                         {/* <Form.Label>verification code</Form.Label> */}
-                                                        <Input placeholder="verification code" startDecorator={<MdVerifiedUser />} variant="plain" color="neutral" required type='number'/>
+                                                        <Input placeholder="verification code" startDecorator={<MdVerifiedUser />} variant="plain" color="neutral" required type='number'
+                                                            value={verificationData.verificationCode}
+                                                            onChange={(e)=>setVerificationData({...verificationData,verificationCode:e.target.value})}
+                                                        />
                                                     </Form.Group>
                                                 </Form>
                                             </Stack>                                        
@@ -99,18 +173,21 @@ const ResetPassword = () => {
                                             <p className='tips'>Please enter your new password</p>
                                             <Form>
                                                 <Stack  direction='column' spacing={1.5}>
-                                                    <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
-                                                        {/* <Form.Label>new password</Form.Label> */}
+                                                    {/* <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
+                                                        <Form.Label>new password</Form.Label> 
                                                         <Input placeholder="password" startDecorator={<GoPasskeyFill />} variant="plain" color="neutral" required type='password'/>
-                                                    </Form.Group>
+                                                    </Form.Group> */}
                                                     <Form.Group className="email-providing-group" controlId="exampleForm.ControlInput1">
                                                         {/* <Form.Label> confirm new password</Form.Label> */}
-                                                        <Input placeholder="confirm new password" startDecorator={<GoPasskeyFill />} variant="plain" color="neutral" required type='password'/>
+                                                        <Input placeholder="confirm new password" startDecorator={<GoPasskeyFill />} variant="plain" color="neutral" required type='password'
+                                                            value={verificationData.password}
+                                                            onChange={(e)=>setVerificationData({...verificationData,password:e.target.value})}
+                                                        />
                                                     </Form.Group>
                                                 </Stack>
                                             </Form>
                                             </Stack>
-                                            <button className='submit-email-btn'>submit</button>
+                                            <button className='submit-email-btn' onClick={(e)=>changePassword()}>submit</button>
                                             {/* <div className='back-login'>
                                                 <p>Back to <Link to={'/login'} className='login-link'>login</Link></p>
                                             </div> */}
