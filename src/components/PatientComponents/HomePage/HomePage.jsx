@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import ExperienceDoctors from "../ExperienceDoctors/ExperienceDoctors";
 import Guarantee from "../Guarantee/Guarantee";
+import Section3 from "../Section3/Section3";
 const doctor = require('../../../images/header-bg.png');
 
 function HomePage(){
@@ -49,6 +50,7 @@ function HomePage(){
       </header>
         </div>
         <ExperienceDoctors />
+        <Section3 />
         <Guarantee />
         </>
     )

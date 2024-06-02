@@ -21,6 +21,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { VscClose } from "react-icons/vsc";
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
+import RainfallChart from '../Charts/RainfallChart.jsx';
 const ViewDoctorAppointments = () => {
     const [isMobile, setIsMobile] = React.useState(false);
     const auth =  getAuthenticatedUser();
@@ -147,6 +148,11 @@ const ViewDoctorAppointments = () => {
                         {/* <Divider/> */}
                     </Box>
                 </Box>
+
+                <div className="patients-preview">
+                    <div className="patients-details-title">RainfallChart</div>
+                    <RainfallChart />
+                </div>
             </Stack>
             
         </div>

@@ -13,6 +13,7 @@ export const AddDoctorModal = () => {
     doctorEmail: '',
     password: '',
     description: '',
+    location:'',
     loading: true,
     err: [],
   };
@@ -46,6 +47,7 @@ export const AddDoctorModal = () => {
         doctorEmail: doctorData.doctorEmail,
         password: doctorData.password,
         description: doctorData.description,
+        location: doctorData.location,
       },{
         headers: {
           'Authorization': `Bearer ${refreshToken}`
@@ -116,6 +118,16 @@ export const AddDoctorModal = () => {
                 type="text"
                 value={doctorData.description}
                 onChange={(e) => setDoctorData({ ...doctorData, description: e.target.value })}
+              />
+            </Form.Group>
+            
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                className="textField"
+                type="text"
+                value={doctorData.location}
+                onChange={(e) => setDoctorData({ ...doctorData, location: e.target.value })}
               />
             </Form.Group>
           </Form>

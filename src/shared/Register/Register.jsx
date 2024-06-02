@@ -35,7 +35,6 @@ const Register = () => {
         console.error('response error : ',error)
         setSignup({ ...signup, loading: false, err: 'failed to signup' })
     })
-    // console.log(signup);
   } 
   return (
     <div className="register-bg">

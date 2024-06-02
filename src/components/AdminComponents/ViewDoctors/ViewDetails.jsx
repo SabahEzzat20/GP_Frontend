@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Stack from "@mui/material/Stack";
@@ -83,16 +84,16 @@ const ViewDetails = (props) => {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
-                <Stack direction="row" spacing={2}>
-                  <div>
+                <Stack direction="row" spacing={3}>
+                  <div className="photo">
                     <Avatar alt="Sabah hassan" src={sabah} size="lg" />
                   </div>
                   <Stack
                     direction="column"
-                    spacing={0.1}
+                    spacing={.8}
                     className="doctor-details"
                   >
-                    <p className="doctor-name">{props.name}</p>
+                    <h1 className="doctor-name">{props.name}</h1>
                     <Stack
                       direction={{
                         xs: "column",
@@ -104,7 +105,9 @@ const ViewDetails = (props) => {
                       spacing={{ xs: "1", sm: "1", md: "3", lg: "3", xl: "3" }}
                     >
                       <Box className="expertise">{props.email}</Box>
+                     
                     </Stack>
+                      <Link className="">{props.location}</Link>
                   </Stack>
                 </Stack>
               </Form.Label>
@@ -164,7 +167,7 @@ const ViewDetails = (props) => {
                               </Button>
                             ))
                         ) : (
-                          <h5 className="hour" style={{color:"#59aedf",fontSize:"24px",textAlign:"center"}}>
+                          <h5 className="hour" style={{color:"rgb(77, 77, 77)",fontSize:"24px",textAlign:"center"}}>
                             No appointment in this day
                           </h5>
                         )}
