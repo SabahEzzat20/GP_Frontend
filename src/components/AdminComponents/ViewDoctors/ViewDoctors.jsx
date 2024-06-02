@@ -9,7 +9,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
 import ViewDetails from "./ViewDetails";
-import  SearchBar from '../SearchBar/SearchBar'
+// import  SearchBar from '../SearchBar/SearchBar'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 const ViewDoctors = () => {
