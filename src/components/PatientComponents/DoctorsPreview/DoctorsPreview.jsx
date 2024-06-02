@@ -6,6 +6,39 @@ import doctorsData from '../../../DummyData/DoctorPreview.json';
 import Box from '@mui/material/Box';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios';
+
+const transformData = (data) => {
+    return data.map(item => {
+        const transformedAppointments = item.appointments.reduce((acc, curr) => {
+            const dayIndex = acc.findIndex(a => a.day === curr.day);
+            if (dayIndex > -1) {
+                acc[dayIndex].times.push({
+                    startTime: curr.startTime,
+                    endTime: curr.endTime,
+                    status: curr.status,
+                    id: curr.id
+                });
+            } else {
+                acc.push({
+                    day: curr.day,
+                    times: [{
+                        startTime: curr.startTime,
+                        endTime: curr.endTime,
+                        status: curr.status,
+                        id: curr.id
+                    }]
+                });
+            }
+            return acc;
+        }, []);
+
+        return {
+            ...item,
+            appointments: transformedAppointments
+        };
+    });
+};
+
 const DoctorsPreview = () => {
     const [reservations, setReservations] = useState([]);
     const userToken = getAuthenticatedUser();
@@ -23,13 +56,15 @@ const DoctorsPreview = () => {
                 }
         })
             .then((response) => {
-            setData({...data,loading:false,result: response.data,err:''})
+                const transformedResult = transformData(response.data);
+                setData({ ...data, loading: false, result: transformedResult, err: '' })
+                console.log(transformedResult)
         })
             .catch((error) => {
             setData({...data,loading:false,err:'failed to load data'})
-        })
-    }, [data.result]);
-
+            })
+        
+    }, []);
     // const fetchReservationsData = async () => {
     //     try {
     //         // Make GET request to fetch reservations data using Axios
@@ -88,12 +123,17 @@ const DoctorsPreview = () => {
         <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',paddingLeft:'250px',paddingRight:'250px',paddingTop:'10px'}}>
             <Carousel
                 className="carousel">
-                {data.result.map((doctor) =>{
-                    return <DoctorPreview key={doctor.doctorId} doctor={doctor} />;
-                })}
+                {data.result && data.result.length > 0 ? (
+                    data.result.map((doctor) => (
+                        <DoctorPreview key={doctor.id} doctor={doctor} />
+                    ))
+                ) : (
+                    <div>No data available</div>
+                )}
             </Carousel>
         </Box>
     );
 };
 
 export default DoctorsPreview;
+

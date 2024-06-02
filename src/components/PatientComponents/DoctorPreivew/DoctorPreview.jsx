@@ -9,39 +9,82 @@ import TabPanel from '@mui/lab/TabPanel';
 import Button from '@mui/material/Button';
 import './DoctorPreview.scss';
 import { Link } from 'react-router-dom';
+import { getAuthenticatedUser } from '../../../Helper/Storage';
+import axios from 'axios';
 const DoctorPreview = ({ doctor }) => {
-    const [value, setValue] = useState(doctor.Appointments.length > 0 ? doctor.Appointments[0].day : '');
+    const auth = getAuthenticatedUser();
+    const [value, setValue] = useState('');
     const [buttonClick, setButtonClick] = useState({});
     const [continueDisabled, setContinueDisabled] = useState(true);
+    const [selected, setSelected] = useState(false);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    
-    // const handleClick = (appointmentId, timeId) => {
-    //     setButtonClick(prevState => ({
-    //         [appointmentId]: {
-    //             [timeId]: !prevState[appointmentId]?.[timeId] || prevState[appointmentId][timeId] === 'outlined' ? 'contained' : 'outlined'
-    //         }
-    //     }));
-    //     setContinueDisabled(false); // Enable the continue button when  "hour" button is clicked
-    // };
+    const [reservation, setReservation] = useState({
+        loading: false,
+        err: '',
+        reservationId: '',
+        userId: auth.id,
+        date: '',
+        status: 0
+    })
+    function formatDate(inputDate) {
+        const parsedDate = new Date(inputDate);
+        const day = parsedDate.getDate();
+        const month = parsedDate.getMonth() + 1; // Months are zero-based, so add 1
+        const year = parsedDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+        return formattedDate;
+    }
+    const handleSelectedReservation = (id,reservationDate) => {
+        console.log('reservationId : ' + id)
+        setSelected(() => (reservation.reservationId === id ? !selected : selected));
+        setReservation({ ...reservation, reservationId: id, date: formatDate(reservationDate)});
+    }
+    const MakeReservation = (e) => {
+        e.preventDefault();
+        console.log(reservation)
+        setReservation({ ...reservation, loading: true })
+        axios
+            .put('http://localhost:8070/patient/add-reservation', {
+                id: reservation.reservationId,
+                patientUserId: reservation.userId,
+                date: reservation.date,
+                status: reservation.status
+        },{
+            headers: {
+                'Authorization': `Bearer ${auth.refreshToken}`
+            }
+        })
+        .then((response) => {
+            setReservation({...reservation,loading: false });
+            // showMessage();
+            // handleOpenEditProfile();
+            console.log('reservated successfully!');
+        })
+        .catch((error) => {
+            setReservation({ ...reservation, loading: false})
+            console.log('failed to reserve an appointment'+error);
+        });
+    }
     const printNext10Dates = () =>{
         const today = new Date();
         const dates = [];
-    
-        // Loop to get next 10 dates
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
         for (let i = 0; i < 10; i++) {
             const nextDate = new Date(today);
             nextDate.setDate(today.getDate() + i);
-            dates.push(nextDate.toDateString());
+            dates.push({
+                date: nextDate.toDateString(),
+                dayName: dayNames[nextDate.getDay()],
+            });
         }
-    
-        // Print the dates
-        console.log("Next 10 dates:");
-        dates.forEach(date => console.log(date));
+        return dates;
     }
-    printNext10Dates();
+    // console.log(printNext10Dates())
+    const Dates = printNext10Dates();
     return (
         <div className='doctor-preview-container'>
             <div className="doctor-identification">
@@ -50,7 +93,7 @@ const DoctorPreview = ({ doctor }) => {
                     <div className="doctor-info">
                         <Stack direction="column" spacing={0.5}>
                             <p className='doctor-name'>Dr.{doctor.doctorName}</p>
-                            <p className="expertise">{doctor.doctorDescription}</p>
+                            <p className="expertise">{doctor.description}</p>
                         </Stack>
                     </div>
                 </Stack>
@@ -60,16 +103,23 @@ const DoctorPreview = ({ doctor }) => {
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList variant="scrollable" scrollButtons="auto" value={value} onChange={handleChange}>
-                                {doctor.Appointments.map((appointment) => (
-                                    <Tab key={appointment.day} label={appointment.day} value={appointment.day} />
+                                {Dates.map((appointment) => (
+                                    <Tab key={appointment.date} label={appointment.date} value={appointment.date} />
                                 ))}
                             </TabList>
                         </Box>
-                        {doctor.Appointments.map((appointment, index) => (
-                            <TabPanel key={index} value={appointment.day}>
-                                {appointment.startTimes.map((time, timeIndex) => (
-                                    <Button key={timeIndex} variant='outlined' className='hour'>{time}</Button>
-                                ))}
+                        {Dates.map((date) => (
+                            <TabPanel key={date.date} value={date.date}>
+                                {doctor.appointments
+                                    .filter(appointment => appointment.day === date.dayName)
+                                    .map((appointment, index) => (
+                                        <div key={index}>
+                                            {appointment.times.map((time) => (
+                                                <Button key={time.id} variant={selected?'contain':'outlined'} className='hour' onClick={()=>handleSelectedReservation(time.id,date.date)}>{time.startTime}</Button>
+                                            ))}
+                                        </div>
+                                    ))
+                                }
                             </TabPanel>
                         ))}
                     </TabContext>
@@ -77,8 +127,8 @@ const DoctorPreview = ({ doctor }) => {
             </div>
 
             <Box sx={{display:'flex',alignItems:'center',justifyContent:'end',marginTop:'10px'}}>
-                <Button variant="contained" disabled={continueDisabled}>
-                    <Link to="/patient/BigForm" style={{textDecoration:'none',color:'white'}}>
+                <Button variant="contained" disabled={!selected} onClick={MakeReservation}>
+                    <Link style={{textDecoration:'none',color:'white'}}>
                         continue
                     </Link>
                 </Button>

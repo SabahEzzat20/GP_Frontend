@@ -1,5 +1,6 @@
 import React, { useCallback, useState , useEffect } from 'react';
 import './PatientProfile.scss';
+import defaultPhoto from '../../../images/default.png'
 import saboha2 from '../../../images/saboha2.jpg'
 import { useDropzone } from 'react-dropzone';
 import { FiCamera } from "react-icons/fi";
@@ -37,7 +38,7 @@ const PatientProfile = () => {
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const { getRootProps, getInputProps } = useDropzone({  }); 
-    const [image, setImage] = useState(saboha2);
+    const [image, setImage] = useState(defaultPhoto);
     const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const camera = <FiCamera />;
     const [open, setOpen] = React.useState(false);
@@ -203,7 +204,7 @@ const PatientProfile = () => {
                             <Box {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <div className='user-photo'>
-                                    <img src={saboha2} alt="userPhoto" />
+                                    <img src={image} alt="userPhoto" />
                                     <div className="camera">
                                         {camera}
                                     </div>

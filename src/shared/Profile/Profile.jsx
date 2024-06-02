@@ -25,10 +25,10 @@ const Profile = () => {
     const auth = getAuthenticatedUser();
     const [openEditProfile, setOpenEditProfile] = useState(false);
     const [profile, setProfile] = useState({
-        id: '',
-        name: '',
+        id: auth.id,
+        name: auth.name,
         userPhoto: null,
-        email: '',
+        email: auth.email,
         loading: false,
         err: []
     })
@@ -71,17 +71,18 @@ const Profile = () => {
         });
     }
     useEffect(() => {
-        axios
-            .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
-            .then((response) => {
-                setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
-                setUserDataPreview({name:profile.name,email:profile.email});
-                // console.log(response.data);
-            })
-            .catch((error) => {
-                console.log('view profile error: '+error);
-                setProfile({ ...profile, loading: false});
-            });
+
+        // axios
+        //     .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
+        //     .then((response) => {
+        //         setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
+        //         setUserDataPreview({name:profile.name,email:profile.email});
+        //         // console.log(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.log('view profile error: '+error);
+        //         setProfile({ ...profile, loading: false});
+        //     });
         }, []);
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
