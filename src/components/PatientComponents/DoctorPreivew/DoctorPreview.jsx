@@ -8,9 +8,13 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Button from '@mui/material/Button';
 import './DoctorPreview.scss';
+import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import { getAuthenticatedUser } from '../../../Helper/Storage';
 import axios from 'axios';
+import { IoIosStar } from 'react-icons/io';
 const DoctorPreview = ({ doctor }) => {
     const auth = getAuthenticatedUser();
     const [value, setValue] = useState('');
@@ -37,6 +41,20 @@ const DoctorPreview = ({ doctor }) => {
         const formattedDate = `${day}/${month}/${year}`;
         return formattedDate;
     }
+        const [open, setOpen] = React.useState(false);
+
+        const showMessage = () => {
+        setOpen(true);
+        };
+    
+        const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpen(false);
+        };
+    
     const handleSelectedReservation = (id,reservationDate) => {
         console.log('reservationId : ' + id)
         setSelected(() => (reservation.reservationId === id ? !selected : selected));
@@ -59,7 +77,7 @@ const DoctorPreview = ({ doctor }) => {
         })
         .then((response) => {
             setReservation({...reservation,loading: false });
-            // showMessage();
+            showMessage();
             // handleOpenEditProfile();
             console.log('reservated successfully!');
         })
@@ -94,6 +112,10 @@ const DoctorPreview = ({ doctor }) => {
                         <Stack direction="column" spacing={0.5}>
                             <p className='doctor-name'>Dr.{doctor.doctorName}</p>
                             <p className="expertise">{doctor.description}</p>
+                            {/* <p className="expertise">
+                                <Rating name="read-only" value={value} readOnly />
+                            </p> */}
+                            <p className="expertise"><IoIosStar/> not rated yet</p>
                         </Stack>
                     </div>
                 </Stack>
@@ -111,15 +133,19 @@ const DoctorPreview = ({ doctor }) => {
                         {Dates.map((date) => (
                             <TabPanel key={date.date} value={date.date}>
                                 {doctor.appointments
-                                    .filter(appointment => appointment.day === date.dayName)
-                                    .map((appointment, index) => (
-                                        <div key={index}>
-                                            {appointment.times.map((time) => (
-                                                <Button key={time.id} variant={selected?'contain':'outlined'} className='hour' onClick={()=>handleSelectedReservation(time.id,date.date)}>{time.startTime}</Button>
-                                            ))}
-                                        </div>
-                                    ))
-                                }
+                                    .filter(appointment => appointment.day === date.dayName).length > 0 ? (
+                                    doctor.appointments
+                                        .filter(appointment => appointment.day === date.dayName)
+                                        .map((appointment, index) => (
+                                            <div key={index}>
+                                                {appointment.times.map((time) => (
+                                                    <Button key={time.id} variant={selected ? 'contain' : 'outlined'} className='hour' onClick={() => handleSelectedReservation(time.id, date.date)}>{time.startTime}</Button>
+                                                ))}
+                                            </div>
+                                        ))
+                                ) : (
+                                    <p>There are no appointments today</p>
+                                )}
                             </TabPanel>
                         ))}
                     </TabContext>
@@ -133,6 +159,16 @@ const DoctorPreview = ({ doctor }) => {
                     </Link>
                 </Button>
             </Box>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert
+                onClose={handleClose}
+                severity="success"
+                variant="filled"
+                sx={{ width: '100%' }}
+                >
+                Appointment reserved successfully!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

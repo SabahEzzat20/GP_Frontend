@@ -120,9 +120,13 @@ const DoctorsPreview = () => {
     // console.log(reservations)
     
     return (
-        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',paddingLeft:'250px',paddingRight:'250px',paddingTop:'10px'}}>
+        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',paddingLeft:'250px',paddingRight:'250px',paddingTop:'10px',color:'red'}}>
             <Carousel
-                className="carousel">
+                className="carousel"
+                sx={{
+                    width: '100%', // Set the width to 100%
+                    maxWidth: '1200px', // Set a maximum width
+                }}>
                 {data.result && data.result.length > 0 ? (
                     data.result.map((doctor) => (
                         <DoctorPreview key={doctor.id} doctor={doctor} />

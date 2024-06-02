@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "./BigForm.scss";
 import Stack from '@mui/material/Stack'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from '@mui/joy/Input';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -22,6 +22,7 @@ import Box  from "@mui/material/Box";
 import { IoIosArrowBack } from "react-icons/io";
 
 const BigForm = () => {
+  const navigate = useNavigate();
   const auth = getAuthenticatedUser();
   const [patientData, setPatientData] = useState({
     // userId: '',
@@ -69,8 +70,9 @@ const BigForm = () => {
             }
           })
           .then((response) => {
-              setPatientData({ ...patientData, loading: false, err: [] });
-              showMessage();
+            setPatientData({ ...patientData, loading: false, err: [] });
+            // showMessage();
+            navigate('/patient/doctors-preview');
           })
           .catch((error) => {
               setPatientData({ ...patientData, loading: false, err: error.response.data.errors })
@@ -80,12 +82,12 @@ const BigForm = () => {
   }
 
   return (
-    <Box className="reservation-form" sx={{width:{xl:'750px',lg:'750px',md:'750px',sm:'600px',xs:'350px'}}}>
+    <Box className="reservation-form" sx={{width:{xl:'600px',lg:'600px',md:'750px',sm:'600px',xs:'350px'}}}>
       <Stack direction='column' spacing={4}>
-        <div className="go-back-arrow">
+        {/* <div className="go-back-arrow">
           <Link to={'/patient/doctors-preview'}><IoIosArrowBack /></Link>
-        </div>
-        <Stack direction='row' spacing={2}>
+        </div> */}
+        {/* <Stack direction='row' spacing={2}>
           <div>
             <Avatar alt="Sabah hassan" src={sabah} size='lg'/>
           </div>
@@ -96,7 +98,7 @@ const BigForm = () => {
               <Box className="expertise">Duration : 15min</Box>
             </Stack>
           </Stack>
-        </Stack>
+        </Stack> */}
         <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={2}>
           <Stack direction='column' spacing={0.2}>
             <Input 
@@ -196,10 +198,10 @@ const BigForm = () => {
             />
           </Stack>
         </Stack>
-        <Stack direction='row' spacing={1}>
+        {/* <Stack direction='row' spacing={1}>
           <Checkbox required/>
           <label className=''>makesure to download Zoom App before meetting from <Link to={'https://zoom.en.softonic.com/'} target="_blank">here</Link></label>
-        </Stack>
+        </Stack> */}
         <button className="submit-reservation" onClick={(e)=>addPatient()}>submit</button>
       </Stack>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

@@ -26,7 +26,7 @@ const Register = () => {
       password: signup.password
     })
       .then(resp => {
-        console.log('response data : ', resp.data)
+        // console.log('response data : ', resp.data)
         setSignup({ ...signup, loading: false, err: [] })
         setAuthenticatedUser(resp.data);
         navigate('/patient/homepage');        
@@ -66,17 +66,12 @@ const Register = () => {
             <input id="password" type="password" placeholder=" " value={signup.password} onChange={(e)=> setSignup({...signup,password:e.target.value})} required/>
             <label htmlFor="name">Password</label>
           </div>
-          <span id="password-eye">
+          {/* <span id="password-eye">
             <FaEyeSlash />
-          </span>
+          </span> */}
         </div>
-        {/* <div className="remember-forgot">
-          <label>
-            <input type="checkbox" />    I read and agree to Terms & Conditions
-          </label>
-        </div> */}
         <div>{signup.err}</div>
-        <button className="register__btn">{signup.loading ? <CircularProgress size={40} /> : 'register'}</button>
+        <button className="register__btn">{signup.loading ? <CircularProgress size={20} /> : 'register'}</button>
         <div className="register">
           <p>
             Already have an account? <Link to="/login">Sign in</Link>

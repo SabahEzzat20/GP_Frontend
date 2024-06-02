@@ -74,9 +74,9 @@ const LoginForm = () => {
               <input id="password" type="password" placeholder=" " value={login.password} onChange={(e)=> setLogin({...login,password:e.target.value})} required/>
               <label htmlFor="name">Password</label>
             </div>
-            <span id="password-eye">
+            {/* <span id="password-eye">
               <FaEyeSlash />
-            </span>
+            </span> */}
           </div>
           {/* <div>{login.err}</div> */}
           <div className="action__btn">
@@ -86,7 +86,7 @@ const LoginForm = () => {
             </div> */}
             <ResetPassword />
           </div>
-          <button className="login__btn" type="submit">{login.loading ? <CircularProgress size={40} /> : 'login'}</button>
+          <button className="login__btn" type="submit">{login.loading ? <CircularProgress size={20} /> : 'login'}</button>
           <div className="register">
             Don't have an account? <Link to="/register">Register</Link>
           </div>

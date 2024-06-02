@@ -37,7 +37,13 @@ const PatientProfile = () => {
     // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
-    const { getRootProps, getInputProps } = useDropzone({  }); 
+    const { getRootProps, getInputProps } = useDropzone({
+        onDrop: acceptedFiles => {
+            const file = acceptedFiles[0];
+            const filePath = file.path; // Assuming the file object contains the path property
+            updateProfilePhoto(filePath);
+        }
+    });
     const [image, setImage] = useState(defaultPhoto);
     const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const camera = <FiCamera />;
@@ -49,19 +55,34 @@ const PatientProfile = () => {
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-        return;
+            return;
         }
 
         setOpen(false);
     };
-    const onDrop = useCallback((acceptedFiles) => {
-        const file = acceptedFiles[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-        setImage(reader.result);
-        };
-        reader.readAsDataURL(file);
-    }, []);
+
+    const updateProfilePhoto = (filePath) => {
+        setProfilePhoto({ ...profilePhoto, loading: true });
+        axios
+            .put('http://localhost:8070/user/updateProfilePhoto', {
+                id: auth.id,
+                userPhoto: filePath
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${auth.refreshToken}`
+                }
+            })
+            .then((response) => {
+                setProfilePhoto({ ...profilePhoto, photo: filePath, loading: false });
+                showMessage();
+                console.log('Profile photo updated successfully!');
+            })
+            .catch((error) => {
+                console.log('Failed to update profile photo: ' + error);
+                setProfilePhoto({ ...profilePhoto, loading: false, err: error });
+            });
+    };
+
     const profileRoutes = [
         {
             id: 1,
@@ -78,24 +99,27 @@ const PatientProfile = () => {
             route: 'Appointments',
             path: '/patientprofile/patient-reserved-appointment'
         },
-    ]
-    const handleChange = (id,route) => {
+    ];
+
+    const handleChange = (id, route) => {
         setCurrentRoute(route);
         setOpenRoute(id);
-    }
+    };
+
     const handleOpenEditProfile = () => {
-        setOpenEditProfile(!openEditProfile)
-    }
-    const data = 1;
+        setOpenEditProfile(!openEditProfile);
+    };
+
     const openImageInNewTab = (imageUrl) => {
         window.open(imageUrl, '_blank');
     };
+
     const LogoutFunction = () => {
         removeAuthenticatedUser();
         navigate('/login');
-        console.log('loged out successfully!')
-    }
-    // const [patientId, setPatientId] = useState('');
+        console.log('logged out successfully!');
+    };
+
     const [profile, setProfile] = useState({
         id: '',
         name: '',
@@ -103,96 +127,120 @@ const PatientProfile = () => {
         email: '',
         loading: true,
         err: []
-    })
-    const [reservedAppointments,setReservedAppointments] = useState({
+    });
+
+    const [reservedAppointments, setReservedAppointments] = useState({
         loading: false,
         result: [],
         err: ''
-    })
-    const [History,setHistory] = useState({
+    });
+
+    const [History, setHistory] = useState({
         loading: false,
         result: [],
         err: ''
-    })
+    });
 
     const [userDataPreview, setUserDataPreview] = useState({
         name: '',
         email: ''
     });
+
     const getMyReservations = () => {
-        setReservedAppointments({ ...reservedAppointments, loading: true })
+        setReservedAppointments({ ...reservedAppointments, loading: true });
         axios
             .get(`http://localhost:8070/patient/myReservation/${auth.id}`, {
                 headers: {
                     'Authorization': `Bearer ${auth.refreshToken}`
                 }
-        })
-        .then((response) => {
-            setReservedAppointments({...reservedAppointments,result: response.data,loading: false})
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log('update profile error: '+error);
-            setReservedAppointments({...reservedAppointments,loading: false,err: 'can not retrieve reserved appointments'})
-        });
-    }
+            })
+            .then((response) => {
+                setReservedAppointments({ ...reservedAppointments, result: response.data, loading: false });
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log('update profile error: ' + error);
+                setReservedAppointments({ ...reservedAppointments, loading: false, err: 'cannot retrieve reserved appointments' });
+            });
+    };
+
     const UpdateProfile = () => {
-        setProfile({ ...profile, loading: true })
+        setProfile({ ...profile, loading: true });
         axios
             .put('http://localhost:8070/user/updateUserProfile', {
                 id: profile.id,
                 name: profile.name,
                 email: profile.email
-        })
-        .then((response) => {
-            setProfile({ ...profile,loading: false });
-            setUserDataPreview({name:profile.name,email:profile.email});
-            showMessage();
-            setOpenEditProfile(false);
-            console.log('updated successfully!');
-        })
-        .catch((error) => {
-            console.log('update profile error: '+error);
-            setProfile({ ...profile, loading: false, err: [error] })
-        });
-    }
+            })
+            .then((response) => {
+                setProfile({ ...profile, loading: false });
+                setUserDataPreview({ name: profile.name, email: profile.email });
+                showMessage();
+                setOpenEditProfile(false);
+                console.log('updated successfully!');
+            })
+            .catch((error) => {
+                console.log('update profile error: ' + error);
+                setProfile({ ...profile, loading: false, err: [error] });
+            });
+    };
+
     useEffect(() => {
-        setProfile({ ...profile, loading: true , name: auth.name,email:auth.email,id: auth.id})
+        setProfile({ ...profile, loading: true, name: auth.name, email: auth.email, id: auth.id });
         getMyReservations();
         axios
-            .get(`http://localhost:8070/patient/getAllMyXRays/${auth.id}`,{
+            .get(`http://localhost:8070/patient/getAllMyXRays/${auth.id}`, {
                 headers: {
                     "Authorization": `Bearer ${auth.refreshToken}`
                 }
             })
             .then((response) => {
-                setHistory({ ...History,result: response.data, loading: false });
+                setHistory({ ...History, result: response.data, loading: false });
                 console.log(response.data);
             })
             .catch((error) => {
-                console.log('failed to get history : '+error);
+                console.log('failed to get history: ' + error);
                 setProfile({ ...profile, loading: false, err: [error] });
             });
-    }, []);
-    const DeleteReservation = (id) => {
-        console.log('patient id '+ id);
+
         axios
-            .delete(`http://localhost:8070/patient/cancelReservation/${id}`,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${auth.refreshToken}`
-                    }
+            .get(`http://localhost:8070/user/getProfilePhoto/${auth.id}`, {
+                headers: {
+                    "Authorization": `Bearer ${auth.refreshToken}`
                 }
-            )
+            })
             .then((response) => {
-                // showMessage();
+                setProfilePhoto({ ...profilePhoto, loading: false, photo: response.data });
+                console.log('profile photo data: ' + response.data);
+            })
+            .catch((error) => {
+                console.log('failed to get profile photo: ' + error);
+                setProfilePhoto({ ...profilePhoto, loading: false, err: error });
+            });
+    }, []);
+
+    const [profilePhoto, setProfilePhoto] = useState({
+        photo: null,
+        loading: false,
+        err: ''
+    });
+
+    const DeleteReservation = (id) => {
+        console.log('patient id ' + id);
+        axios
+            .delete(`http://localhost:8070/patient/cancelReservation/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${auth.refreshToken}`
+                }
+            })
+            .then((response) => {
                 console.log('deleted successfully!');
             })
             .catch((err) => {
                 console.log('error of delete function: ' + err);
             });
-    
-        }
+    };
+
         return (
             <Grid container sx={{ display: 'flex' }} xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -204,11 +252,16 @@ const PatientProfile = () => {
                             <Box {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <div className='user-photo'>
-                                    <img src={image} alt="userPhoto" />
+                                    <img src={profilePhoto.photo} alt="userPhoto" />
                                     <div className="camera">
                                         {camera}
                                     </div>
                                 </div>
+                                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                                    <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
+                                        Profile updated successfully!
+                                    </Alert>
+                                </Snackbar>
                             </Box>
                             <Stack direction='column' spacing={1} className="user-name" >
                                 <p>{userDataPreview.name}</p>
