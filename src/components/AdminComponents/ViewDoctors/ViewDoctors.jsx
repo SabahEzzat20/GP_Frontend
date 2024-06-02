@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import './ViewDoctors.scss'
-import { FaSearch } from "react-icons/fa";
 import { AddDoctorModal } from "../AddDoctorModal/AddDoctorModal";
 import { FaPen } from "react-icons/fa";
 import AssignAppointmentToDoctor from "../AssignAppointmentToDoctor/AssignAppointmentToDoctor";
@@ -10,7 +9,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
 import ViewDetails from "./ViewDetails";
+import  SearchBar from '../SearchBar/SearchBar'
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 const ViewDoctors = () => {
+  
+  const [search, setSearch] = useState("");
+
+
   const [open, setOpen] = React.useState(false);
   const showMessage = () => {
     setOpen(true);
@@ -34,7 +40,7 @@ const ViewDoctors = () => {
   useEffect(() => {
     setDoctors({...doctors,loading: true})
     axios
-      .get('http://localhost:8070/admin/getAllDoctors', {
+      .get(`http://localhost:8070/admin/getAllDoctors`, {
         headers: {
           'Authorization': `Bearer ${refreshToken}`
         },
@@ -47,7 +53,6 @@ const ViewDoctors = () => {
           setDoctors({...doctors, err:'something went wrong' , loading: false})
         })
   }, [doctors.reload+1]); 
-  const [searchTerm, setSearchTerm] = useState("");
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
@@ -56,6 +61,10 @@ const ViewDoctors = () => {
   const records = doctors.result.slice(firstIndex, lastIndex)
   const nPage = Math.ceil(doctors.result.length / recordsPerPage)
   const numbers = [...Array(nPage + 1).keys()].slice(1)
+
+  //   const handleSearchInputChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  //  };
   const prePage = () => {
     if (currentPage !== firstIndex) {
       setCurrentPage(currentPage - 1)
@@ -82,10 +91,6 @@ const ViewDoctors = () => {
       });
       return newVisibility;
     });
-  };
-
-  const handleSearchInputChange = (event) => {
-    setSearchTerm(event.target.value);
   };
 
   const DeleteDoctor =  (doctorId) => {
@@ -120,6 +125,12 @@ const ViewDoctors = () => {
       <div className="actions-container">
         <AddDoctorModal />
         <AssignAppointmentToDoctor />
+        <Form>
+            <InputGroup className="mb-3" >
+                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="rounded-0" />
+
+             </InputGroup>
+       </Form>
       </div>
       <div className="table-container">
         <table className="doctor-table">
@@ -134,7 +145,9 @@ const ViewDoctors = () => {
             </tr>
           </thead>
           <tbody>
-            {records.map((doctor,i) => (
+            {records.filter((doctor)=>{
+              return search.toLowerCase() === ''? doctor : doctor.doctorName.toLowerCase().startsWith(search);
+            }).map((doctor,i) => (
               <tr key={i}>
                 <td>{doctor.doctorName}</td>
                 <td>{doctor.doctorEmail}</td>

@@ -8,7 +8,12 @@ import axios from 'axios';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 const ViewPatients = () => {
+
+
+  const [search, setSearch] = useState("");
   const [open, setOpen] = React.useState(false);
   const showMessage = () => {
     setOpen(true);
@@ -51,7 +56,7 @@ const ViewPatients = () => {
       });
   }, [patients.reload+1]);
 
-  // const [searchTerm, setSearchTerm] = useState("");
+
   const [optionsVisibility, setOptionsVisibility] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
@@ -122,6 +127,12 @@ const ViewPatients = () => {
           <FaPen />
         </div>
         <div className="no-of-doctors">{patients.result.length} patients</div>
+        <Form>
+            <InputGroup className="mb-3" >
+                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="rounded-0" />
+
+             </InputGroup>
+       </Form>
       </div>
       <div className="table-container">
         <table className="doctor-table">
@@ -133,7 +144,9 @@ const ViewPatients = () => {
             </tr>
           </thead>
           <tbody>
-            {records.map((patient,i) => (
+            {records.filter((patient)=>{
+              return search.toLowerCase() === ''? patient : patient.patientName.toLowerCase().startsWith(search);
+            }).map((patient,i) => (
               <tr key={i}>
                 {/* <td>{patient.result.id}</td> */}
                 <td>{patient.patientName}</td>
