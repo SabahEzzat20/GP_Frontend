@@ -14,10 +14,6 @@ const PatientQueue = () => {
     err: "",
     reload: 0,
   });
-  
-//   const userToken = getAuthenticatedUser();
-//   const refreshToken = userToken.refreshToken;
-//   const userId = userToken.id; 
  console.log(auth.id);
 
   useEffect(() => {

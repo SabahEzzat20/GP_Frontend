@@ -7,9 +7,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Doctors from '../../../DummyData/Doctors.json';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import { getAuthenticatedUser } from '../../../Helper/Storage';
 import axios from 'axios';
 import Stack from '@mui/material/Stack';
@@ -31,9 +28,6 @@ const AssignAppointmentToDoctor = () => {
         id: '',
         doctorName: ''
     })
-    // const findDoctorName = (name) => {
-    //     return doctors.result.doctorName === doctor.doctorName;
-    // }
     const findDoctorName = (name) => {
         return doctors.result.find(doctor => doctor.doctorName === name);
     }
@@ -44,12 +38,6 @@ const AssignAppointmentToDoctor = () => {
             setAppointment({...Appointment, selectedDoctorId: foundDoctor.id });
         }
     }
-    
-    // const getDoctorId = (event) => {
-    //     setDoctor({ ...doctor, id: doctors.result.find(findDoctorName).id, doctorName: event.target.value });
-    //     // console.log('doctor data : '+doctor)
-    //     setAppointment({...Appointment,selectedDoctorId:doctor.id})
-    // }
     const [Appointment, setAppointment] = useState({
         selectedDoctorId: '',
         startTime: '',
@@ -59,7 +47,6 @@ const AssignAppointmentToDoctor = () => {
         loading: false,
         err: ''
     })
-    // console.log(Appointment);
     const [open, setOpen] = React.useState(false);
 
     const showMessage = () => {
@@ -93,7 +80,6 @@ const AssignAppointmentToDoctor = () => {
                 
             })
             .catch((err) => {
-                // setDoctors({...doctors, err:'something went wrong' , loading: false})
                 console.log('failed to assign appointment to doctor')
             })
     }

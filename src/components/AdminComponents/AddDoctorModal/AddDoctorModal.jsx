@@ -36,7 +36,7 @@ export const AddDoctorModal = () => {
 
   const handleMsgClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+         return;
         }
     
         setOpen(false);

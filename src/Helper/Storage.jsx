@@ -1,39 +1,13 @@
 export const setAuthenticatedUser = (data) => {
-    if (data.accessToken && data.refreshToken && data.id && data.name && data.email && data.role) {
-        sessionStorage.setItem("accessToken", data.accessToken);
-        sessionStorage.setItem("refreshToken", data.refreshToken);
-        sessionStorage.setItem("id", data.id);
-        sessionStorage.setItem("role", data.role);
-        sessionStorage.setItem("email", data.email);
-        sessionStorage.setItem("name", data.name);
-    }
+    sessionStorage.setItem('user', JSON.stringify(data));
 };
 
 export const getAuthenticatedUser = () => {
-    const accessToken = sessionStorage.getItem("accessToken");
-    const refreshToken = sessionStorage.getItem("refreshToken");
-    const id = sessionStorage.getItem("id");
-    const role = sessionStorage.getItem("role");
-    const email = sessionStorage.getItem("email");
-    const name = sessionStorage.getItem("name");
-    return { accessToken, refreshToken ,id,role,email,name};
+    if (sessionStorage.getItem('user')) {
+        return JSON.parse(sessionStorage.getItem('user'));
+    }
 };
-//logout
 export const removeAuthenticatedUser = () => {
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("refreshToken");
-    sessionStorage.removeItem("id");
-    sessionStorage.removeItem("role");
-    sessionStorage.removeItem("email");
-    sessionStorage.removeItem("name");
+    if (sessionStorage.getItem('user'))
+        sessionStorage.removeItem('user');
 };
-
-
-
-
-// export const userData = (data) => {
-//     if (data.role && data.id  ) {
-//         sessionStorage.setItem("accessToken", data.role);
-//         sessionStorage.setItem("refreshToken", data.id);
-//     }
-// }
