@@ -84,7 +84,6 @@ const ViewPatients = () => {
         ...prevVisibility,
         [id]: !prevVisibility[id],
       };
-  
       // Reset visibility for other rows
       Object.keys(prevVisibility).forEach((key) => {
         if (key !== id && prevVisibility[key]) {
@@ -94,9 +93,6 @@ const ViewPatients = () => {
       return newVisibility;
     });
   };
-  // const handleSearchInputChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
   const DeletePatient = (id) => {
       console.log('patient id '+ id);
       axios

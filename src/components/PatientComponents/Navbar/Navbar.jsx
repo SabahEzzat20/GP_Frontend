@@ -28,7 +28,6 @@ const Navbar = () => {
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
   };
-  console.log('local storage ^_^ : '+  Object.keys(auth).length === 0)
   return (
     <nav>
       <h1 className="web-header">orthopedista</h1>
@@ -46,7 +45,17 @@ const Navbar = () => {
           <NavLink to="/patient/bigForm">online diagnosis</NavLink>
         </li>
         {
-          Object.keys(auth).length === 0?
+          auth ?
+            <li>
+              <NavLink to='/patientProfile'>
+                {isSmallScreen ? (
+                  <span>Profile</span>
+                ) : (
+                  <Avatar alt="Sabah hassan" src={sabah} />
+                )}
+              </NavLink>
+            </li>
+            :
             <>
               <li>
                 <NavLink to="/register">signup</NavLink>
@@ -55,16 +64,6 @@ const Navbar = () => {
                 <NavLink to="/login">login</NavLink>
               </li>
             </>
-            :
-          <li>
-            <NavLink to='/patientProfile'>
-              {isSmallScreen ? (
-                <span>Profile</span>
-              ) : (
-                <Avatar alt="Sabah hassan" src={sabah} />
-              )}
-            </NavLink>
-          </li>
         }
 
         

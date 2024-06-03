@@ -15,6 +15,7 @@ import Alert from '@mui/material/Alert';
 import { getAuthenticatedUser } from '../../../Helper/Storage';
 import axios from 'axios';
 import { IoIosStar } from 'react-icons/io';
+import AlertSound from '../../../images/ringtone-1-46486.mp3'
 const DoctorPreview = ({ doctor }) => {
     const auth = getAuthenticatedUser();
     const [value, setValue] = useState('');
@@ -42,9 +43,13 @@ const DoctorPreview = ({ doctor }) => {
         return formattedDate;
     }
         const [open, setOpen] = React.useState(false);
-
+        const playAlertSound = () => {
+            const audio = new Audio(AlertSound);
+            audio.play();
+        };
         const showMessage = () => {
         setOpen(true);
+        
         };
     
         const handleClose = (event, reason) => {
@@ -76,6 +81,7 @@ const DoctorPreview = ({ doctor }) => {
             }
         })
         .then((response) => {
+            playAlertSound();
             setReservation({...reservation,loading: false });
             showMessage();
             // handleOpenEditProfile();
