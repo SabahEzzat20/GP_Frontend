@@ -9,7 +9,6 @@ import { IoIosArrowForward } from "react-icons/io";
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios'
 import ViewDetails from "./ViewDetails";
-import  SearchBar from '../SearchBar/SearchBar'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 const ViewDoctors = () => {
@@ -125,10 +124,9 @@ const ViewDoctors = () => {
       <div className="actions-container">
         <AddDoctorModal />
         <AssignAppointmentToDoctor />
-        <Form>
-            <InputGroup className="mb-3" >
-                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="rounded-0" />
-
+        <Form className="search-bar">
+            <InputGroup className="bar " >
+                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="rounded-0 bar2" style={{border:"none"}} />
              </InputGroup>
        </Form>
       </div>
@@ -136,7 +134,6 @@ const ViewDoctors = () => {
         <table className="doctor-table">
           <thead>
             <tr>
-              {/* <th>id</th> */}
               <th>Doctor name</th>
               <th>Email</th>
               <th>Speciality</th>

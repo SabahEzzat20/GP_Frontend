@@ -26,25 +26,25 @@
         margin-bottom: 20px;
     }
     .search-bar {
-        width: 400px;
+        width: 500px;
         height: 40px;
         background-color: white;
         display: flex;
         border-radius: 10px;
         align-items: center;
         padding: 20px;
-        border: 1px solid $second_basic-color;
-         :nth-child(1) {
+        border: 1.5px solid $second_basic-color;
+        .bar {
             font-size: 20px;
             color: $second_basic-color;
         }
-         :nth-child(2) {
+        .bar2 {
             flex: 1;
             height: 40px;
-            border: none;
             outline: none;
             font-size: 20px;
             padding-left: 10px;
+            border: none;
             color: $second_basic-color;
         }
     }
