@@ -2,59 +2,67 @@
 .view-doctors {
     padding: 30px;
     width: 100%;
-    .title-container{
+    .title-container {
         display: flex;
         margin-bottom: 1em;
         align-items: baseline;
-        .doctor-title{
+        .doctor-title {
             font-size: 35px;
             color: $second_basic-color;
             margin-right: 15px;
         }
-        .doctor-icon{
+        .doctor-icon {
             color: $second_basic-color;
             font-size: 25px;
         }
-        .no-of-doctors{
+        .no-of-doctors {
             margin-left: 2em;
             color: #7a7979;
-
         }
     }
-    .actions-container{
+    .actions-container {
         display: flex;
         margin-bottom: 1em;
-        
     }
     h2 {
         text-align: center;
         font-size: 50px;
         margin-bottom: 20px;
     }
-    .search-bar {
-        width: 400px;
-        height: 40px;
-        background-color: white;
-        display: flex;
-        border-radius: 10px;
-        align-items: center;
-        padding: 20px;
-        border: 1px solid $second_basic-color;
-        :nth-child(1) {
-            font-size: 20px;
-            color: $second_basic-color;
-        }
-        :nth-child(2) {
-            flex: 1;
-            height: 40px;
-            border: none;
-            outline: none;
-            font-size: 20px;
-            padding-left: 10px;
-            color: $second_basic-color;
+    .ssearch {
+        margin-left: 20px;
+        .search-bar {
+            width: 500px;
+            height: 46px;
+            background-color: white;
+            display: flex;
+            border-radius: 10px;
+            align-items: center;
+            padding: 20px;
+            border: 1.7px solid $second_basic-color;
+            box-shadow: none;
+            input {
+                outline: none;
+                font-size: 20px;
+                padding-left: 10px;
+                border: none;
+                color: rgb(77, 77, 77);
+                box-shadow: none;
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+            .bar {
+                .search-icon {
+                    font-size: 25px;
+                    align-self: center;
+                    margin-right: 10px;
+                }
+            }
         }
     }
-    .table-container{
+    .table-container {
         border: 1px solid #e2948e;
         border-radius: 10px;
         padding: 20px;
@@ -73,27 +81,27 @@
             td {
                 padding: 10px;
                 max-width: 200px;
-                overflow:hidden;
+                overflow: hidden;
                 white-space: nowrap;
-                text-overflow:ellipsis;
+                text-overflow: ellipsis;
                 color: #777;
                 text-align: center;
-                .table-options-button{
+                .table-options-button {
                     border: none;
                     background-color: transparent;
                     font-size: 20px;
                     color: #777;
-                    display: flex; 
-                    .options{
+                    display: flex;
+                    .options {
                         position: relative;
                         margin-left: 50px;
                         background-color: #ffffff;
                         display: flex;
                         width: 100px;
                         color: rgb(95, 95, 95);
-                        box-shadow: 1px 3px 10px  #a5a5a5;
+                        box-shadow: 1px 3px 10px #a5a5a5;
                         border-radius: 5px;
-                        button{
+                        button {
                             width: 100%;
                             border: none;
                             border-bottom: 2px solid #dbdbdb;
@@ -101,9 +109,9 @@
                             display: block;
                             background-color: transparent;
                             color: #777;
-                            &:hover{
+                            &:hover {
                                 background-color: #f5f5f5;
-                                transition: 0.4s ease ;
+                                transition: 0.4s ease;
                             }
                         }
                     }
@@ -115,27 +123,27 @@
                 border-bottom: 1px solid #aaaaaa;
             }
         }
-        nav{
+        nav {
             display: flex;
             justify-content: flex-end;
             align-content: end;
-            ul{
+            ul {
                 margin-top: 90px;
                 list-style: none;
                 display: flex;
-                .page-item-bar{
-                    .page-btn{
+                .page-item-bar {
+                    .page-btn {
                         background-color: #eeeeee;
                         border: none;
                         padding: 10px;
                         color: $second_basic-color;
                     }
-                    &.active .page-btn{
+                    &.active .page-btn {
                         background-color: $second_basic-color;
                         color: white;
                     }
                 }
-                .arrow{
+                .arrow {
                     background-color: transparent;
                     border: none;
                     padding: 10px;
@@ -143,5 +151,5 @@
                 }
             }
         }
-}
+    }
 }

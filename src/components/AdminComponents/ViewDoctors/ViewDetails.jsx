@@ -107,7 +107,7 @@ const ViewDetails = (props) => {
                       <Box className="expertise">{props.email}</Box>
                      
                     </Stack>
-                      <Link className="">{props.location}</Link>
+                      <Box className="expertise">{props.location}</Box>
                   </Stack>
                 </Stack>
               </Form.Label>
@@ -163,7 +163,7 @@ const ViewDetails = (props) => {
                                 style={{fontSize:"20px",gap:"1rem",color:"#59aedf"}}
                                 key={appointment.startTime}
                               >
-                               <span> From </span> {appointment.startTime}<span> To </span>{appointment.endTime}
+                               <div className="appointment-button" >{appointment.startTime}</div>
                               </Button>
                             ))
                         ) : (

@@ -27,25 +27,32 @@
     }
     .search-bar {
         width: 500px;
-        height: 40px;
+        height: 46px;
         background-color: white;
         display: flex;
         border-radius: 10px;
         align-items: center;
         padding: 20px;
-        border: 1.5px solid $second_basic-color;
-        .bar {
-            font-size: 20px;
-            color: $second_basic-color;
-        }
-        .bar2 {
-            flex: 1;
-            height: 40px;
+        border: 1.7px solid $second_basic-color;
+        box-shadow: none;
+        input {
             outline: none;
             font-size: 20px;
             padding-left: 10px;
             border: none;
-            color: $second_basic-color;
+            color: rgb(77, 77, 77);
+            box-shadow: none;
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+        .bar {
+            .search-icon {
+                font-size: 25px;
+                align-self: center;
+                margin-right: 10px;
+            }
         }
     }
     .table-container {

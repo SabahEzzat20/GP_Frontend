@@ -84,9 +84,11 @@ const LoginForm = () => {
               <input type="checkbox" id="check" />
               <label htmlFor="check">Remember me</label>
             </div> */}
+            <div className="change" >
             <ResetPassword />
+            </div>
           </div>
-          <button className="login__btn" type="submit">{login.loading ? <CircularProgress size={20} /> : 'login'}</button>
+          <button className="login__btn" type="submit">{login.loading ? <CircularProgress size={20} /> : 'Login'}</button>
           <div className="register">
             Don't have an account? <Link to="/register">Register</Link>
           </div>
