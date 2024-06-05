@@ -9,7 +9,7 @@ import ViewDoctorSchedule from './components/DoctorComponents/ViewDoctorSchedule
 import Doctor from "./Pages/Doctor";
 import Register from './shared/Register/Register'
 import LoginForm from './shared/LoginForm/LoginForm'
-import BigForm from "./PatientsModule/BigForm.jsx";
+import BigForm from './components/PatientComponents/BigForm/BigForm.jsx'
 import HomePage from './components/PatientComponents/HomePage/HomePage'
 import ContactUs from './components/PatientComponents/ContactUs/ContactUs'
 import Services from './components/PatientComponents/Services/Services'
@@ -23,34 +23,45 @@ import Guarantee from "./components/PatientComponents/Guarantee/Guarantee.jsx";
 import ExperienceDoctors from "./components/PatientComponents/ExperienceDoctors/ExperienceDoctors.jsx";
 import Footer from "./shared/Footer/Footer.jsx"
 import ViewDetails from "./components/AdminComponents/ViewDoctors/ViewDetails.jsx";
+import AdminRoutes from "./Middleware/AdminRoutes.jsx";
+import DoctorRoutes from "./Middleware/DoctorRoutes.jsx";
+import PatientRoutes from "./Middleware/PatientRoutes.jsx";
 
 export const routes = createBrowserRouter([{
-        path: "/admin",
-        element: <Admin /> ,
+        element: <AdminRoutes /> ,
         children: [{
-                path: "/admin/viewPatients",
-                element: <ViewPatients /> ,
-            },
-            {
-                path: "/admin/viewDoctors",
-                element: <ViewDoctors /> ,
-            },
-            {
-                path: "/admin/calendar",
-                element: <FullCalender /> ,
+            path: "/admin",
+            element: <Admin /> ,
+            children: [{
+                    path: "/admin/viewPatients",
+                    element: <ViewPatients /> ,
+                },
+                {
+                    path: "/admin/viewDoctors",
+                    element: <ViewDoctors /> ,
+                },
+                {
+                    path: "/admin/calendar",
+                    element: <FullCalender /> ,
+                }
+            ]
             }
-        ],
+        ]
     },
     {
-        path: "/doctor",
-        element: <Doctor /> ,
+        element: <DoctorRoutes /> ,
         children: [{
-                path: "/doctor/viewDoctorAppointments",
-                element: <ViewDoctorAppointments />
-            },
-            {
-                path: "/doctor/viewDoctorSchedule",
-                element: < ViewDoctorSchedule / >
+            path: "/doctor",
+            element: <Doctor /> ,
+            children: [{
+                    path: "/doctor/viewDoctorAppointments",
+                    element: <ViewDoctorAppointments />
+                },
+                {
+                    path: "/doctor/viewDoctorSchedule",
+                    element: < ViewDoctorSchedule />
+                }
+            ],
             }
         ],
     },
@@ -59,60 +70,70 @@ export const routes = createBrowserRouter([{
         element: <Patient /> ,
         children: [
             {
-                path: "/patient/doctors-preview",
-                element: < DoctorsPreview / >
-            },
-            {
                 path: "/patient/homepage",
-                element: < HomePage / >
+                element: < HomePage />
             },
             {
                 path: "/patient/services",
-                element: < Services / > ,
+                element: < Services /> ,
             },{
                 path: "/patient/details",
-                element: < ViewDetails / > ,
+                element: < ViewDetails /> ,
             }, {
                 path: "/patient/ExperienceDoctors",
-                element: < ExperienceDoctors / > ,
+                element: < ExperienceDoctors /> ,
             },
             {
                 path: "/patient/guarantee",
-                element: < Guarantee / > ,
+                element: < Guarantee /> ,
             },
             {
                 path: "/patient/uploadXRay",
-                element: < DragDrop / > ,
+                element: < DragDrop /> ,
             },
             {
-                path: "/patient/bigForm",
-                element: < BigForm / > ,
+                element: < PatientRoutes /> ,
+                children: [
+                    {
+                        path: "/patient/bigForm",
+                        element: < BigForm /> ,
+                    },
+                    {
+                        path: "/patient/doctors-preview",
+                        element: < DoctorsPreview />
+                    },
+                ]
             }
         ],
     },
     {
         path: "/login",
-        element: < LoginForm / > ,
+        element: < LoginForm /> ,
     },
     {
         path: "/resetpassword",
-        element: < ResetPassword / > ,
+        element: < ResetPassword /> ,
     },
     {
         path: "/register",
-        element: < Register / > ,
+        element: < Register /> ,
     },
     {
-        path: "/patientprofile",
-        element: <PatientProfile/> ,
+        element: <PatientRoutes />,
+        children: [
+            {
+                path: "/patientprofile",
+                element: <PatientProfile/> ,
+            }
+        ]
     },
     {
         path: "/contact",
-        element: <> < ContactUs / > < Footer / > </> ,
+        element: <> <ContactUs /> <Footer /> </> ,
     },
     {
         path: "*",
-        element: < NotFoundPage / >
+        element: < NotFoundPage />
     }
 
 ]);

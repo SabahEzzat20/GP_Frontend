@@ -1,6 +1,5 @@
 @import '../../Sass/colors';
 .notfoundcontainer{
-    // background-color: red;
     background-color: white;
     height: 100vh;
     display: flex;
@@ -8,8 +7,6 @@
     align-items: center;
     .notfoundbody{
         display: flex;
-        // background-color: red;
-        // text-align: ceter;
         align-items: center;
         justify-content: center;
         button{
@@ -18,10 +15,13 @@
             background-color: $second-basic-color;
             border-radius: 5px;
             padding: 10px;
+            &:hover{
+                background-color: #C54B43;
+            }
         }
         img{
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
         }
     }
 }

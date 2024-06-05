@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import "./BigForm.scss";
 import Stack from '@mui/material/Stack'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Input from '@mui/joy/Input';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -11,30 +11,24 @@ import { FaChild } from "react-icons/fa6";
 import { FaWeightScale } from "react-icons/fa6";
 import { GiBodyHeight } from "react-icons/gi";
 import { IoManSharp } from "react-icons/io5";
-import Checkbox from '@mui/joy/Checkbox';
 import { IoWoman } from "react-icons/io5";
-import Avatar from '@mui/joy/Avatar';
-import sabah from '../images/saboha.jpeg';
-import {getAuthenticatedUser} from '../Helper/Storage';
+import {getAuthenticatedUser} from '../../../Helper/Storage';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Box  from "@mui/material/Box";
-import { IoIosArrowBack } from "react-icons/io";
-
+import Lottie from 'lottie-react';
+import loading from '../../../images/Animation - 1717439190883.json'
 const BigForm = () => {
   const navigate = useNavigate();
   const auth = getAuthenticatedUser();
   const [patientData, setPatientData] = useState({
-    // userId: '',
-    // userName: '',
-    // userEmail: '',
     phoneNumber : '',
     gender: 0,
     height : '',
     weight : '',
     birthDate : '',
     loading: true,
-    err: []
+    err: ''
   })
   const handleGenderSelection = (value) => {
     setPatientData({ ...patientData, gender: value });
@@ -53,9 +47,9 @@ const BigForm = () => {
     setOpen(false);
   };
 
-  const addPatient = (e) => {
+  const addPatient = () => {
       // e.preventDefault();
-      setPatientData({ ...patientData, loading: true, err: [] })
+      setPatientData({ ...patientData, loading: true, err: '' })
       axios
         .post("http://localhost:8070/patient/addPatientData", {
               userId: auth.id,
@@ -70,35 +64,18 @@ const BigForm = () => {
             }
           })
           .then((response) => {
-            setPatientData({ ...patientData, loading: false, err: [] });
-            // showMessage();
+            setPatientData({ ...patientData, loading: false, err: '' });
             navigate('/patient/doctors-preview');
           })
           .catch((error) => {
-              setPatientData({ ...patientData, loading: false, err: error.response.data.errors })
-            // console.log(error);
+            setPatientData({ ...patientData, loading: false, err: 'Something went wrong, please try again later!'})
+            showMessage();
           })
-      // console.log(login);
   }
 
   return (
     <Box className="reservation-form" sx={{width:{xl:'600px',lg:'600px',md:'750px',sm:'600px',xs:'350px'}}}>
       <Stack direction='column' spacing={4}>
-        {/* <div className="go-back-arrow">
-          <Link to={'/patient/doctors-preview'}><IoIosArrowBack /></Link>
-        </div> */}
-        {/* <Stack direction='row' spacing={2}>
-          <div>
-            <Avatar alt="Sabah hassan" src={sabah} size='lg'/>
-          </div>
-          <Stack direction='column' spacing={0.1} className="doctor-details">
-            <p className="doctor-name">Dr.Sabah Hassan</p>
-            <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={{xs:'1',sm:'1',md:'3',lg:'3',xl:'3'}}>
-              <Box className="expertise">Consultant orthopedic and joint surgeon , </Box>
-              <Box className="expertise">Duration : 15min</Box>
-            </Stack>
-          </Stack>
-        </Stack> */}
         <Stack direction={{xs:'column',sm:'column',md:'row',lg:'row',xl:'row'}} spacing={2}>
           <Stack direction='column' spacing={0.2}>
             <Input 
@@ -120,7 +97,6 @@ const BigForm = () => {
               required
               type="email"
               value={auth.email}
-              // onChange={(e)=>setPatientData({...patientData,userEmail:e.target.value})}
             />
           </Stack>
         </Stack>
@@ -198,20 +174,16 @@ const BigForm = () => {
             />
           </Stack>
         </Stack>
-        {/* <Stack direction='row' spacing={1}>
-          <Checkbox required/>
-          <label className=''>makesure to download Zoom App before meetting from <Link to={'https://zoom.en.softonic.com/'} target="_blank">here</Link></label>
-        </Stack> */}
         <button className="submit-reservation" onClick={(e)=>addPatient()}>submit</button>
       </Stack>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          severity="success"
+          severity="error"
           variant="filled"
           sx={{ width: '100%' }}
         >
-          Appointment reserved successfully!
+          {patientData.err}
         </Alert>
       </Snackbar>
     </Box>
