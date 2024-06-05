@@ -83,7 +83,7 @@
     width: 100%;
     outline: none;
     border: none;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: var(--white);
     background-color: transparent;
 }
@@ -116,7 +116,7 @@ input[type="checkbox"] {
 }
 
 .login__btn:hover {
-    background-color: var(--text-light);
+    background-color: #a5a1a1;
     color: #ffffff;
 }
 
