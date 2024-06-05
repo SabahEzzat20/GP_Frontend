@@ -13,30 +13,48 @@ import { getAuthenticatedUser } from '../../../Helper/Storage.jsx';
 
 const RainfallChart = () => {
   const auth = getAuthenticatedUser();
+
+  const [doctorAppointments, setDoctorAppointments] = useState({
+    loading: true,
+    result: [],
+    err: "",
+    reload: 0,
+  });
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setLoading(true);
+    setDoctorAppointments({ ...doctorAppointments, loading: true });
     axios
-      .get(`http://localhost:8070/doctor/myAppointments/${auth.id}`, {
+      .get(`http://localhost:8070/doctor/allMyReservations/${auth.id}`, {
         headers: {
-          'Authorization': `Bearer ${auth.refreshToken}`,
+          Authorization: `Bearer ${auth.refreshToken}`,
         },
       })
       .then((response) => {
-        const appointments = response.data;
-        const chartData = getChartData(appointments);
-        setData(chartData);
-        setLoading(false);
+        console.log("success");
+        console.log(response.data);
+        setDoctorAppointments({
+          ...doctorAppointments,
+          result: response.data,
+          loading: false,
+          err: "",
+        });
+          console.log("this is data " + response.data);
+        // Update the data state variable with the chart data
+        setData(getChartData(response.data));
       })
-      .catch((error) => {
-        console.log(error);
-        setError('Cannot retrieve appointments');
-        setLoading(false);
+      .catch((err) => {
+        console.log(err);
+        setDoctorAppointments({
+          ...doctorAppointments,
+          loading: false,
+          err: "there is something wrong",
+        });
       });
-  }, [auth.id, auth.refreshToken]);
+  }, [doctorAppointments.reload + 1]);
+
   const getChartData = (appointments) => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const chartData = days.map((day) => {
