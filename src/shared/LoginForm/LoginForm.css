@@ -18,11 +18,10 @@
 
 .login__form {
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     padding: 4rem 3rem;
     margin: 1rem;
-    backdrop-filter: blur(12px);
-    border: 2px solid var(--white);
+    backdrop-filter: blur(17px);
     border-radius: 1.5rem;
     opacity: 0;
     transform: translateY(50px);
@@ -38,7 +37,7 @@
 
 .login__form h1 {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 500;
     color: var(--white);
     text-align: center;
@@ -60,7 +59,7 @@
 }
 
 .input__row span {
-    font-size: 1.25rem;
+    font-size: 1.29rem;
     color: var(--white);
 }
 
@@ -84,33 +83,14 @@
     width: 100%;
     outline: none;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--white);
     background-color: transparent;
 }
 
-#password-eye {
-    cursor: pointer;
-}
-
 .action__btn {
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.remember__me {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.remember__me label {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    cursor: pointer;
-    transition: 0.3s;
+    margin-bottom: 1rem;
+    margin-left: 210px;
 }
 
 input[type="checkbox"] {
@@ -120,30 +100,15 @@ input[type="checkbox"] {
     color: var(--text-dark);
 }
 
-.remember__me label:hover {
-    color: var(--white);
-}
-
-.forgot__password {
-    text-decoration: none;
-    font-size: 0.9rem;
-    color: var(--text-light);
-    transition: 0.3s;
-}
-
-.forgot__password:hover {
-    color: var(--white);
-}
-
 .login__btn {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     width: 100%;
     outline: none;
     border: none;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #6e6d6d;
     background-color: var(--white);
     border-radius: 5px;
     cursor: pointer;
@@ -151,17 +116,19 @@ input[type="checkbox"] {
 }
 
 .login__btn:hover {
-    background-color: var(--text-light);
+    background-color: #a5a1a1;
+    color: #ffffff;
 }
 
-.register {
-    color: var(--text-light);
+.login__form .register {
+    color: white;
     text-align: center;
     font-weight: 400;
+    font-size: larger;
 }
 
-.register a {
+.login__form .register a {
     text-decoration: none;
     font-weight: 600;
-    color: var(--text-light);
+    color: var(--white);
 }

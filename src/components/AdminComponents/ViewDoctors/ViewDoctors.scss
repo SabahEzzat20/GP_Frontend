@@ -26,26 +26,33 @@
         margin-bottom: 20px;
     }
     .search-bar {
-        width: 400px;
-        height: 40px;
+        width: 500px;
+        height: 46px;
         background-color: white;
         display: flex;
         border-radius: 10px;
         align-items: center;
         padding: 20px;
-        border: 1px solid $second_basic-color;
-         :nth-child(1) {
-            font-size: 20px;
-            color: $second_basic-color;
-        }
-         :nth-child(2) {
-            flex: 1;
-            height: 40px;
-            border: none;
+        border: 1.7px solid $second_basic-color;
+        box-shadow: none;
+        input {
             outline: none;
             font-size: 20px;
             padding-left: 10px;
-            color: $second_basic-color;
+            border: none;
+            color: rgb(77, 77, 77);
+            box-shadow: none;
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+        .bar {
+            .search-icon {
+                font-size: 25px;
+                align-self: center;
+                margin-right: 10px;
+            }
         }
     }
     .table-container {

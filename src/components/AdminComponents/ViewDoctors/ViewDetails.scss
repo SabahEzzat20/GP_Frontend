@@ -18,6 +18,14 @@
     .photo {
         align-self: center;
     }
+    .appointment-button {
+        color: #326dda;
+         :hover {
+            color: rgb(109, 108, 108);
+            background-color: beige;
+            box-shadow: 2px;
+        }
+    }
 }
 
 .modalFooter {

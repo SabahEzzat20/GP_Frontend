@@ -10,6 +10,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { IoIosSearch } from "react-icons/io";
 const ViewPatients = () => {
 
 
@@ -123,12 +124,15 @@ const ViewPatients = () => {
           <FaPen />
         </div>
         <div className="no-of-doctors">{patients.result.length} patients</div>
-        <Form>
-            <InputGroup className="mb-3" >
-                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="rounded-0" />
-
-             </InputGroup>
+        <div className="ssearch">
+        <Form className="search-bar">
+             <InputGroup className="bar " > 
+                 <IoIosSearch className="search-icon"/>
+                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="bar2" style={{border:"none"}} />
+              </InputGroup> 
+             
        </Form>
+        </div>
       </div>
       <div className="table-container">
         <table className="doctor-table">
