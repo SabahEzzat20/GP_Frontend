@@ -15,6 +15,7 @@ export const AddDoctorModal = () => {
     password: '',
     description: '',
     location: '',
+    price: '',
   });
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
@@ -130,6 +131,16 @@ export const AddDoctorModal = () => {
                 type="text"
                 value={doctorData.location}
                 onChange={(e) => setDoctorData({ ...doctorData, location: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="price">
+              <Form.Label>Price
+</Form.Label>
+              <Form.Control
+                className="textField"
+                type="text"
+                value={doctorData.price}
+                onChange={(e) => setDoctorData({ ...doctorData, price: e.target.value })}
               />
             </Form.Group>
           </Form>
