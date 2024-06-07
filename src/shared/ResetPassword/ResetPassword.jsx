@@ -28,7 +28,6 @@ const ResetPassword = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const handleProvide = () => {
     setVerificationData({ ...verificationData, loading: true, err: [] });
     axios

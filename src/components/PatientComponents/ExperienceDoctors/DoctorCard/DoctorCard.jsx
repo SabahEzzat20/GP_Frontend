@@ -10,7 +10,6 @@ const DoctorCard = ({doctor}) => {
             <div className="doctor-info">
                 <h3>{doctor.name}</h3>
                 <p>{doctor.department}</p>
-                
             </div>
         </div>
     );

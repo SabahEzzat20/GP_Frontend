@@ -37,6 +37,17 @@
     font-size: 13px;
 }
 .patient-name{
-    font-size: 15px;
-    font-weight: 350;
+    font-size: 20px;
+    // font-weight: 500;
+    color: rgb(66, 66, 66);
+}
+.info-title{
+    color: rgb(102, 102, 102);
+}
+.close-button{
+    border: none;
+    background-color: #C54B43;
+    width: 100%;
+    color: white;
+    // color: rgb(172, 172, 172);
 }

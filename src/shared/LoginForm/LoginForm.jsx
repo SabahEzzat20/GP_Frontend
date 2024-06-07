@@ -93,7 +93,7 @@ const LoginForm = () => {
             Don't have an account? <Link to="/register">Register</Link>
           </div>
         </form>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
           severity="error"

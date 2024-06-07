@@ -1,4 +1,4 @@
-import React, { useCallback, useState , useEffect } from 'react';
+import React, { useCallback, useState , useEffect, useRef } from 'react';
 import './PatientProfile.scss';
 import defaultPhoto from '../../../images/default.png'
 import saboha2 from '../../../images/saboha2.jpg'
@@ -37,14 +37,14 @@ const PatientProfile = () => {
     // const patientId = useParams();
     const [openRoute, setOpenRoute] = useState(1);
     const [openEditProfile, setOpenEditProfile] = useState(false);
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop: acceptedFiles => {
-            const file = acceptedFiles[0];
-            const filePath = file.path; // Assuming the file object contains the path property
-            updateProfilePhoto(filePath);
-        }
-    });
-    const [image, setImage] = useState(defaultPhoto);
+    // const { getRootProps, getInputProps } = useDropzone({
+    //     onDrop: acceptedFiles => {
+    //         const file = acceptedFiles[0];
+    //         const filePath = file.path; // Assuming the file object contains the path property
+    //         updateProfilePhoto(filePath);
+    //     }
+    // });
+    // const [image, setImage] = useState(defaultPhoto);
     const [currentRoute, setCurrentRoute] = useState('Edit Profile');
     const camera = <FiCamera />;
     const [open, setOpen] = React.useState(false);
@@ -60,29 +60,39 @@ const PatientProfile = () => {
 
         setOpen(false);
     };
-
-    const updateProfilePhoto = (filePath) => {
-        setProfilePhoto({ ...profilePhoto, loading: true });
+    const inputRef = useRef(null); 
+    const [image, setImage] = useState(null);
+    const handleImageClick = () => {
+        inputRef.current.click();
+    }
+    const updateProfilePhoto = () => {
+        // setProfilePhoto({ ...profilePhoto, loading: true });
         axios
             .put('http://localhost:8070/user/updateProfilePhoto', {
                 id: auth.id,
-                userPhoto: filePath
+                userPhoto: image
             }, {
                 headers: {
                     'Authorization': `Bearer ${auth.refreshToken}`
                 }
             })
             .then((response) => {
-                setProfilePhoto({ ...profilePhoto, photo: filePath, loading: false });
+                // setProfilePhoto({ ...profilePhoto, photo: filePath, loading: false });
                 showMessage();
+                console.log(response.data)
                 console.log('Profile photo updated successfully!');
             })
             .catch((error) => {
                 console.log('Failed to update profile photo: ' + error);
-                setProfilePhoto({ ...profilePhoto, loading: false, err: error });
+                // setProfilePhoto({ ...profilePhoto, loading: false, err: error });
             });
     };
-
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setImage(file);
+        console.log(file);
+        updateProfilePhoto(file);
+    }
     const profileRoutes = [
         {
             id: 1,
@@ -210,7 +220,8 @@ const PatientProfile = () => {
                 }
             })
             .then((response) => {
-                setProfilePhoto({ ...profilePhoto, loading: false, photo: response.data });
+                // setProfilePhoto({ ...profilePhoto, loading: false, image: response.data });
+                setImage(response.data);
                 console.log('profile photo data: ' + response.data);
             })
             .catch((error) => {
@@ -249,17 +260,17 @@ const PatientProfile = () => {
                             <FaHome />
                         </Link>
                         <Stack spacing={3} direction='column' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Box {...getRootProps()}>
-                                <input {...getInputProps()} />
-                                <div className='user-photo'>
-                                    <img src={profilePhoto.photo} alt="userPhoto" />
+                            <Box>
+                                <input type='file' ref={inputRef} style={{ display: 'none' }} onChange={handleImageChange}/>
+                                <div className='user-photo' onClick={handleImageClick} style={{ cursor: 'pointer' }}>
+                                    {image ? <img src={URL.createObjectURL(image)} alt="userPhoto" />:<img src={defaultPhoto} alt="userPhoto" />}
                                     <div className="camera">
                                         {camera}
                                     </div>
                                 </div>
                                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                                     <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
-                                        Profile updated successfully!
+                                        Profile photo updated successfully!
                                     </Alert>
                                 </Snackbar>
                             </Box>

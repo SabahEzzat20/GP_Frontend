@@ -3,25 +3,44 @@ $standard-border-radius: 10px;
 .dropzone-container{
     margin: auto;
     margin-top: 30px;
-    // width: 90%;
-    margin-bottom: 40px;
-    height: 500px;
+    // width: 0px;
+    margin-bottom: 30px;
+    height: 450px;
     border-radius: $standard-border-radius;
     padding: 20px;
     background-color: white;
     // H-shadow V-shadow blur spread color inset/outset
     box-shadow: 1px 1px 3px rgb(146, 145, 145 , 0.4);
-    .img-btn{
-        display: flex;
-        width: 80%;
-        height: 25%;
-        margin: auto;
-    }
-    
 }
-
+.action-btn{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    // height: 30px;
+    
+    }
+.yes{
+    background-color: #cf453b;
+    color: white;
+    width: 150px;
+    &:hover{
+        background-color: #df5046;
+    }
+}
+.no{
+    background-color: #ffffff;
+    color:rgb(112, 112, 112);
+    border: 1px solid transparent;
+    width: 130px;
+    margin-right: 7px;
+    &:hover{
+        transition: .4 ease ;
+        color: rgb(97, 97, 97);
+        border: 1px solid rgb(201, 201, 201);
+        border-radius: 5px;
+    }
+}
 .scan-result{
-    // width: 90%;
     margin: auto;
     transition: 0.3s ease;
 }
@@ -40,13 +59,13 @@ $standard-border-radius: 10px;
     border-radius: $standard-border-radius;
     cursor: pointer;
     width: 100%;
-    height: 70%;
+    height: 100%;
     color: #727272;
     // font-size: 20px;
 }
 .image-preview{
-    margin-top: 10%;
-    margin-left: 2%;
+    // margin-top: 10%;
+    // margin-left: 2%;
     width: 60px;
     height: 60px;
     overflow: hidden;
@@ -56,23 +75,35 @@ $standard-border-radius: 10px;
     border-radius: 10px;
     background-color: $second_basic-color;
     color: white;
-    margin-left: auto;
-    margin-top: 10%;
+    // margin-left: auto;
+    // margin-top: 10%;
     display: flex;
-    height: 50%;
+    margin-left: auto;
+    height: 70%;
+    // width: 200px;
     align-items: center;
     // padding-top: 15px;
     justify-content: center;
     // background-color: red;
     &:hover{
         // box-shadow: 1px 1px 16px rgba(172, 172, 172, 0.5);
-        box-shadow: 1px 1px 3px rgba(221, 221, 221, 0.4);
-        background-color: #db483e;
+        box-shadow: 1px 1px 3px rgba(201, 201, 201, 0.6);
+        background-color: #cf453b;
         transition: 0.3s ease;
     }
 }
-.imageUpload{
-    // display: none;
-    // visibility: hidden;
-    // background-color: red;
+
+.loginFromHome-btn{
+    width: 100%;
+    background-color: $second_basic-color; 
+    border-radius: 10px;
+    border: none;
+    height: 45px;
+    color: white;
+    transition: 0.3s ease;
+    &:hover{
+        // box-shadow: 1px 1px 16px rgba(172, 172, 172, 0.5);
+        box-shadow: 1px 1px 3px rgba(201, 201, 201, 0.6);
+        background-color: #cf453b;
+    }
 }

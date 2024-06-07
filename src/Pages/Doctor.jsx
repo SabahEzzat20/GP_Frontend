@@ -10,7 +10,7 @@ const Doctor = () => {
         <div className='Admin'>
             {/* <Sidebar doctorRole={role} /> */}
             <div className="right-side">
-                <UpperNav />
+                {/* <UpperNav /> */}
                 {/* <Outlet /> */}
                 <ViewDoctorAppointments />
             </div>
