@@ -117,11 +117,11 @@ const DoctorPreview = ({ doctor }) => {
                     <div className="doctor-info">
                         <Stack direction="column" spacing={0.5}>
                             <p className='doctor-name'>Dr.{doctor.doctorName}</p>
-                            <p className="expertise">{doctor.description}</p>
+                            <p className="expertise"><span style={{fontWeight:'bold'}}>speciality</span> : {doctor.description}</p>
                             {/* <p className="expertise">
                                 <Rating name="read-only" value={value} readOnly />
                             </p> */}
-                            <p className="expertise"><IoIosStar/> not rated yet</p>
+                            <p className="expertise"><span style={{fontWeight:'bold'}}>diagnosis price</span> : {doctor.price} EP</p>
                         </Stack>
                     </div>
                 </Stack>

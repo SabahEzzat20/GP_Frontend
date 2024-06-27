@@ -11,12 +11,15 @@ import Alert from '@mui/material/Alert';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { IoIosSearch } from "react-icons/io";
+import Empty from "../../../shared/Empty/Empty";
+import Box from "@mui/material/Box";
+import UpperNav from "../../../shared/UpperNav/UpperNav";
+import Loading from '../../../shared/Loading'
 const ViewPatients = () => {
-
-
   const [search, setSearch] = useState("");
   const [open, setOpen] = React.useState(false);
-  const showMessage = () => {
+  const showMessage = (msg,sv) => {
+    setMsg({msg:msg, severity:sv});
     setOpen(true);
   };
   const [patients,setPatients] = useState({
@@ -50,15 +53,12 @@ const ViewPatients = () => {
       })
       .then((response) => {
         console.log(response.data);
-        setPatients({ ...patients, result: response.data, loading: false, err: '' });
+        setPatients({ ...patients, result: response.data, loading: false, err: '',reload:1 });
       })
       .catch((err) => {
-        setPatients({ ...patients, loading: false, err: 'there is something wrong' });
+        setPatients({ ...patients, loading: false, err: 'there is something wrong',reload:1 });
       });
-  }, [patients.reload+1]);
-
-
-  const [optionsVisibility, setOptionsVisibility] = useState({});
+  }, [patients.reload]);
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
@@ -79,21 +79,10 @@ const ViewPatients = () => {
   const changeCPage = (id) => {
       setCurrentPage(id)
   }
-  const toggleMenu = (id) => {
-    setOptionsVisibility((prevVisibility) => {
-      const newVisibility = {
-        ...prevVisibility,
-        [id]: !prevVisibility[id],
-      };
-      // Reset visibility for other rows
-      Object.keys(prevVisibility).forEach((key) => {
-        if (key !== id && prevVisibility[key]) {
-          newVisibility[key] = false;
-        }
-      });
-      return newVisibility;
-    });
-  };
+  const [msg,setMsg]= useState({
+    msg:'',
+    severity:''
+  })
   const DeletePatient = (id) => {
       console.log('patient id '+ id);
       axios
@@ -105,94 +94,99 @@ const ViewPatients = () => {
           }
         )
         .then((response) => {
-          setPatients({ ...patients, reload: patients.reload + 1 });
-          showMessage();
-          console.log('deleted successfully!');
+          setPatients({ ...patients, reload: patients.reload + 1 ,loading:false});
+          showMessage('patient deleted successfully !','success')
         })
         .catch((err) => {
-          setPatients({ ...patients, loading: false, err: 'there is something wrong' });
-          console.log('error of delete function: ' + err);
+          setPatients({ ...patients, loading: false});
+          showMessage('something went wrong','error')
         });
-
   }
-  console.log('records'+records);
   return (
-    <div className="view-doctors">
-      <div className="title-container">
-        <div className="doctor-title">Patients</div>
-        <div className="doctor-icon">
-          <FaPen />
-        </div>
-        <div className="no-of-doctors">{patients.result.length} patients</div>
-        <div className="ssearch">
-        <Form className="search-bar">
-             <InputGroup className="bar " > 
-                 <IoIosSearch className="search-icon"/>
-                 <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="bar2" style={{border:"none"}} />
+    patients.result.loading? <Loading/>:
+    <>
+      <UpperNav/>
+      <div className="view-doctors">
+        <div className="title-container">
+          <div className="doctor-title">Patients</div>
+          <div className="doctor-icon">
+            <FaPen />
+          </div>
+          <div className="no-of-doctors">{patients.result.length} patients</div>
+          <div className="ssearch">
+            <Form className="search-bar">
+              <InputGroup className="bar " > 
+                  <IoIosSearch className="search-icon"/>
+                  <Form.Control onChange={(e)=>setSearch(e.target.value)} type="text" placeholder="Search" className="bar2" style={{border:"none"}} />
               </InputGroup> 
-             
-       </Form>
+            </Form>
+          </div>
         </div>
-      </div>
-      <div className="table-container">
-        <table className="doctor-table">
-          <thead>
-            <tr>
-              <th>patient name</th>
-              <th>e-mail</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.filter((patient)=>{
-              return search.toLowerCase() === ''? patient : patient.patientName.toLowerCase().startsWith(search);
-            }).map((patient,i) => (
-              <tr key={i}>
-                {/* <td>{patient.result.id}</td> */}
-                <td>{patient.patientName}</td>
-                <td>{patient.patientEmail}</td>
-                <td>
-                  <button className="table-options-button" title='block user' onClick={()=>DeletePatient(patient.id)}>
-                    <MdDelete />
+        {patients.result.length > 0 ?
+          <div className="table-container">
+            <table className="doctor-table">
+              <thead>
+                <tr>
+                  <th>patient name</th>
+                  <th>e-mail</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {records.filter((patient)=>{
+                  return search.toLowerCase() === ''? patient : patient.patientName.toLowerCase().startsWith(search);
+                }).map((patient,i) => (
+                  <tr key={i}>
+                    <td>{patient.patientName}</td>
+                    <td>{patient.patientEmail}</td>
+                    <td>
+                      <button className="table-options-button" title='block user' style={{cursor:'pointer'}} onClick={()=>DeletePatient(patient.id)}>
+                        <MdDelete />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <nav className='paginationNav'>
+              <ul className="pagination-bar">
+                <li>
+                  <button onClick={prePage} className="arrow">
+                    <IoIosArrowBack />
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <nav>
-          <ul className="pagination-bar">
-            <li>
-              <button onClick={prePage} className="arrow">
-                <IoIosArrowBack />
-              </button>
-            </li>
-            {
-              numbers.map((n, i) => (
-                <li key={i} className={`page-item-bar ${currentPage===n? 'active' : ''}`}>
-                  <button onClick={() => changeCPage(n)} className="page-btn">{n}</button>
                 </li>
-              ))
-            }
-            <li>
-              <button onClick={nextPage} className="arrow">
-                <IoIosArrowForward />
-              </button>
-            </li>
-          </ul>
-        </nav>
+                {
+                  numbers.map((n, i) => (
+                    <li key={i} className={`page-item-bar ${currentPage===n? 'active' : ''}`}>
+                      <button onClick={() => changeCPage(n)} className="page-btn">{n}</button>
+                    </li>
+                  ))
+                }
+                <li>
+                  <button onClick={nextPage} className="arrow">
+                    <IoIosArrowForward />
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          :
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '50vh', padding: "15px", marginTop: '40px' }}>
+              <Empty />
+          </Box>
+        }
+        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity={msg.severity}
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            {msg.msg}
+          </Alert>
+        </Snackbar>
       </div>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          Patient deleted successfully!
-        </Alert>
-      </Snackbar>
-    </div>
+    </>
   );
 };
 

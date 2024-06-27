@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/joy/Avatar";
 import Button from "@mui/material/Button";
-import sabah from "../../../images/saboha.jpeg";
+import sabah from "../../../images/default.png";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";

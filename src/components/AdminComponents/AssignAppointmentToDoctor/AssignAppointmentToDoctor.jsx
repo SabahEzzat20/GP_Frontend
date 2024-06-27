@@ -15,7 +15,18 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 const AssignAppointmentToDoctor = () => {
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        setAppointment({
+            selectedDoctorId: '',
+            startTime: '',
+            endTime : '',
+            day : '',
+            status: 1,
+            loading: false,
+            err: ''
+        })
+    };
     const handleShow = () => setShow(true);
     const [doctors, setDoctors] = useState({
         loading: false,
@@ -47,9 +58,13 @@ const AssignAppointmentToDoctor = () => {
         loading: false,
         err: ''
     })
-    const [open, setOpen] = React.useState(false);
-
-    const showMessage = () => {
+    const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState({
+        msg: '',
+        severity:''
+    })
+    const showMessage = (msg, sv) => {
+        setMsg({msg:msg,severity:sv})
         setOpen(true);
     };
 
@@ -75,12 +90,21 @@ const AssignAppointmentToDoctor = () => {
                 },
             })
             .then((resp) => {
-                showMessage();
-                console.log('success');
+                showMessage('appointment assigned successfully!', 'success');
+                handleClose();
+                setAppointment({
+                    selectedDoctorId: '',
+                    startTime: '',
+                    endTime : '',
+                    day : '',
+                    status: 1,
+                    loading: false,
+                    err: ''
+                })
                 
             })
             .catch((err) => {
-                console.log('failed to assign appointment to doctor')
+                showMessage('something went wrong, please try again later','error');
             })
     }
     const userToken = getAuthenticatedUser();
@@ -95,13 +119,11 @@ const AssignAppointmentToDoctor = () => {
             })
             .then((resp) => {
                 setDoctors({...doctors, result: resp.data , loading: false , err: ''})
-                // console.log(resp.data);
-                
             })
             .catch((err) => {
                 setDoctors({...doctors, err:'something went wrong' , loading: false})
             })
-    }, []); 
+    }, [doctors.loading]); 
     
     const week = [
         {
@@ -138,19 +160,16 @@ const AssignAppointmentToDoctor = () => {
         <div>
             <button onClick={handleShow} className="modal-button-app">
                 <TfiTimer />
-                Assign appointment
+                Assign Appointment
             </button>
             <Modal
                 show={show}
-                size="lg"
+                size="md"
                 onHide={handleClose}
                 keyboard={false}
                 centered
                 className="app-modal"
             >
-                <Modal.Header className="modalHeader-app" closeButton>
-                    <p>Assign appointment to doctor</p>
-                </Modal.Header>
                 <Modal.Body className="modalBody-app">
                     <Form>
                         <Form.Group className="mb-3-app" controlId="exampleForm.ControlInput1">
@@ -205,22 +224,22 @@ const AssignAppointmentToDoctor = () => {
                     </Stack>
                     </Stack>
                     </Form>
+                    <div className="modalFooter-app" >
+                        <button className="assign-app-action" onClick={()=>AssignAppointment()}>{Appointment.loading?'assigning...':'assign'}</button>
+                        <button onClick={handleClose} className="cancel-app-action">
+                            Cancel
+                        </button>
+                    </div>
                 </Modal.Body>
-                <Modal.Footer className="modalFooter-app">
-                    <button className="assign-app-action" onClick={()=>AssignAppointment()}>Assign</button>
-                    <button onClick={handleClose} className="cancel-app-action">
-                        Cancel
-                    </button>
-                </Modal.Footer>
             </Modal>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
                 <Alert
                 onClose={handleMsgClose}
-                severity="success"
+                severity={msg.severity}
                 variant="filled"
                 sx={{ width: '100%' }}
                 >
-                    Appointment assigned successfully!
+                    {msg.msg}
                 </Alert>
             </Snackbar>
         </div>

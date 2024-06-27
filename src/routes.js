@@ -3,9 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Admin from "./Pages/Admin";
 import ViewPatients from './components/AdminComponents/ViewPatients/ViewPatients'
 import ViewDoctors from './components/AdminComponents/ViewDoctors/ViewDoctors'
-import FullCalender from './components/AdminComponents/FullCalendar/FullCalender'
 import ViewDoctorAppointments from './components/DoctorComponents/ViewDoctorAppointments/ViewDoctorAppointments'
-import ViewDoctorSchedule from './components/DoctorComponents/ViewDoctorSchedule/ViewDoctorSchedule'
 import Doctor from "./Pages/Doctor";
 import Register from './shared/Register/Register'
 import LoginForm from './shared/LoginForm/LoginForm'
@@ -39,10 +37,6 @@ export const routes = createBrowserRouter([{
                 {
                     path: "/admin/viewDoctors",
                     element: <ViewDoctors /> ,
-                },
-                {
-                    path: "/admin/calendar",
-                    element: <FullCalender /> ,
                 }
             ]
             }
@@ -56,10 +50,6 @@ export const routes = createBrowserRouter([{
             children: [{
                     path: "/doctor/viewDoctorAppointments",
                     element: <ViewDoctorAppointments />
-                },
-                {
-                    path: "/doctor/viewDoctorSchedule",
-                    element: < ViewDoctorSchedule />
                 }
             ],
             }

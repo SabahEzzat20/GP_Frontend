@@ -2,10 +2,10 @@ import React, { useState ,useEffect} from 'react';
 import Carousel from 'react-elastic-carousel';
 import DoctorPreview from '../DoctorPreivew/DoctorPreview';
 import './DoctorsPreview.scss';
-import doctorsData from '../../../DummyData/DoctorPreview.json';
 import Box from '@mui/material/Box';
 import {getAuthenticatedUser} from '../../../Helper/Storage';
 import axios from 'axios';
+import Loading from '../../../shared/Loading';
 
 const transformData = (data) => {
     return data.map(item => {
@@ -132,7 +132,7 @@ const DoctorsPreview = () => {
                         <DoctorPreview key={doctor.id} doctor={doctor} />
                     ))
                 ) : (
-                    <div>No data available</div>
+                    <Loading/>
                 )}
             </Carousel>
         </Box>

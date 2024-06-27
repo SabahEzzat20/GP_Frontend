@@ -75,8 +75,8 @@ const ResetPassword = () => {
     setVerificationData({ ...verificationData, loading: true, err: [] });
     axios
       .put("http://localhost:8070/user/changePassword", {
-        password: verificationData.password,
         email: verificationData.email,
+        password: verificationData.password,
       })
       .then((response) => {
         console.log(response);
@@ -89,6 +89,7 @@ const ResetPassword = () => {
             loading: false,
             err: ["Error: Response data is undefined"],
           });
+          console.log('no updating')
         }
       })
       .catch((error) => {

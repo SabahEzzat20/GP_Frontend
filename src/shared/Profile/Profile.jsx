@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Avatar from '@mui/material/Avatar';
-import sabah from '../../images/saboha.jpeg';
+import sabah from '../../images/default.png';
 import './Profile.scss'
 import { VscClose } from "react-icons/vsc";
 import Form from "react-bootstrap/Form";
@@ -57,6 +57,10 @@ const Profile = () => {
                 id: profile.id,
                 name: profile.name,
                 email: profile.email
+        },{
+            headers: {
+                'Authorization': `Bearer ${auth.refreshToken}`
+            }
         })
         .then((response) => {
             setProfile({...profile,loading: false });
@@ -70,20 +74,6 @@ const Profile = () => {
             console.log('update profile error: '+error);
         });
     }
-    useEffect(() => {
-
-        // axios
-        //     .get(`http://localhost:8070/user/getUserByToken/${auth.refreshToken}`)
-        //     .then((response) => {
-        //         setProfile({ ...profile, id: response.data.id, name: response.data.name, email: response.data.email,role: response.data.role, loading: false });
-        //         setUserDataPreview({name:profile.name,email:profile.email});
-        //         // console.log(response.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log('view profile error: '+error);
-        //         setProfile({ ...profile, loading: false});
-        //     });
-        }, []);
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const handleVisibility = () => {
@@ -131,9 +121,9 @@ const Profile = () => {
                                     <input {...getInputProps()} />
                                     <div className='user-photo'>
                                         <img src={sabah} alt="userPhoto" />
-                                        <div className="camera">
+                                        {/* <div className="camera">
                                             {camera}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +146,7 @@ const Profile = () => {
                                     {
                                     openEditProfile &&
                                     <>
-                                        <button className='update-profile-btn' onClick={UpdateProfile} >{profile.loading ? <CircularProgress size={20} /> : 'confirm'}</button>
+                                        <button className='update-profile-btn' onClick={UpdateProfile} >{profile.loading ? 'confirming...' : 'confirm'}</button>
                                     </>
                                 }
                                 {
@@ -170,7 +160,7 @@ const Profile = () => {
                             
                         </Form>
                     </div>
-                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
                         <Alert
                         onClose={handleClose}
                         severity="success"

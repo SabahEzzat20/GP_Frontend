@@ -115,12 +115,12 @@ const ContactUs = () => {
             </Stack>
           </Form>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex'}}}>
+        <Grid item xs={12} sm={12} md={6} lg={5} xl={5} sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex'}}}>
           <img src={contactImage} alt="contactus" style={{ maxWidth: '500px', maxHeight: '500px' }}/>
         </Grid>
       </Grid>
 
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
           severity="success"

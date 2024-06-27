@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import {getAuthenticatedUser} from '../../../Helper/Storage'
 
-const sabah = require('../../../images/saboha.jpeg');
+const sabah = require('../../../images/default.png');
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);

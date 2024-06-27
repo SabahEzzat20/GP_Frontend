@@ -9,7 +9,7 @@ const Admin = () => {
         <div className='Admin'>
             <Sidebar role={role} />
             <div className="right-side">
-                <UpperNav />
+                {/* <UpperNav /> */}
                 <Outlet />
             </div>
         </div>

@@ -30,6 +30,7 @@ import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import Loading from '../../../shared/Loading';
 
 const PatientProfile = () => {
     const navigate = useNavigate();
@@ -99,11 +100,11 @@ const PatientProfile = () => {
             route: 'Edit Profile',
             path: '/patientprofile/Editprofile'
         },
-        {
-            id: 2,
-            route: 'History',
-            path: '/patientprofile/patient-history'
-        },
+        // {
+        //     id: 2,
+        //     route: 'History',
+        //     path: '/patientprofile/patient-history'
+        // },
         {
             id: 3,
             route: 'Appointments',
@@ -131,11 +132,11 @@ const PatientProfile = () => {
     };
 
     const [profile, setProfile] = useState({
-        id: '',
-        name: '',
+        id: auth.id,
+        name: auth.name,
         userPhoto: null,
-        email: '',
-        loading: true,
+        email: auth.email,
+        loading: false,
         err: []
     });
 
@@ -181,12 +182,16 @@ const PatientProfile = () => {
                 id: profile.id,
                 name: profile.name,
                 email: profile.email
+            },{
+                headers: {
+                    'Authorization': `Bearer ${auth.refreshToken}`
+                }
             })
             .then((response) => {
                 setProfile({ ...profile, loading: false });
                 setUserDataPreview({ name: profile.name, email: profile.email });
                 showMessage();
-                setOpenEditProfile(false);
+                setOpenEditProfile();
                 console.log('updated successfully!');
             })
             .catch((error) => {
@@ -222,10 +227,10 @@ const PatientProfile = () => {
             .then((response) => {
                 // setProfilePhoto({ ...profilePhoto, loading: false, image: response.data });
                 setImage(response.data);
-                console.log('profile photo data: ' + response.data);
+                // console.log('profile photo data: ' + response.data);
             })
             .catch((error) => {
-                console.log('failed to get profile photo: ' + error);
+                // console.log('failed to get profile photo: ' + error);
                 setProfilePhoto({ ...profilePhoto, loading: false, err: error });
             });
     }, []);
@@ -264,9 +269,9 @@ const PatientProfile = () => {
                                 <input type='file' ref={inputRef} style={{ display: 'none' }} onChange={handleImageChange}/>
                                 <div className='user-photo' onClick={handleImageClick} style={{ cursor: 'pointer' }}>
                                     {image ? <img src={URL.createObjectURL(image)} alt="userPhoto" />:<img src={defaultPhoto} alt="userPhoto" />}
-                                    <div className="camera">
+                                    {/* <div className="camera">
                                         {camera}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                                     <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: '100%' }}>
@@ -328,7 +333,7 @@ const PatientProfile = () => {
                                 {
                                     openEditProfile &&
                                     <Box sx={{ width: { xs: '300px', sm: '300px', md: '600px', lg: '700px', xl: '700px' } }}>
-                                        <button onClick={()=>UpdateProfile()} style={{ width: 'inherit' }}>{profile.loading ? <CircularProgress size={40} /> : 'confirm'}</button>
+                                        <button onClick={UpdateProfile} style={{ width: 'inherit' }}>{profile.loading ? 'confirming...' : 'confirm'}</button>
                                     </Box>
                                 }
                                 {
@@ -391,30 +396,24 @@ const PatientProfile = () => {
                     {
                         openRoute === 3 &&
                         <div>
-                            {
-                                reservedAppointments.result.length > 0 ?
+                                {
+                                    reservedAppointments.loading?
+                                    (<Loading/>):
+                                    ( reservedAppointments.result.length > 0 ?
                                     <Grid container xs={12} sm={12} md={12} lg={12} xl={12}>
                                         <Box className='reserved-apps' sx={{ width: '100%' }}>
                                         {
                                             reservedAppointments.result.map((appointment) => {
-                                                return (
+                                                return (<>
                                                     <Stack key={appointment.id} spacing={2} direction={{ xs: 'column', sm: 'column', md: 'row', lg: 'row', xl: 'row' }} className='reserved-app' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                            <Stack direction='column' spacing={1} sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                            <Stack direction='column' spacing={1} sx={{ width: '100%', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start',paddingLeft:'10px' }}>
                                                                 <Box>Doctor : {appointment.doctorName}</Box>
                                                                 <Box>Appointment : {appointment.date} [{appointment.startTime}]</Box>
                                                             </Stack>
                                                         </Grid>
                                                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                                             <Stack direction='row' sx={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
-                                                                <Box>
-                                                                    <Button size='small' onClick={() => openImageInNewTab(xray)}>
-                                                                        <FolderIcon />
-                                                                        <Box sx={{ paddingLeft: '5px' }}>
-                                                                            attached xray
-                                                                        </Box>
-                                                                    </Button>
-                                                                </Box>
                                                                 <Box>
                                                                     <Button size='small' color='error' onClick={() => DeleteReservation(appointment.id)}>
                                                                         <CancelIcon />
@@ -426,6 +425,7 @@ const PatientProfile = () => {
                                                             </Stack>
                                                         </Grid>
                                                     </Stack>
+                                                    <Divider/></>
                                                 );
                                             })
                                         }
@@ -436,12 +436,13 @@ const PatientProfile = () => {
                                     :
                                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '50vh', padding: "15px", marginTop: '40px' }}>
                                         <Empty />
-                                    </Box>
+                                    </Box>)
+                                    
                             }
                         </div>
                     }
                 </Grid>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
                     <Alert
                     onClose={handleClose}
                     severity="success"

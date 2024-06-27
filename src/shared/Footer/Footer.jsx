@@ -76,7 +76,7 @@ const Footer = () => {
                                             <p>Bones fracture detection.</p>
                                         </Stack>
                                     </Link>
-                                    <Link to={'/patient/doctors-preview'}>
+                                    <Link to={'/patient/bigForm'}>
                                         <Stack spacing={1} direction='row'>
                                             <div className='mail-icon'><FaUserDoctor /></div>
                                             <p>Online diagnosis with a doctor.</p>

@@ -117,9 +117,9 @@ const ViewDoctorAppointments = () => {
                         </Box> 
                     </Box> 
                 <Stack direction="row" spacing={2}> 
-                    {Statistics.map((statistic) => ( 
+                    {/* {Statistics.map((statistic) => ( 
                             <StatisticsBar key={statistic.id} statistic={statistic} />
-                        ))}
+                        ))} */}
                     </Stack>
                     <Stack direction= {isMobile? "column" :"row"} spacing={isMobile? 2 : 10} >
                         <div className="patients-preview">

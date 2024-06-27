@@ -92,7 +92,7 @@
                         display: block;
                         width: 100px;
                         color: rgb(95, 95, 95);
-                        box-shadow: 1px 1px 6px #bebebe;
+                        // box-shadow: 1px 1px 6px #bebebe;
                         border-radius: 5px;
                         button {
                             width: 100%;
@@ -118,7 +118,7 @@
                 border-bottom: 1px solid #aaaaaa;
             }
         }
-        nav {
+        .paginationNav {
             display: flex;
             justify-content: flex-end;
             align-content: end;
